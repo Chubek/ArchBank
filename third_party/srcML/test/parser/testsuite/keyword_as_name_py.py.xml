@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Python" url="keyword_as_name">
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>__asm</name> <operator>=</operator> <literal type="string">"__asm"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>__volatile__</name> <operator>=</operator> <literal type="string">"__volatile__"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>catch</name> <operator>=</operator> <literal type="string">"catch"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>const</name> <operator>=</operator> <literal type="string">"const"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>default</name> <operator>=</operator> <literal type="string">"default"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>enum</name> <operator>=</operator> <literal type="string">"enum"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>extern</name> <operator>=</operator> <literal type="string">"extern"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>explicit</name> <operator>=</operator> <literal type="string">"explicit"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>false</name> <operator>=</operator> <literal type="boolean">False</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>goto</name> <operator>=</operator> <literal type="string">"goto"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>inline</name> <operator>=</operator> <literal type="string">"inline"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>main</name> <operator>=</operator> <literal type="string">"main"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>namespace</name> <operator>=</operator> <literal type="string">"namespace"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>new</name> <operator>=</operator> <literal type="string">"new"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>omp</name> <operator>=</operator> <literal type="string">"omp"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>operator</name> <operator>=</operator> <literal type="string">"operator"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>private</name> <operator>=</operator> <literal type="string">"private"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>protected</name> <operator>=</operator> <literal type="string">"protected"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>public</name> <operator>=</operator> <literal type="string">"public"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>sizeof</name> <operator>=</operator> <literal type="string">"sizeof"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>static</name> <operator>=</operator> <literal type="string">"static"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>struct</name> <operator>=</operator> <literal type="string">"struct"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>switch</name> <operator>=</operator> <literal type="string">"switch"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>throw</name> <operator>=</operator> <literal type="string">"throw"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>true</name> <operator>=</operator> <literal type="boolean">True</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>type</name> <operator>=</operator> <literal type="string">"type"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>using</name> <operator>=</operator> <literal type="string">"using"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>virtual</name> <operator>=</operator> <literal type="string">"virtual"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>volatile</name> <operator>=</operator> <literal type="string">"volatile"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>case</name> <operator>=</operator> <literal type="number">1</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name><name>case</name><operator>.</operator><name>tag</name></name> <operator>=</operator> <literal type="number">1</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name><name>case</name><index>[<expr><literal type="string">"index"</literal></expr>]</index></name> <operator>=</operator> <literal type="number">1</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><tuple><expr><name>case</name></expr>, <expr><name>_</name></expr></tuple> <operator>=</operator> <tuple><expr><literal type="number">1</literal></expr>, <expr><literal type="number">1</literal></expr></tuple></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>case</name><annotation>: <expr><name>str</name></expr></annotation> <operator>=</operator> <literal type="string">"srcML"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><call><name>case</name><argument_list>()</argument_list></call></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>match</name> <operator>=</operator> <literal type="number">2</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name><name>match</name><operator>.</operator><name>tag</name></name> <operator>=</operator> <literal type="number">2</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name><name>match</name><index>[<expr><literal type="string">"index"</literal></expr>]</index></name> <operator>=</operator> <literal type="number">2</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><tuple><expr><name>match</name></expr>, <expr><name>_</name></expr></tuple> <operator>=</operator> <tuple><expr><literal type="number">2</literal></expr>, <expr><literal type="number">2</literal></expr></tuple></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>match</name><annotation>: <expr><name>str</name></expr></annotation> <operator>=</operator> <literal type="string">"srcML"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><call><name>match</name><argument_list>()</argument_list></call></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>type</name> <operator>=</operator> <literal type="number">3</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name><name>type</name><operator>.</operator><name>tag</name></name> <operator>=</operator> <literal type="number">3</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name><name>type</name><index>[<expr><literal type="string">"index"</literal></expr>]</index></name> <operator>=</operator> <literal type="number">3</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><tuple><expr><name>type</name></expr>, <expr><name>_</name></expr></tuple> <operator>=</operator> <tuple><expr><literal type="number">3</literal></expr>, <expr><literal type="number">3</literal></expr></tuple></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>type</name><annotation>: <expr><name>str</name></expr></annotation> <operator>=</operator> <literal type="string">"srcML"</literal></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><call><name>type</name><argument_list>()</argument_list></call></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><tuple><expr><name>type</name></expr>, <expr><name>params</name></expr></tuple> <operator>=</operator> <tuple><expr><literal type="number">0</literal></expr>, <expr><literal type="number">1</literal></expr></tuple></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><name>a</name></expr></argument>)</argument_list></call></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><call><name>print</name> <argument_list>(<argument><expr><name>a</name></expr></argument>)</argument_list></call></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><call><name>exec</name><argument_list>(<argument><expr><literal type="string">"print(a)"</literal></expr></argument>)</argument_list></call></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><call><name>exec</name> <argument_list>(<argument><expr><literal type="string">"print (a)"</literal></expr></argument>)</argument_list></call></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<switch>match<condition><expr><operator>(</operator><call><name>match</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call><operator>)</operator></expr></condition><block>:<block_content>
+    <case>case<expr><operator>(</operator><call><name>case</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call><operator>)</operator></expr><block>:<block_content>
+        <expr_stmt><expr><call><name>case</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></case>    <case>case<expr><operator>(</operator><call><name>case</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call><operator>)</operator></expr><block>:<block_content>
+        <expr_stmt><expr><call><name>case</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></case></block_content></block></switch>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<switch>match<condition><expr><operator>(</operator>
+    <call><name>match</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call>
+<operator>)</operator></expr></condition><block>:<block_content>
+    <case>case<expr><operator>(</operator>
+        <call><name>case</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call>
+    <operator>)</operator></expr><block>:<block_content>
+        <expr_stmt><expr><call><name>case</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></case>    <case>case<expr><operator>(</operator>
+        <call><name>case</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call>
+    <operator>)</operator></expr><block>:<block_content>
+        <expr_stmt><expr><call><name>case</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></case></block_content></block></switch>
+</unit>
+
+</unit>

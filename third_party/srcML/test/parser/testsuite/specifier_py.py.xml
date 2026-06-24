@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Python" url="specifier">
+
+<unit revision="1.0.0" language="Python">
+<for><specifier>async</specifier> for <control><expr><name>x</name></expr> <range>in <expr><call><name>async_range</name><argument_list>(<argument><expr><literal type="number">10</literal></expr></argument>)</argument_list></call></expr></range></control><block>:<block_content>
+    <expr_stmt><expr><operator>await</operator> <call><name>async_print</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></for>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><array>[<expr><name>x</name></expr> <comprehension><for><specifier>async</specifier> for <control><expr><name>x</name></expr> <range>in <expr><call><name>async_range</name><argument_list>(<argument><expr><literal type="number">10</literal></expr></argument>)</argument_list></call></expr></range></control></for></comprehension>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<with><specifier>async</specifier> with <expr><call><name>async_open</name><argument_list>(<argument><expr><name>filename</name></expr></argument>)</argument_list></call></expr> <alias>as <expr><name>file</name></expr></alias><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></with>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function><specifier>async</specifier> def <name>async_range</name><parameter_list>(<parameter><name>x</name></parameter>)</parameter_list><block>:<block_content>
+    <yield>yield <expr><call><name>get_next</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr></yield>
+</block_content></block></function>
+</unit>
+
+</unit>

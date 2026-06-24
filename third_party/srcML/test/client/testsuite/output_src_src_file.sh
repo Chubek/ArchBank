@@ -1,0 +1,40 @@
+#!/bin/bash
+# SPDX-License-Identifier: GPL-3.0-only
+#
+# @file output_src_src_file.sh
+#
+# @copyright Copyright (C) 2013-2024 srcML, LLC. (www.srcML.org)
+
+# test framework
+source $(dirname "$0")/framework_test.sh
+
+define src <<- 'STDOUT'
+	a;
+STDOUT
+
+defineXML srcml <<- 'STDOUT'
+	<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+	<unit xmlns="http://www.srcML.org/srcML/src" revision="REVISION" language="C++" filename="a.cpp"><expr_stmt><expr><name>a</name></expr>;</expr_stmt>
+	</unit>
+STDOUT
+
+# src --> srcml : input single source file
+createfile sub/a.cpp "$src"
+
+srcml --output-src sub/a.cpp
+check "$src"
+
+srcml -S sub/a.cpp
+check "$src"
+
+srcml -l C++ -S < sub/a.cpp
+check "$src"
+
+srcml -S sub/a.cpp -o sub/b.cpp
+check sub/b.cpp "$src"
+
+srcml -S -o sub/b.cpp sub/a.cpp
+check sub/b.cpp "$src"
+
+srcml -l C++ -S -o sub/b.cpp < sub/a.cpp
+check sub/b.cpp "$src"

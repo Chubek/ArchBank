@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Python" url="pass">
+
+<unit revision="1.0.0" language="Python">
+<if_stmt><if>if <condition><expr><literal type="boolean">True</literal></expr></condition><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></if><if type="elseif">elif <condition><expr><literal type="boolean">False</literal></expr></condition><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></if><else>else<block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></else></if_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<for>for <control><expr><name>val</name></expr> <range>in <expr><name>arr</name></expr></range></control><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block><else>else<block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></else></for>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<while>while <condition><expr><literal type="boolean">False</literal></expr></condition><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block><else>else<block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></else></while>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<with>with <expr><call><name>open</name><argument_list>(<argument><expr><literal type="string">"test.txt"</literal></expr></argument>,<argument><expr><literal type="string">'w'</literal></expr></argument>)</argument_list></call></expr> <alias>as <expr><name>file</name></expr></alias><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></with>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<switch>match <condition><expr><name>x</name></expr></condition><block>:<block_content>
+    <case>case <expr><literal type="number">1</literal></expr><block>:<block_content>
+        <pass>pass</pass>
+</block_content></block></case></block_content></block></switch>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>func</name><parameter_list>()</parameter_list><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<class>class <name>Car</name><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></class>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<try>try<block>:<block_content>
+    <pass>pass</pass>
+</block_content></block><catch>except<block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></catch><else>else<block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></else><finally>finally<block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></finally></try>
+</unit>
+
+</unit>

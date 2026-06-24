@@ -1,0 +1,1722 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="C++">
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>alias</name><argument_list>(<argument><expr><literal type="string">"real_func"</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>aligned</name><argument_list>(<argument><expr><literal type="number">16</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>alloc_align</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>alloc_size</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>always_inline</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>artificial</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>assume_aligned</name><argument_list>(<argument><expr><literal type="number">32</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>availability</name><argument_list>(<argument><expr><name>ios</name></expr></argument>, <argument><expr><literal type="number">10.0</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>bounded</name><argument_list>(<argument><expr><name>min</name></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>cold</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>common</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>constructor</name><argument_list>(<argument><expr><literal type="number">101</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>const</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>copy</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>cpu_dispatch</name><argument_list>(<argument><expr><name>core_2nd_gen_avx</name></expr></argument>, <argument><expr><name>core_4th_gen_avx</name></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>cpu_specific</name><argument_list>(<argument><expr><name>core_2nd_gen_avx</name></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>deprecated</name><argument_list>(<argument><expr><literal type="string">"use new_func instead"</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>destructor</name><argument_list>(<argument><expr><literal type="number">101</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>disable_tail_calls</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>dllimport</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>dllexport</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>error</name><argument_list>(<argument><expr><literal type="string">"do not use this"</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>exclusive_lock_function</name><argument_list>(<argument><expr><name>mutex</name></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>exclusive_locks_required</name><argument_list>(<argument><expr><name>mutex</name></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>externally_visible</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>fallthrough</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>flatten</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>format</name><argument_list>(<argument><expr><name>printf</name></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>format_arg</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>gnu_inline</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>hot</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>ifunc</name><argument_list>(<argument><expr><literal type="string">"resolver_func"</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>interrupt</name><argument_list>(<argument><expr><literal type="string">"IRQ"</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>leaf</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>malloc</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>may_alias</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>min_vector_width</name><argument_list>(<argument><expr><literal type="number">128</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>mode</name><argument_list>(<argument><expr><name>QI</name></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>model</name><argument_list>(<argument><expr><name>small</name></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>ms_abi</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>ms_struct</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>no_address_safety_analysis</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>no_instrument_function</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>no_profile_instrument_function</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>no_sanitize</name><argument_list>(<argument><expr><name>address</name></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>no_sanitize_address</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>no_sanitize_memory</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>no_sanitize_thread</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>no_sanitize_undefined</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>no_split_stack</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>noclone</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>nodiscard</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>noduplicate</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>noinline</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>nonnull</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>noreturn</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>nothrow</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>objc_bridge</name><argument_list>(<argument><expr><name>CFTypeRef</name></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>objc_bridge_mutable</name><argument_list>(<argument><expr><name>CFMutableTypeRef</name></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>objc_bridge_related</name><argument_list>(<argument><expr><name>CFTypeRef</name></expr></argument>, <argument><expr><literal type="string">"getter"</literal></expr></argument>, <argument><expr><literal type="string">"setter"</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>objc_designated_initializer</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>objc_method_family</name><argument_list>(<argument><expr><name>none</name></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>objc_ownership</name><argument_list>(<argument><expr><name>strong</name></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>objc_precise_lifetime</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>objc_requires_super</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>objc_returns_inner_pointer</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>objc_root_class</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>optimize</name><argument_list>(<argument><expr><literal type="number">3</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>packed</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>patchable_function_entry</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>pure</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>readonly</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>regparm</name><argument_list>(<argument><expr><literal type="number">3</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>reproducible</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>reqd_work_group_size</name><argument_list>(<argument><expr><literal type="number">16</literal></expr></argument>, <argument><expr><literal type="number">16</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>restrict</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>returns_nonnull</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>returns_twice</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>section</name><argument_list>(<argument><expr><literal type="string">".mysect"</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>selectany</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>sentinel</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>shared_lock_function</name><argument_list>(<argument><expr><name>mutex</name></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>shared_locks_required</name><argument_list>(<argument><expr><name>mutex</name></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>simd</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>stack_protect</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>target</name><argument_list>(<argument><expr><literal type="string">"sse2"</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>target_clones</name><argument_list>(<argument><expr><literal type="string">"sse2,arch=ivybridge,default"</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>tls_model</name><argument_list>(<argument><expr><literal type="string">"initial-exec"</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>transaction_safe</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>transparent_union</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>trivial_abi</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>type_tag_for_datatype</name><argument_list>(<argument><expr><name>MPI_Datatype</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>unused</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>used</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>vector_size</name><argument_list>(<argument><expr><literal type="number">16</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>vectorcall</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>visibility</name><argument_list>(<argument><expr><literal type="string">"hidden"</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>warn_unused_result</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>warning</name><argument_list>(<argument><expr><literal type="string">"deprecated usage"</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>weak</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>weak_import</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>weakref</name><argument_list>(<argument><expr><literal type="string">"alt_func"</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>zero_call_used_regs</name><argument_list>(<argument><expr><name>all</name></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>fastcall</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>stdcall</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>cdecl</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>thiscall</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>pascal</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>sysv_abi</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>abi_tag</name><argument_list>(<argument><expr><literal type="string">"customabi"</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>retain</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>release</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>cf_returns_retained</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>cf_returns_not_retained</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>ns_returns_retained</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>ns_returns_not_retained</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>objc_gc</name><argument_list>(<argument><expr><name>weak</name></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>objc_requires_property_definitions</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>objc_subclassing_restricted</name></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>objc_runtime_name</name><argument_list>(<argument><expr><literal type="string">"MyClass"</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>swift_name</name><argument_list>(<argument><expr><literal type="string">"MySwiftName"</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>alias</name><argument_list>(<argument><expr><literal type="string">"real_func"</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>aligned</name><argument_list>(<argument><expr><literal type="number">16</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>alloc_align</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>alloc_size</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>always_inline</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>artificial</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>assume_aligned</name><argument_list>(<argument><expr><literal type="number">32</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>availability</name><argument_list>(<argument><expr><name>ios</name></expr></argument>, <argument><expr><literal type="number">10.0</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>bounded</name><argument_list>(<argument><expr><name>min</name></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>cold</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>common</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>constructor</name><argument_list>(<argument><expr><literal type="number">101</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>const</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>copy</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>cpu_dispatch</name><argument_list>(<argument><expr><name>core_2nd_gen_avx</name></expr></argument>, <argument><expr><name>core_4th_gen_avx</name></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>cpu_specific</name><argument_list>(<argument><expr><name>core_2nd_gen_avx</name></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>deprecated</name><argument_list>(<argument><expr><literal type="string">"use new_func instead"</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>destructor</name><argument_list>(<argument><expr><literal type="number">101</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>disable_tail_calls</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>dllimport</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>dllexport</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>error</name><argument_list>(<argument><expr><literal type="string">"do not use this"</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>exclusive_lock_function</name><argument_list>(<argument><expr><name>mutex</name></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>exclusive_locks_required</name><argument_list>(<argument><expr><name>mutex</name></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>externally_visible</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>fallthrough</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>flatten</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>format</name><argument_list>(<argument><expr><name>printf</name></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>format_arg</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>gnu_inline</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>hot</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>ifunc</name><argument_list>(<argument><expr><literal type="string">"resolver_func"</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>interrupt</name><argument_list>(<argument><expr><literal type="string">"IRQ"</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>leaf</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>malloc</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>may_alias</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>min_vector_width</name><argument_list>(<argument><expr><literal type="number">128</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>mode</name><argument_list>(<argument><expr><name>QI</name></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>model</name><argument_list>(<argument><expr><name>small</name></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>ms_abi</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>ms_struct</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>no_address_safety_analysis</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>no_instrument_function</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>no_profile_instrument_function</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>no_sanitize</name><argument_list>(<argument><expr><name>address</name></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>no_sanitize_address</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>no_sanitize_memory</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>no_sanitize_thread</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>no_sanitize_undefined</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>no_split_stack</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>noclone</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>nodiscard</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>noduplicate</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>noinline</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>nonnull</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>noreturn</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>nothrow</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>objc_bridge</name><argument_list>(<argument><expr><name>CFTypeRef</name></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>objc_bridge_mutable</name><argument_list>(<argument><expr><name>CFMutableTypeRef</name></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>objc_bridge_related</name><argument_list>(<argument><expr><name>CFTypeRef</name></expr></argument>, <argument><expr><literal type="string">"getter"</literal></expr></argument>, <argument><expr><literal type="string">"setter"</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>objc_designated_initializer</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>objc_method_family</name><argument_list>(<argument><expr><name>none</name></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>objc_ownership</name><argument_list>(<argument><expr><name>strong</name></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>objc_precise_lifetime</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>objc_requires_super</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>objc_returns_inner_pointer</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>objc_root_class</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>optimize</name><argument_list>(<argument><expr><literal type="number">3</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>packed</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>patchable_function_entry</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>pure</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>readonly</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>regparm</name><argument_list>(<argument><expr><literal type="number">3</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>reproducible</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>reqd_work_group_size</name><argument_list>(<argument><expr><literal type="number">16</literal></expr></argument>, <argument><expr><literal type="number">16</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>restrict</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>returns_nonnull</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>returns_twice</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>section</name><argument_list>(<argument><expr><literal type="string">".mysect"</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>selectany</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>sentinel</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>shared_lock_function</name><argument_list>(<argument><expr><name>mutex</name></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>shared_locks_required</name><argument_list>(<argument><expr><name>mutex</name></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>simd</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>stack_protect</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>target</name><argument_list>(<argument><expr><literal type="string">"sse2"</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>target_clones</name><argument_list>(<argument><expr><literal type="string">"sse2,arch=ivybridge,default"</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>tls_model</name><argument_list>(<argument><expr><literal type="string">"initial-exec"</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>transaction_safe</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>transparent_union</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>trivial_abi</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>type_tag_for_datatype</name><argument_list>(<argument><expr><name>MPI_Datatype</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>unused</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>used</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>vector_size</name><argument_list>(<argument><expr><literal type="number">16</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>vectorcall</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>visibility</name><argument_list>(<argument><expr><literal type="string">"hidden"</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>warn_unused_result</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>warning</name><argument_list>(<argument><expr><literal type="string">"deprecated usage"</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>weak</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>weak_import</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>weakref</name><argument_list>(<argument><expr><literal type="string">"alt_func"</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>zero_call_used_regs</name><argument_list>(<argument><expr><name>all</name></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>fastcall</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>stdcall</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>cdecl</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>thiscall</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>pascal</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>sysv_abi</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>abi_tag</name><argument_list>(<argument><expr><literal type="string">"customabi"</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>retain</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>release</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>cf_returns_retained</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>cf_returns_not_retained</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>ns_returns_retained</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>ns_returns_not_retained</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>objc_gc</name><argument_list>(<argument><expr><name>weak</name></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>objc_requires_property_definitions</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>objc_subclassing_restricted</name></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>objc_runtime_name</name><argument_list>(<argument><expr><literal type="string">"MyClass"</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <attribute>__attribute__((<expr><call><name>swift_name</name><argument_list>(<argument><expr><literal type="string">"MySwiftName"</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>n</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name>
+
+<attribute>__attribute__((<expr><call><name>alias</name><argument_list>(<argument><expr><literal type="string">"real_func"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>aligned</name><argument_list>(<argument><expr><literal type="number">16</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>alloc_align</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>alloc_size</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>always_inline</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>artificial</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>assume_aligned</name><argument_list>(<argument><expr><literal type="number">32</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>availability</name><argument_list>(<argument><expr><name>ios</name></expr></argument>, <argument><expr><literal type="number">10.0</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>bounded</name><argument_list>(<argument><expr><name>min</name></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>cold</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>common</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>constructor</name><argument_list>(<argument><expr><literal type="number">101</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>const</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>copy</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>cpu_dispatch</name><argument_list>(<argument><expr><name>core_2nd_gen_avx</name></expr></argument>, <argument><expr><name>core_4th_gen_avx</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>cpu_specific</name><argument_list>(<argument><expr><name>core_2nd_gen_avx</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>deprecated</name><argument_list>(<argument><expr><literal type="string">"use new_func instead"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>destructor</name><argument_list>(<argument><expr><literal type="number">101</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>disable_tail_calls</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>dllimport</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>dllexport</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>error</name><argument_list>(<argument><expr><literal type="string">"do not use this"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>exclusive_lock_function</name><argument_list>(<argument><expr><name>mutex</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>exclusive_locks_required</name><argument_list>(<argument><expr><name>mutex</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>externally_visible</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>fallthrough</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>flatten</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>format</name><argument_list>(<argument><expr><name>printf</name></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>format_arg</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>gnu_inline</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>hot</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>ifunc</name><argument_list>(<argument><expr><literal type="string">"resolver_func"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>interrupt</name><argument_list>(<argument><expr><literal type="string">"IRQ"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>leaf</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>malloc</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>may_alias</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>min_vector_width</name><argument_list>(<argument><expr><literal type="number">128</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>mode</name><argument_list>(<argument><expr><name>QI</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>model</name><argument_list>(<argument><expr><name>small</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>ms_abi</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>ms_struct</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>no_address_safety_analysis</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>no_instrument_function</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>no_profile_instrument_function</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>no_sanitize</name><argument_list>(<argument><expr><name>address</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>no_sanitize_address</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>no_sanitize_memory</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>no_sanitize_thread</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>no_sanitize_undefined</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>no_split_stack</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>noclone</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>nodiscard</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>noduplicate</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>noinline</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>nonnull</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>noreturn</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>nothrow</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>objc_bridge</name><argument_list>(<argument><expr><name>CFTypeRef</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>objc_bridge_mutable</name><argument_list>(<argument><expr><name>CFMutableTypeRef</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>objc_bridge_related</name><argument_list>(<argument><expr><name>CFTypeRef</name></expr></argument>, <argument><expr><literal type="string">"getter"</literal></expr></argument>, <argument><expr><literal type="string">"setter"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>objc_designated_initializer</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>objc_method_family</name><argument_list>(<argument><expr><name>none</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>objc_ownership</name><argument_list>(<argument><expr><name>strong</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>objc_precise_lifetime</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>objc_requires_super</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>objc_returns_inner_pointer</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>objc_root_class</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>optimize</name><argument_list>(<argument><expr><literal type="number">3</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>packed</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>patchable_function_entry</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>pure</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>readonly</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>regparm</name><argument_list>(<argument><expr><literal type="number">3</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>reproducible</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>reqd_work_group_size</name><argument_list>(<argument><expr><literal type="number">16</literal></expr></argument>, <argument><expr><literal type="number">16</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>restrict</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>returns_nonnull</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>returns_twice</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>section</name><argument_list>(<argument><expr><literal type="string">".mysect"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>selectany</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>sentinel</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>shared_lock_function</name><argument_list>(<argument><expr><name>mutex</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>shared_locks_required</name><argument_list>(<argument><expr><name>mutex</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>simd</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>stack_protect</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>target</name><argument_list>(<argument><expr><literal type="string">"sse2"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>target_clones</name><argument_list>(<argument><expr><literal type="string">"sse2,arch=ivybridge,default"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>tls_model</name><argument_list>(<argument><expr><literal type="string">"initial-exec"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>transaction_safe</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>transparent_union</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>trivial_abi</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>type_tag_for_datatype</name><argument_list>(<argument><expr><name>MPI_Datatype</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>unused</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>used</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>vector_size</name><argument_list>(<argument><expr><literal type="number">16</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>vectorcall</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>visibility</name><argument_list>(<argument><expr><literal type="string">"hidden"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>warn_unused_result</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>warning</name><argument_list>(<argument><expr><literal type="string">"deprecated usage"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>weak</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>weak_import</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>weakref</name><argument_list>(<argument><expr><literal type="string">"alt_func"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>zero_call_used_regs</name><argument_list>(<argument><expr><name>all</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>fastcall</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>stdcall</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>cdecl</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>thiscall</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>pascal</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>sysv_abi</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>abi_tag</name><argument_list>(<argument><expr><literal type="string">"customabi"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>retain</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>release</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>cf_returns_retained</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>cf_returns_not_retained</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>ns_returns_retained</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>ns_returns_not_retained</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>objc_gc</name><argument_list>(<argument><expr><name>weak</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>objc_requires_property_definitions</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>objc_subclassing_restricted</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>objc_runtime_name</name><argument_list>(<argument><expr><literal type="string">"MyClass"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>swift_name</name><argument_list>(<argument><expr><literal type="string">"MySwiftName"</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>
+;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type>
+
+<attribute>__attribute__((<expr><call><name>alias</name><argument_list>(<argument><expr><literal type="string">"real_func"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>aligned</name><argument_list>(<argument><expr><literal type="number">16</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>alloc_align</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>alloc_size</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>always_inline</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>artificial</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>assume_aligned</name><argument_list>(<argument><expr><literal type="number">32</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>availability</name><argument_list>(<argument><expr><name>ios</name></expr></argument>, <argument><expr><literal type="number">10.0</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>bounded</name><argument_list>(<argument><expr><name>min</name></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>cold</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>common</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>constructor</name><argument_list>(<argument><expr><literal type="number">101</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>const</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>copy</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>cpu_dispatch</name><argument_list>(<argument><expr><name>core_2nd_gen_avx</name></expr></argument>, <argument><expr><name>core_4th_gen_avx</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>cpu_specific</name><argument_list>(<argument><expr><name>core_2nd_gen_avx</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>deprecated</name><argument_list>(<argument><expr><literal type="string">"use new_func instead"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>destructor</name><argument_list>(<argument><expr><literal type="number">101</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>disable_tail_calls</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>dllimport</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>dllexport</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>error</name><argument_list>(<argument><expr><literal type="string">"do not use this"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>exclusive_lock_function</name><argument_list>(<argument><expr><name>mutex</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>exclusive_locks_required</name><argument_list>(<argument><expr><name>mutex</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>externally_visible</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>fallthrough</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>flatten</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>format</name><argument_list>(<argument><expr><name>printf</name></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>format_arg</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>gnu_inline</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>hot</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>ifunc</name><argument_list>(<argument><expr><literal type="string">"resolver_func"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>interrupt</name><argument_list>(<argument><expr><literal type="string">"IRQ"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>leaf</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>malloc</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>may_alias</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>min_vector_width</name><argument_list>(<argument><expr><literal type="number">128</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>mode</name><argument_list>(<argument><expr><name>QI</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>model</name><argument_list>(<argument><expr><name>small</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>ms_abi</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>ms_struct</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>no_address_safety_analysis</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>no_instrument_function</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>no_profile_instrument_function</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>no_sanitize</name><argument_list>(<argument><expr><name>address</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>no_sanitize_address</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>no_sanitize_memory</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>no_sanitize_thread</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>no_sanitize_undefined</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>no_split_stack</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>noclone</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>nodiscard</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>noduplicate</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>noinline</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>nonnull</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>noreturn</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>nothrow</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>objc_bridge</name><argument_list>(<argument><expr><name>CFTypeRef</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>objc_bridge_mutable</name><argument_list>(<argument><expr><name>CFMutableTypeRef</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>objc_bridge_related</name><argument_list>(<argument><expr><name>CFTypeRef</name></expr></argument>, <argument><expr><literal type="string">"getter"</literal></expr></argument>, <argument><expr><literal type="string">"setter"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>objc_designated_initializer</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>objc_method_family</name><argument_list>(<argument><expr><name>none</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>objc_ownership</name><argument_list>(<argument><expr><name>strong</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>objc_precise_lifetime</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>objc_requires_super</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>objc_returns_inner_pointer</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>objc_root_class</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>optimize</name><argument_list>(<argument><expr><literal type="number">3</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>packed</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>patchable_function_entry</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>pure</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>readonly</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>regparm</name><argument_list>(<argument><expr><literal type="number">3</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>reproducible</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>reqd_work_group_size</name><argument_list>(<argument><expr><literal type="number">16</literal></expr></argument>, <argument><expr><literal type="number">16</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>restrict</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>returns_nonnull</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>returns_twice</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>section</name><argument_list>(<argument><expr><literal type="string">".mysect"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>selectany</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>sentinel</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>shared_lock_function</name><argument_list>(<argument><expr><name>mutex</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>shared_locks_required</name><argument_list>(<argument><expr><name>mutex</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>simd</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>stack_protect</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>target</name><argument_list>(<argument><expr><literal type="string">"sse2"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>target_clones</name><argument_list>(<argument><expr><literal type="string">"sse2,arch=ivybridge,default"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>tls_model</name><argument_list>(<argument><expr><literal type="string">"initial-exec"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>transaction_safe</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>transparent_union</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>trivial_abi</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>type_tag_for_datatype</name><argument_list>(<argument><expr><name>MPI_Datatype</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>unused</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>used</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>vector_size</name><argument_list>(<argument><expr><literal type="number">16</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>vectorcall</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>visibility</name><argument_list>(<argument><expr><literal type="string">"hidden"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>warn_unused_result</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>warning</name><argument_list>(<argument><expr><literal type="string">"deprecated usage"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>weak</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>weak_import</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>weakref</name><argument_list>(<argument><expr><literal type="string">"alt_func"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>zero_call_used_regs</name><argument_list>(<argument><expr><name>all</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>fastcall</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>stdcall</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>cdecl</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>thiscall</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>pascal</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>sysv_abi</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>abi_tag</name><argument_list>(<argument><expr><literal type="string">"customabi"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>retain</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>release</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>cf_returns_retained</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>cf_returns_not_retained</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>ns_returns_retained</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>ns_returns_not_retained</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>objc_gc</name><argument_list>(<argument><expr><name>weak</name></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>objc_requires_property_definitions</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><name>objc_subclassing_restricted</name></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>objc_runtime_name</name><argument_list>(<argument><expr><literal type="string">"MyClass"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+
+<attribute>__attribute__((<expr><call><name>swift_name</name><argument_list>(<argument><expr><literal type="string">"MySwiftName"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+<name>n</name></decl>
+;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name>
+
+<attribute>__attribute__((<expr><call><name>alias</name><argument_list>(<argument><expr><literal type="string">"real_func"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>aligned</name><argument_list>(<argument><expr><literal type="number">16</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>alloc_align</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>alloc_size</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>always_inline</name></expr>,
+<expr><name>artificial</name></expr>,
+<expr><call><name>assume_aligned</name><argument_list>(<argument><expr><literal type="number">32</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>availability</name><argument_list>(<argument><expr><name>ios</name></expr></argument>, <argument><expr><literal type="number">10.0</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>bounded</name><argument_list>(<argument><expr><name>min</name></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>cold</name></expr>,
+<expr><name>common</name></expr>,
+<expr><call><name>constructor</name><argument_list>(<argument><expr><literal type="number">101</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>const</name></expr>,
+<expr><name>copy</name></expr>,
+<expr><call><name>cpu_dispatch</name><argument_list>(<argument><expr><name>core_2nd_gen_avx</name></expr></argument>, <argument><expr><name>core_4th_gen_avx</name></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>cpu_specific</name><argument_list>(<argument><expr><name>core_2nd_gen_avx</name></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>deprecated</name><argument_list>(<argument><expr><literal type="string">"use new_func instead"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>destructor</name><argument_list>(<argument><expr><literal type="number">101</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>disable_tail_calls</name></expr>,
+<expr><name>dllimport</name></expr>,
+<expr><name>dllexport</name></expr>,
+<expr><call><name>error</name><argument_list>(<argument><expr><literal type="string">"do not use this"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>exclusive_lock_function</name><argument_list>(<argument><expr><name>mutex</name></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>exclusive_locks_required</name><argument_list>(<argument><expr><name>mutex</name></expr></argument>)</argument_list></call></expr>,
+<expr><name>externally_visible</name></expr>,
+<expr><name>fallthrough</name></expr>,
+<expr><name>flatten</name></expr>,
+<expr><call><name>format</name><argument_list>(<argument><expr><name>printf</name></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>format_arg</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>gnu_inline</name></expr>,
+<expr><name>hot</name></expr>,
+<expr><call><name>ifunc</name><argument_list>(<argument><expr><literal type="string">"resolver_func"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>interrupt</name><argument_list>(<argument><expr><literal type="string">"IRQ"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>leaf</name></expr>,
+<expr><name>malloc</name></expr>,
+<expr><name>may_alias</name></expr>,
+<expr><call><name>min_vector_width</name><argument_list>(<argument><expr><literal type="number">128</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>mode</name><argument_list>(<argument><expr><name>QI</name></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>model</name><argument_list>(<argument><expr><name>small</name></expr></argument>)</argument_list></call></expr>,
+<expr><name>ms_abi</name></expr>,
+<expr><name>ms_struct</name></expr>,
+<expr><name>no_address_safety_analysis</name></expr>,
+<expr><name>no_instrument_function</name></expr>,
+<expr><name>no_profile_instrument_function</name></expr>,
+<expr><call><name>no_sanitize</name><argument_list>(<argument><expr><name>address</name></expr></argument>)</argument_list></call></expr>,
+<expr><name>no_sanitize_address</name></expr>,
+<expr><name>no_sanitize_memory</name></expr>,
+<expr><name>no_sanitize_thread</name></expr>,
+<expr><name>no_sanitize_undefined</name></expr>,
+<expr><name>no_split_stack</name></expr>,
+<expr><name>noclone</name></expr>,
+<expr><name>nodiscard</name></expr>,
+<expr><name>noduplicate</name></expr>,
+<expr><name>noinline</name></expr>,
+<expr><call><name>nonnull</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>noreturn</name></expr>,
+<expr><name>nothrow</name></expr>,
+<expr><call><name>objc_bridge</name><argument_list>(<argument><expr><name>CFTypeRef</name></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>objc_bridge_mutable</name><argument_list>(<argument><expr><name>CFMutableTypeRef</name></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>objc_bridge_related</name><argument_list>(<argument><expr><name>CFTypeRef</name></expr></argument>, <argument><expr><literal type="string">"getter"</literal></expr></argument>, <argument><expr><literal type="string">"setter"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>objc_designated_initializer</name></expr>,
+<expr><call><name>objc_method_family</name><argument_list>(<argument><expr><name>none</name></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>objc_ownership</name><argument_list>(<argument><expr><name>strong</name></expr></argument>)</argument_list></call></expr>,
+<expr><name>objc_precise_lifetime</name></expr>,
+<expr><name>objc_requires_super</name></expr>,
+<expr><name>objc_returns_inner_pointer</name></expr>,
+<expr><name>objc_root_class</name></expr>,
+<expr><call><name>optimize</name><argument_list>(<argument><expr><literal type="number">3</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>packed</name></expr>,
+<expr><call><name>patchable_function_entry</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>pure</name></expr>,
+<expr><name>readonly</name></expr>,
+<expr><call><name>regparm</name><argument_list>(<argument><expr><literal type="number">3</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>reproducible</name></expr>,
+<expr><call><name>reqd_work_group_size</name><argument_list>(<argument><expr><literal type="number">16</literal></expr></argument>, <argument><expr><literal type="number">16</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>restrict</name></expr>,
+<expr><name>returns_nonnull</name></expr>,
+<expr><name>returns_twice</name></expr>,
+<expr><call><name>section</name><argument_list>(<argument><expr><literal type="string">".mysect"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>selectany</name></expr>,
+<expr><call><name>sentinel</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>shared_lock_function</name><argument_list>(<argument><expr><name>mutex</name></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>shared_locks_required</name><argument_list>(<argument><expr><name>mutex</name></expr></argument>)</argument_list></call></expr>,
+<expr><name>simd</name></expr>,
+<expr><name>stack_protect</name></expr>,
+<expr><call><name>target</name><argument_list>(<argument><expr><literal type="string">"sse2"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>target_clones</name><argument_list>(<argument><expr><literal type="string">"sse2,arch=ivybridge,default"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>tls_model</name><argument_list>(<argument><expr><literal type="string">"initial-exec"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>transaction_safe</name></expr>,
+<expr><name>transparent_union</name></expr>,
+<expr><name>trivial_abi</name></expr>,
+<expr><call><name>type_tag_for_datatype</name><argument_list>(<argument><expr><name>MPI_Datatype</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>unused</name></expr>,
+<expr><name>used</name></expr>,
+<expr><call><name>vector_size</name><argument_list>(<argument><expr><literal type="number">16</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>vectorcall</name></expr>,
+<expr><call><name>visibility</name><argument_list>(<argument><expr><literal type="string">"hidden"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>warn_unused_result</name></expr>,
+<expr><call><name>warning</name><argument_list>(<argument><expr><literal type="string">"deprecated usage"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>weak</name></expr>,
+<expr><name>weak_import</name></expr>,
+<expr><call><name>weakref</name><argument_list>(<argument><expr><literal type="string">"alt_func"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>zero_call_used_regs</name><argument_list>(<argument><expr><name>all</name></expr></argument>)</argument_list></call></expr>,
+<expr><name>fastcall</name></expr>,
+<expr><name>stdcall</name></expr>,
+<expr><name>cdecl</name></expr>,
+<expr><name>thiscall</name></expr>,
+<expr><name>pascal</name></expr>,
+<expr><name>sysv_abi</name></expr>,
+<expr><call><name>abi_tag</name><argument_list>(<argument><expr><literal type="string">"customabi"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>retain</name></expr>,
+<expr><name>release</name></expr>,
+<expr><name>cf_returns_retained</name></expr>,
+<expr><name>cf_returns_not_retained</name></expr>,
+<expr><name>ns_returns_retained</name></expr>,
+<expr><name>ns_returns_not_retained</name></expr>,
+<expr><call><name>objc_gc</name><argument_list>(<argument><expr><name>weak</name></expr></argument>)</argument_list></call></expr>,
+<expr><name>objc_requires_property_definitions</name></expr>,
+<expr><name>objc_subclassing_restricted</name></expr>,
+<expr><call><name>objc_runtime_name</name><argument_list>(<argument><expr><literal type="string">"MyClass"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>swift_name</name><argument_list>(<argument><expr><literal type="string">"MySwiftName"</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>
+;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type>
+
+<attribute>__attribute__((<expr><call><name>alias</name><argument_list>(<argument><expr><literal type="string">"real_func"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>aligned</name><argument_list>(<argument><expr><literal type="number">16</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>alloc_align</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>alloc_size</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>always_inline</name></expr>,
+<expr><name>artificial</name></expr>,
+<expr><call><name>assume_aligned</name><argument_list>(<argument><expr><literal type="number">32</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>availability</name><argument_list>(<argument><expr><name>ios</name></expr></argument>, <argument><expr><literal type="number">10.0</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>bounded</name><argument_list>(<argument><expr><name>min</name></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>cold</name></expr>,
+<expr><name>common</name></expr>,
+<expr><call><name>constructor</name><argument_list>(<argument><expr><literal type="number">101</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>const</name></expr>,
+<expr><name>copy</name></expr>,
+<expr><call><name>cpu_dispatch</name><argument_list>(<argument><expr><name>core_2nd_gen_avx</name></expr></argument>, <argument><expr><name>core_4th_gen_avx</name></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>cpu_specific</name><argument_list>(<argument><expr><name>core_2nd_gen_avx</name></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>deprecated</name><argument_list>(<argument><expr><literal type="string">"use new_func instead"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>destructor</name><argument_list>(<argument><expr><literal type="number">101</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>disable_tail_calls</name></expr>,
+<expr><name>dllimport</name></expr>,
+<expr><name>dllexport</name></expr>,
+<expr><call><name>error</name><argument_list>(<argument><expr><literal type="string">"do not use this"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>exclusive_lock_function</name><argument_list>(<argument><expr><name>mutex</name></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>exclusive_locks_required</name><argument_list>(<argument><expr><name>mutex</name></expr></argument>)</argument_list></call></expr>,
+<expr><name>externally_visible</name></expr>,
+<expr><name>fallthrough</name></expr>,
+<expr><name>flatten</name></expr>,
+<expr><call><name>format</name><argument_list>(<argument><expr><name>printf</name></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>format_arg</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>gnu_inline</name></expr>,
+<expr><name>hot</name></expr>,
+<expr><call><name>ifunc</name><argument_list>(<argument><expr><literal type="string">"resolver_func"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>interrupt</name><argument_list>(<argument><expr><literal type="string">"IRQ"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>leaf</name></expr>,
+<expr><name>malloc</name></expr>,
+<expr><name>may_alias</name></expr>,
+<expr><call><name>min_vector_width</name><argument_list>(<argument><expr><literal type="number">128</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>mode</name><argument_list>(<argument><expr><name>QI</name></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>model</name><argument_list>(<argument><expr><name>small</name></expr></argument>)</argument_list></call></expr>,
+<expr><name>ms_abi</name></expr>,
+<expr><name>ms_struct</name></expr>,
+<expr><name>no_address_safety_analysis</name></expr>,
+<expr><name>no_instrument_function</name></expr>,
+<expr><name>no_profile_instrument_function</name></expr>,
+<expr><call><name>no_sanitize</name><argument_list>(<argument><expr><name>address</name></expr></argument>)</argument_list></call></expr>,
+<expr><name>no_sanitize_address</name></expr>,
+<expr><name>no_sanitize_memory</name></expr>,
+<expr><name>no_sanitize_thread</name></expr>,
+<expr><name>no_sanitize_undefined</name></expr>,
+<expr><name>no_split_stack</name></expr>,
+<expr><name>noclone</name></expr>,
+<expr><name>nodiscard</name></expr>,
+<expr><name>noduplicate</name></expr>,
+<expr><name>noinline</name></expr>,
+<expr><call><name>nonnull</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>noreturn</name></expr>,
+<expr><name>nothrow</name></expr>,
+<expr><call><name>objc_bridge</name><argument_list>(<argument><expr><name>CFTypeRef</name></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>objc_bridge_mutable</name><argument_list>(<argument><expr><name>CFMutableTypeRef</name></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>objc_bridge_related</name><argument_list>(<argument><expr><name>CFTypeRef</name></expr></argument>, <argument><expr><literal type="string">"getter"</literal></expr></argument>, <argument><expr><literal type="string">"setter"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>objc_designated_initializer</name></expr>,
+<expr><call><name>objc_method_family</name><argument_list>(<argument><expr><name>none</name></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>objc_ownership</name><argument_list>(<argument><expr><name>strong</name></expr></argument>)</argument_list></call></expr>,
+<expr><name>objc_precise_lifetime</name></expr>,
+<expr><name>objc_requires_super</name></expr>,
+<expr><name>objc_returns_inner_pointer</name></expr>,
+<expr><name>objc_root_class</name></expr>,
+<expr><call><name>optimize</name><argument_list>(<argument><expr><literal type="number">3</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>packed</name></expr>,
+<expr><call><name>patchable_function_entry</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>pure</name></expr>,
+<expr><name>readonly</name></expr>,
+<expr><call><name>regparm</name><argument_list>(<argument><expr><literal type="number">3</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>reproducible</name></expr>,
+<expr><call><name>reqd_work_group_size</name><argument_list>(<argument><expr><literal type="number">16</literal></expr></argument>, <argument><expr><literal type="number">16</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>restrict</name></expr>,
+<expr><name>returns_nonnull</name></expr>,
+<expr><name>returns_twice</name></expr>,
+<expr><call><name>section</name><argument_list>(<argument><expr><literal type="string">".mysect"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>selectany</name></expr>,
+<expr><call><name>sentinel</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>shared_lock_function</name><argument_list>(<argument><expr><name>mutex</name></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>shared_locks_required</name><argument_list>(<argument><expr><name>mutex</name></expr></argument>)</argument_list></call></expr>,
+<expr><name>simd</name></expr>,
+<expr><name>stack_protect</name></expr>,
+<expr><call><name>target</name><argument_list>(<argument><expr><literal type="string">"sse2"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>target_clones</name><argument_list>(<argument><expr><literal type="string">"sse2,arch=ivybridge,default"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>tls_model</name><argument_list>(<argument><expr><literal type="string">"initial-exec"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>transaction_safe</name></expr>,
+<expr><name>transparent_union</name></expr>,
+<expr><name>trivial_abi</name></expr>,
+<expr><call><name>type_tag_for_datatype</name><argument_list>(<argument><expr><name>MPI_Datatype</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>unused</name></expr>,
+<expr><name>used</name></expr>,
+<expr><call><name>vector_size</name><argument_list>(<argument><expr><literal type="number">16</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>vectorcall</name></expr>,
+<expr><call><name>visibility</name><argument_list>(<argument><expr><literal type="string">"hidden"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>warn_unused_result</name></expr>,
+<expr><call><name>warning</name><argument_list>(<argument><expr><literal type="string">"deprecated usage"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>weak</name></expr>,
+<expr><name>weak_import</name></expr>,
+<expr><call><name>weakref</name><argument_list>(<argument><expr><literal type="string">"alt_func"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>zero_call_used_regs</name><argument_list>(<argument><expr><name>all</name></expr></argument>)</argument_list></call></expr>,
+<expr><name>fastcall</name></expr>,
+<expr><name>stdcall</name></expr>,
+<expr><name>cdecl</name></expr>,
+<expr><name>thiscall</name></expr>,
+<expr><name>pascal</name></expr>,
+<expr><name>sysv_abi</name></expr>,
+<expr><call><name>abi_tag</name><argument_list>(<argument><expr><literal type="string">"customabi"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><name>retain</name></expr>,
+<expr><name>release</name></expr>,
+<expr><name>cf_returns_retained</name></expr>,
+<expr><name>cf_returns_not_retained</name></expr>,
+<expr><name>ns_returns_retained</name></expr>,
+<expr><name>ns_returns_not_retained</name></expr>,
+<expr><call><name>objc_gc</name><argument_list>(<argument><expr><name>weak</name></expr></argument>)</argument_list></call></expr>,
+<expr><name>objc_requires_property_definitions</name></expr>,
+<expr><name>objc_subclassing_restricted</name></expr>,
+<expr><call><name>objc_runtime_name</name><argument_list>(<argument><expr><literal type="string">"MyClass"</literal></expr></argument>)</argument_list></call></expr>,
+<expr><call><name>swift_name</name><argument_list>(<argument><expr><literal type="string">"MySwiftName"</literal></expr></argument>)</argument_list></call></expr>))</attribute>
+<name>n</name></decl>
+;</decl_stmt>
+</unit>
+
+</unit>

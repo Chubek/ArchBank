@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Python" url="delete">
+
+<unit revision="1.0.0" language="Python">
+<delete>del <name>x</name></delete>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<delete>del <name>x</name>, <name>y</name></delete>
+</unit>
+
+</unit>

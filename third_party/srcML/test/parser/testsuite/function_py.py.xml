@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Python" url="function">
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>do_nothing</name><parameter_list>()</parameter_list><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function><attribute>@<expr><name>do_nothing</name></expr></attribute>
+def <name>func</name><parameter_list>()</parameter_list><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function><attribute>@<expr><name>print</name></expr></attribute>
+<attribute>@<expr><name>exec</name></expr></attribute>
+def <name>func</name><parameter_list>()</parameter_list><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function><specifier>async</specifier> def <name>async_loop</name><parameter_list>()</parameter_list><block>:<block_content>
+    <expr_stmt><expr><operator>await</operator> <call><name>start_loop</name><argument_list>()</argument_list></call></expr></expr_stmt>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>printf</name><parameter_list>(<parameter><name>x</name></parameter>)</parameter_list><block>:<block_content>
+    <expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><literal type="string">f"{x}"</literal></expr></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>get_time_str</name><parameter_list>()</parameter_list> <annotation>-&gt; <expr><name>str</name></expr></annotation><block>:<block_content>
+    <return>return <expr><call><name>str</name><argument_list>(<argument><expr><call><name><name>time</name><operator>.</operator><name>time</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></return>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function><attribute>@<expr><name>print</name></expr></attribute>
+<specifier>async</specifier> def <name>async_printf</name><parameter_list>(<parameter><name>content</name></parameter>, <parameter><name>format_str</name></parameter>)</parameter_list> <annotation>-&gt; <expr><literal type="null">None</literal></expr></annotation><block>:<block_content>
+    <expr_stmt><expr><operator>await</operator> <call><name>print</name><argument_list>(<argument><expr><call><name><name>format_str</name><operator>.</operator><name>format</name></name><argument_list>(<argument><expr><name>content</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>foo</name><parameter_list>()</parameter_list><block>:<block_content> <return>return <expr><literal type="string">"foo"</literal></expr></return></block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>foo</name><parameter_list>()</parameter_list><block>:<block_content> <expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><literal type="string">"foo"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt> <return>return <expr><literal type="string">"foo"</literal></expr></return></block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function><specifier>async</specifier> def <name>async_loop</name><parameter_list>()</parameter_list><block>:<block_content> <expr_stmt><expr><operator>await</operator> <call><name>start_loop</name><argument_list>()</argument_list></call></expr></expr_stmt></block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function><specifier>async</specifier> def <name>async_loop</name><parameter_list>()</parameter_list><block>:<block_content> <expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><literal type="string">"srcML"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt> <expr_stmt><expr><operator>await</operator> <call><name>start_loop</name><argument_list>()</argument_list></call></expr></expr_stmt></block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>test_lambda</name><parameter_list>(<parameter><name>a</name></parameter>, <parameter><name>b</name></parameter>, <parameter><name>func</name><init>=<expr><lambda>lambda <parameter><name>c</name></parameter>, <parameter type="args">*<name>d</name></parameter>, <parameter type="kwargs">**<name>e</name></parameter>: <expr><name>c</name></expr></lambda></expr></init></parameter>)</parameter_list><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>test_lambda</name><parameter_list>(<parameter><name>func</name><init>=<expr><lambda>lambda <parameter><name>a</name></parameter>, <parameter type="args">*<name>b</name></parameter>, <parameter type="kwargs">**<name>c</name></parameter>: <expr><name>a</name></expr></lambda></expr></init></parameter>, <parameter><name>d</name><init>=<expr><literal type="number">10</literal></expr></init></parameter>)</parameter_list><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>example</name><parameter_list>(<parameter><name>a</name><annotation>: <expr><call><name>b</name><argument_list>(<argument><expr><name>c</name></expr></argument>, <argument><expr><operator>*</operator><name>d</name></expr></argument>, <argument><name>e</name>=<expr><name>f</name></expr></argument>)</argument_list></call></expr></annotation></parameter>)</parameter_list><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>example_one</name><parameter_list>(<parameter><name>self</name></parameter>)</parameter_list><block>:<block_content>
+    <function>def <name>example_two</name><parameter_list>(
+        <parameter><name>a</name><annotation>: <expr><name>b</name> <operator>+</operator> <name>c</name></expr></annotation></parameter>,
+        <parameter><name>d</name><annotation>: <expr><call><name>e</name><argument_list>(<argument><expr><name>f</name></expr></argument>, <argument><expr><operator>*</operator><name>g</name></expr></argument>, <argument><name>h</name>=<expr><name>i</name></expr></argument>)</argument_list></call></expr></annotation></parameter>,
+        <parameter type="args">*<name>j</name><annotation>: <expr><operator>*</operator><name>k</name></expr></annotation></parameter>,
+    )</parameter_list><block>:<block_content>
+        <pass>pass</pass>
+</block_content></block></function></block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function><attribute>@<expr><call><name>async</name><argument_list>(<argument><expr><name>async</name><operator>=</operator><literal type="boolean">True</literal></expr></argument>)</argument_list></call></expr></attribute>
+def <name>example_one</name><parameter_list>()</parameter_list><block>:<block_content>
+    <return>return <expr><literal type="boolean">True</literal></expr></return>
+</block_content></block></function>
+</unit>
+
+</unit>

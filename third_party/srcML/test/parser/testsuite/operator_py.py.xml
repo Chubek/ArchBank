@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Python" url="operator">
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>+</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>-</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>*</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>/</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>%</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>**</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>//</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>@</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><operator>+</operator><name>num</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><operator>-</operator><name>num</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>&amp;</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>|</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>^</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><call><name>example_one</name><argument_list>(<argument><expr><name>x</name> <operator>^</operator> <name><name>y</name><index>[<expr><name>z</name></expr>]</index></name></expr></argument>)</argument_list></call></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><operator>~</operator><name>value</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>&lt;&lt;</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>&gt;&gt;</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>==</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>!=</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>&gt;</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>&lt;</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>&gt;=</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>&lt;=</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>&lt;&gt;</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>=</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><operator>(</operator><name>x</name> <operator>:=</operator> <name>y</name><operator>)</operator></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>+=</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>-=</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>*=</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>/=</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>%=</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>**=</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>//=</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>@=</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>&amp;=</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>|=</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>^=</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>&lt;&lt;=</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>&gt;&gt;=</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name><name>x</name><operator>.</operator><name>y</name></name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><operator>*</operator><name>args</name></expr></argument>)</argument_list></call></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><operator>**</operator><name>kwargs</name></expr></argument>)</argument_list></call></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name><name>array</name><index>[<expr><name>x</name><operator>:</operator><name>y</name></expr>]</index></name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name><name>array</name><index>[<expr><operator>:</operator><name>y</name></expr>]</index></name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name><name>array</name><index>[<expr><name>x</name><operator>:</operator></expr>]</index></name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name><name>array</name><index>[<expr><operator>:</operator></expr>]</index></name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>and</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>or</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><operator>not</operator> <name>value</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>is</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>is not</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>in</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>not in</operator> <name>y</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><operator>await</operator> <name>x</name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><operator>await</operator> <call><name>async_print</name><argument_list>()</argument_list></call></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<if_stmt><if>if <condition><expr><name>x</name> <operator>:=</operator> <literal type="number">10</literal></expr></condition><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></if></if_stmt>
+</unit>
+
+</unit>

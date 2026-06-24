@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Python" url="lambda">
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><lambda>lambda <parameter><name>string</name></parameter> : <expr><call><name>print</name><argument_list>(<argument><expr><name>string</name></expr></argument>)</argument_list></call></expr></lambda></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><lambda>lambda <parameter><name>x</name></parameter>, <parameter><name>y</name></parameter> : <expr><name>x</name> <operator>+</operator> <name>y</name></expr></lambda></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><lambda>lambda <parameter><name>value</name> <init>= <expr><literal type="null">None</literal></expr></init></parameter> : <expr><call><name>str</name><argument_list>(<argument><expr><name>value</name></expr></argument>)</argument_list></call></expr></lambda></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><lambda>lambda <parameter><name>value</name> <init>= <expr><dictionary>{<expr><literal type="null">None</literal></expr>: <expr><literal type="null">None</literal></expr>}</dictionary></expr></init></parameter> : <expr><call><name>str</name><argument_list>(<argument><expr><name>value</name></expr></argument>)</argument_list></call></expr></lambda></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><lambda>lambda <parameter><name>x</name></parameter>: <expr><call><name>sample</name><argument_list>(<argument><expr><operator>*</operator><name>x</name></expr></argument>, <argument><expr><operator>**</operator><name>x</name></expr></argument>)</argument_list></call></expr></lambda></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><lambda>lambda <parameter><name>x</name></parameter>: <expr><call><name>sample</name><argument_list>(<argument><expr><operator>**</operator><name>x</name></expr></argument>, <argument><expr><operator>*</operator><name>x</name></expr></argument>)</argument_list></call></expr></lambda></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>simple_print</name> <operator>=</operator> <lambda>lambda <parameter><name>x</name></parameter> : <expr><call><name>print</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr></lambda></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>simple_print</name> <operator>=</operator> <operator>(</operator><lambda>lambda <parameter><name>x</name></parameter> : <expr><call><name>print</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr></lambda><operator>)</operator></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><call><name>func</name><argument_list>(<argument><expr><literal type="number">10</literal></expr></argument>, <argument><expr><lambda>lambda <parameter><name>a</name></parameter> : <expr><call><name>print</name><argument_list>(<argument><expr><name>a</name> <operator>**</operator> <literal type="number">2</literal></expr></argument>)</argument_list></call></expr></lambda></expr></argument>)</argument_list></call></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><lambda>lambda <parameter><name>x</name></parameter>: <expr><call><name>sample</name><argument_list>(<argument><expr><name>x</name></expr></argument>, <argument><expr><name>x</name><operator>**</operator><literal type="number">2</literal></expr></argument>)</argument_list></call></expr></lambda></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><lambda>lambda <parameter><name>x</name></parameter>: <expr><call><name>sample</name><argument_list>(<argument><expr><lambda>lambda <parameter><name>x</name></parameter>: <expr><name>x</name><operator>**</operator><literal type="number">2</literal></expr></lambda></expr></argument>)</argument_list></call></expr></lambda></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><lambda>lambda <parameter><name>y</name></parameter>: <expr><call><name>sample</name><argument_list>(<argument><expr><lambda>lambda <parameter><name>x</name></parameter>: <expr><call><name>example</name><argument_list>(<argument><expr><operator>*</operator><name>x</name></expr></argument>)</argument_list></call></expr></lambda></expr></argument>, <argument><expr><operator>*</operator><name>y</name></expr></argument>)</argument_list></call></expr></lambda></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><lambda>lambda <parameter><name>y</name></parameter>: <expr><call><name>sample</name><argument_list>(<argument><expr><lambda>lambda <parameter><name>x</name></parameter>: <expr><call><name>example</name><argument_list>(<argument><expr><operator>**</operator><name>x</name></expr></argument>)</argument_list></call></expr></lambda></expr></argument>, <argument><expr><operator>**</operator><name>y</name></expr></argument>)</argument_list></call></expr></lambda></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><operator>(</operator>
+    <lambda>lambda <parameter><name>x</name></parameter>: <expr><call><name>sample</name><argument_list>(<argument><expr><tuple>(<expr><name>a</name></expr>, <expr><name>b</name></expr>)</tuple></expr></argument>)</argument_list></call></expr></lambda>
+<operator>)</operator></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><tuple>(
+    <expr><lambda>lambda <parameter><name>x</name></parameter>: <expr><call><name>sample</name><argument_list>(<argument><expr><tuple>(<expr><name>a</name></expr>, <expr><name>b</name></expr>)</tuple></expr></argument>)</argument_list></call></expr></lambda></expr>,
+    <expr><literal type="string">"default"</literal></expr>,
+)</tuple></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><array>[
+    <expr><lambda>lambda <parameter><name>x</name></parameter>: <expr><call><name>sample</name><argument_list>(<argument><expr><tuple>(<expr><name>a</name></expr>, <expr><name>b</name></expr>)</tuple></expr></argument>)</argument_list></call></expr></lambda></expr>,
+    <expr><literal type="string">"default"</literal></expr>,
+]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><set>{
+    <expr><lambda>lambda <parameter><name>x</name></parameter>: <expr><call><name>sample</name><argument_list>(<argument><expr><tuple>(<expr><name>a</name></expr>, <expr><name>b</name></expr>)</tuple></expr></argument>)</argument_list></call></expr></lambda></expr>,
+    <expr><literal type="string">"default"</literal></expr>,
+}</set></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><set>{
+    <expr><lambda>lambda <parameter><name>x</name></parameter>: <expr><call><name>sample</name><argument_list>(<argument><expr><tuple>(<expr><lambda>lambda <parameter><name>y</name></parameter>: <expr><name>y</name><operator>**</operator><literal type="number">2</literal></expr></lambda></expr>, <expr><name>b</name></expr>)</tuple></expr></argument>)</argument_list></call></expr></lambda></expr>,
+    <expr><literal type="string">"default"</literal></expr>,
+}</set></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><dictionary>{
+    <expr><literal type="string">"x1"</literal></expr>: <expr><lambda>lambda <parameter><name>x</name></parameter>: <expr><call><name>sample</name><argument_list>(<argument><expr><tuple>(<expr><name>a</name></expr>, <expr><name>b</name></expr>)</tuple></expr></argument>)</argument_list></call></expr></lambda></expr>,
+    <expr><literal type="string">"x2"</literal></expr>: <expr><literal type="string">"default"</literal></expr>,
+}</dictionary></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>sample</name> <operator>=</operator> <array>[
+    <expr><tuple>(
+        <expr><lambda>lambda: <expr><call><name><name>a</name><operator>.</operator><name>example</name></name><argument_list>(
+            <argument><expr><lambda>lambda <parameter><name>_</name></parameter>: <expr><literal type="boolean">True</literal></expr></lambda></expr></argument>
+        )</argument_list></call><operator>.</operator><call><name>b</name><argument_list>(<argument><expr><name>c</name></expr></argument>, <argument><expr><array>[]</array></expr></argument>)</argument_list></call></expr></lambda></expr>,
+        <expr><name>d</name></expr>
+    )</tuple></expr>
+]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<assert>assert <condition><expr><operator>(</operator><lambda>lambda <parameter><name>a</name></parameter>: <expr><name>a</name><operator>**</operator><literal type="number">2</literal></expr></lambda><operator>)</operator></expr></condition>, <expr><literal type="string">"Fail Message"</literal></expr></assert>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<assert>assert <condition><expr><call><name>example</name><argument_list>(<argument><expr><lambda>lambda <parameter><name>x</name></parameter>: <expr><name>x</name><operator>**</operator><literal type="number">2</literal></expr></lambda></expr></argument>, <argument><expr><name>numbers</name></expr></argument>)</argument_list></call></expr></condition>, <expr><literal type="string">"Fail Message"</literal></expr></assert>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<assert>assert <condition><expr><call><name>example</name><argument_list>(<argument><expr><lambda>lambda <parameter><name>x</name></parameter>: <expr><call><name>sample</name><argument_list>(<argument><expr><name>x</name></expr></argument>, <argument><expr><name>x</name><operator>**</operator><literal type="number">2</literal></expr></argument>)</argument_list></call></expr></lambda></expr></argument>, <argument><expr><name>numbers</name></expr></argument>)</argument_list></call></expr></condition>, <expr><literal type="string">"Fail Message"</literal></expr></assert>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<assert>assert <condition><expr><call><name>example</name><argument_list>(<argument><expr><call><name>sample</name><argument_list>(<argument><expr><lambda>lambda <parameter><name>a</name></parameter>: <expr><name>a</name><operator>**</operator><literal type="number">2</literal></expr></lambda></expr></argument>, <argument><expr><name>b</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>c</name></expr></argument>)</argument_list></call></expr></condition>, <expr><literal type="string">"Fail Message"</literal></expr></assert>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<assert>assert <condition><expr><lambda>lambda <parameter><name>a</name></parameter>, <parameter><name>b</name></parameter>: <expr><name>a</name><operator>**</operator><name>b</name></expr></lambda></expr></condition>, <expr><literal type="string">"Fail message"</literal></expr></assert>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<assert>assert <condition><expr><operator>(</operator><lambda>lambda <parameter><name>a</name></parameter>, <parameter><name>b</name></parameter>: <expr><name>a</name><operator>**</operator><name>b</name></expr></lambda><operator>)</operator></expr></condition>, <expr><literal type="string">"Fail message"</literal></expr></assert>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<assert>assert <condition><expr><tuple>(<expr><lambda>lambda <parameter><name>a</name></parameter>, <parameter><name>b</name></parameter>: <expr><name>a</name><operator>**</operator><name>b</name></expr></lambda></expr>, <expr><lambda>lambda <parameter><name>c</name></parameter>, <parameter><name>d</name></parameter>: <expr><name>c</name><operator>**</operator><name>d</name></expr></lambda></expr>)</tuple></expr></condition>, <expr><literal type="string">"Fail message"</literal></expr></assert>
+</unit>
+
+</unit>

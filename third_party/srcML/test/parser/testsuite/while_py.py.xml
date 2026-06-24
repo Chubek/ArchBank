@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Python" url="while">
+
+<unit revision="1.0.0" language="Python">
+<while>while <condition><expr><name>loop</name></expr></condition><block>:<block_content>
+    <expr_stmt><expr><call><name>check</name><argument_list>()</argument_list></call></expr></expr_stmt>
+</block_content></block></while>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<while>while <condition><expr><name>loop</name></expr></condition><block>:<block_content>
+    <break>break</break>
+</block_content></block><else>else<block>:<block_content>
+    <expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><literal type="string">"Broke"</literal></expr></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></else></while>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<while>while <condition><expr><name>x</name> <operator>&lt;</operator> <literal type="number">10</literal></expr></condition><block>:<block_content> <expr_stmt><expr><name>x</name> <operator>+=</operator> <literal type="number">1</literal></expr></expr_stmt></block_content></block></while>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<while>while <condition><expr><name>x</name> <operator>&lt;</operator> <literal type="number">10</literal></expr></condition><block>:<block_content> <expr_stmt><expr><name>x</name> <operator>+=</operator> <literal type="number">1</literal></expr>;</expr_stmt> <expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr></expr_stmt></block_content></block></while>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<while>while <condition><expr><name>x</name> <operator>&lt;</operator> <literal type="number">10</literal></expr></condition><block>:<block_content> <expr_stmt><expr><name>x</name> <operator>+=</operator> <literal type="number">1</literal></expr></expr_stmt></block_content></block>
+<else>else<block>:<block_content> <expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><literal type="string">"srcML\n"</literal></expr></argument>)</argument_list></call></expr></expr_stmt></block_content></block></else></while>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<while>while <condition><expr><name>x</name> <operator>&lt;</operator> <literal type="number">10</literal></expr></condition><block>:<block_content> <expr_stmt><expr><name>x</name> <operator>+=</operator> <literal type="number">1</literal></expr>;</expr_stmt> <expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr></expr_stmt></block_content></block>
+<else>else<block>:<block_content> <expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><literal type="string">"result:"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt> <expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr></expr_stmt></block_content></block></else></while>
+</unit>
+
+</unit>

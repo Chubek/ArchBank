@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Python" url="set">
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><set>{<expr><literal type="number">1</literal></expr>}</set></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><set>{<expr><literal type="number">1</literal></expr>, <expr><literal type="number">2</literal></expr>}</set></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><set>{<expr><literal type="number">1</literal></expr>,<expr><literal type="number">2</literal></expr>,<expr><literal type="number">3</literal></expr>}</set></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><set>{<expr><literal type="number">1</literal></expr>,}</set></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>=</operator> <set>{<expr><literal type="string">'a'</literal></expr>,<expr><literal type="string">'b'</literal></expr>,<expr><literal type="string">'c'</literal></expr>}</set></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><set>{<expr><literal type="number">1</literal></expr>,<expr><literal type="string">'2'</literal></expr>,<expr><literal type="boolean">True</literal></expr>}</set></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><set>{<expr><name>x</name></expr> <comprehension><for>for <control><expr><name>x</name></expr> <range>in <expr><call><name>print</name><argument_list>(<argument><expr><literal type="number">10</literal></expr></argument>)</argument_list></call></expr></range></control></for></comprehension>}</set></expr></expr_stmt>
+</unit>
+
+</unit>

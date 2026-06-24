@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="C++">
+
+<unit revision="1.0.0" language="C++">
+<comment type="line">//a\
+a;</comment>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<comment type="line">//a</comment>
+<expr_stmt><expr><name>a</name></expr>;</expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<comment type="line">//a\ </comment>
+<expr_stmt><expr><name>a</name></expr>;</expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<comment type="line">//a\\</comment>
+<expr_stmt><expr><name>a</name></expr>;</expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<comment type="line">//a\\\
+a;</comment>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<comment type="line">//a\\\\</comment>
+<expr_stmt><expr><name>a</name></expr>;</expr_stmt>
+</unit>
+
+</unit>

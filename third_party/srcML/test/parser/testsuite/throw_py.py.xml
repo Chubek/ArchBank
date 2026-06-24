@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Python" url="throw">
+
+<unit revision="1.0.0" language="Python">
+<throw>raise</throw>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<throw>raise <expr><literal type="number">0</literal></expr></throw>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<throw>raise <expr><name>Exception</name></expr></throw>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<throw>raise <expr><name>ZeroDivisionError</name></expr></throw>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<throw>raise <expr><call><name>Exception</name><argument_list>(<argument><expr><literal type="string">'error'</literal></expr></argument>)</argument_list></call></expr></throw>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<throw>raise <expr><name>RuntimeError</name></expr> <from>from <expr><name>ValueError</name></expr></from></throw>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<throw>raise <expr><name>RuntimeError</name></expr> <from>from <expr><literal type="null">None</literal></expr></from></throw>
+</unit>
+
+</unit>

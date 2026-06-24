@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Python" url="attribute">
+
+<unit revision="1.0.0" language="Python">
+<class><attribute>@<expr><name>unique</name></expr></attribute>
+class <name>Human</name><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></class>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<class><attribute>@<expr><call><name>operator</name><argument_list>()</argument_list></call></expr></attribute>
+class <name>t_op</name><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></class>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<class><attribute>@<expr><name>operator</name></expr></attribute>
+<attribute>@<expr><call><name>decorator_getter</name><argument_list>()</argument_list></call></expr></attribute>
+class <name>d_op</name><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></class>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<class><attribute>@<expr><name>decorator1</name></expr></attribute>
+<attribute>@<expr><name>decorator2</name></expr></attribute>
+class <name>MyClass</name><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></class>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<class><attribute>@<expr><call><name>decorator1</name><argument_list>()</argument_list></call></expr></attribute>
+<attribute>@<expr><call><name>decorator2</name><argument_list>()</argument_list></call></expr></attribute>
+class <name>MyClass</name><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></class>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<class><attribute>@<expr><name>A</name> <operator>+</operator> <name>B</name></expr></attribute>
+class <name>new_op</name><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></class>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function><attribute>@<expr><name>print</name></expr></attribute>
+def <name>func</name><parameter_list>()</parameter_list><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function><attribute>@<expr><call><name>decorator_getter</name><argument_list>()</argument_list></call></expr></attribute>
+def <name>new</name><parameter_list>()</parameter_list><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function><attribute>@<expr><name>decorator1</name></expr></attribute>
+<attribute>@<expr><name>decorator2</name></expr></attribute>
+def <name>sum</name><parameter_list>(<parameter><name>a</name></parameter>, <parameter><name>b</name></parameter>)</parameter_list><block>:<block_content>
+    <return>return <expr><name>a</name> <operator>+</operator> <name>b</name></expr></return>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function><attribute>@<expr><call><name>decorator1</name><argument_list>()</argument_list></call></expr></attribute>
+<attribute>@<expr><call><name>decorator2</name><argument_list>()</argument_list></call></expr></attribute>
+def <name>sum</name><parameter_list>(<parameter><name>a</name></parameter>, <parameter><name>b</name></parameter>)</parameter_list><block>:<block_content>
+    <return>return <expr><name>a</name> <operator>+</operator> <name>b</name></expr></return>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function><attribute>@<expr><call><name><name>pytest</name><operator>.</operator><name>mark</name><operator>.</operator><name>parametrize</name></name><argument_list>(
+    <argument><expr><literal type="string">"a"</literal></expr></argument>,
+    <argument><expr><array>[
+        <expr><array>[<expr><literal type="string">"b"</literal></expr>, <expr><literal type="string">"c"</literal></expr>]</array></expr>,
+        <expr><operator>(</operator><name>x</name> <comprehension><for>for <control><expr><name>x</name></expr> <range>in <expr><array>[<expr><literal type="string">"b"</literal></expr>, <expr><literal type="string">"c"</literal></expr>]</array></expr></range></control></for></comprehension><operator>)</operator></expr>,
+    ]</array></expr></argument>,
+    <argument><name>ids</name>=<expr><array>[<expr><literal type="string">"d"</literal></expr>, <expr><literal type="string">"e"</literal></expr>]</array></expr></argument>,
+)</argument_list></call></expr></attribute>
+def <name>sample</name><parameter_list>(<parameter><name>a</name></parameter>)</parameter_list><block>:<block_content>
+    <expr_stmt><expr><call><name><name>example</name><operator>.</operator><name>transform</name></name><argument_list>(<argument><expr><name>a</name></expr></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function><attribute>@<expr><call><name><name>pytest</name><operator>.</operator><name>mark</name><operator>.</operator><name>parametrize</name></name><argument_list>(
+    <argument><expr><literal type="string">"a"</literal></expr></argument>,
+    <argument><expr><array>[
+        <expr><array>[<expr><literal type="string">"b"</literal></expr>, <expr><literal type="string">"c"</literal></expr>]</array></expr>,
+        <expr><operator>(</operator><name>x</name> <comprehension><for><specifier>async</specifier> for <control><expr><name>x</name></expr> <range>in <expr><array>[<expr><literal type="string">"b"</literal></expr>, <expr><literal type="string">"c"</literal></expr>]</array></expr></range></control></for></comprehension><operator>)</operator></expr>,
+    ]</array></expr></argument>,
+    <argument><name>ids</name>=<expr><array>[<expr><literal type="string">"d"</literal></expr>, <expr><literal type="string">"e"</literal></expr>]</array></expr></argument>,
+)</argument_list></call></expr></attribute>
+def <name>sample</name><parameter_list>(<parameter><name>a</name></parameter>)</parameter_list><block>:<block_content>
+    <expr_stmt><expr><call><name><name>example</name><operator>.</operator><name>transform</name></name><argument_list>(<argument><expr><name>a</name></expr></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function><attribute>@<expr><call><name>parameterized</name><argument_list>(
+    <argument><expr><array>[
+        <expr><tuple>(<expr><name>a</name></expr>, <expr><name>b</name></expr>)</tuple></expr>
+        <comprehension><for>for <control><expr><name>info</name></expr> <range>in <expr><name>x</name></expr></range></control></for>
+        <if>if <condition><expr><call><name>sample</name><argument_list>(<argument><expr><name>y</name></expr></argument>, <argument><expr><name>z</name></expr></argument>)</argument_list></call></expr></condition></if></comprehension>
+    ]</array></expr></argument>,
+)</argument_list></call></expr></attribute>
+def <name>example</name><parameter_list>()</parameter_list><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function><attribute>@<expr><call><name>parametrize</name><argument_list>(
+    <argument><name>main</name>=<expr><literal type="number">0</literal></expr></argument>,
+    <argument><name>operator</name>=<expr><literal type="string">'+'</literal></expr></argument>,
+    <argument><name>module</name>=<expr><lambda>lambda <parameter><name>case</name></parameter>, <parameter><name>match</name></parameter>: <expr><literal type="string">f"{case}_{match}"</literal></expr></lambda></expr></argument>,
+)</argument_list></call></expr></attribute>
+def <name>_</name><parameter_list>(<parameter><name>default</name></parameter>, <parameter><name>new</name></parameter>)</parameter_list><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function><attribute>@<expr><name>decorator</name></expr></attribute>
+<specifier>async</specifier> def <name>sum</name><parameter_list>(<parameter><name>a</name></parameter>, <parameter><name>b</name></parameter>)</parameter_list><block>:<block_content>
+    <return>return <expr><name>a</name> <operator>+</operator> <name>b</name></expr></return>
+</block_content></block></function>
+</unit>
+
+</unit>

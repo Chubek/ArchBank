@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:pos="http://www.srcML.org/srcML/position" revision="1.0.0" language="C++" pos:tabs="8" url="unicode.position">
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//a</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//á</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//ä</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//å</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//æ</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//ç</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//è</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//é</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//ê</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//ë</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//ì</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//í</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//î</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//ï</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//ñ</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//ò</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//ó</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//ô</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//ö</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//ø</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//ù</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//ú</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//û</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//ü</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//ý</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//ÿ</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//Α</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//β</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//γ</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//δ</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//ε</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//λ</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//π</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//φ</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//Σ</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//Ω</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//Ж</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//Д</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//Я</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//я</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//ю</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//Ω</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//ø</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//š</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//ž</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//ł</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//đ</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//ħ</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//ŋ</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//œ</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//þ</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//ß</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//©</comment></unit>
+
+<unit revision="1.0.0" language="C++" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:3">//™</comment></unit>
+
+<unit revision="1.0.0" language="C" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:56">//aáäåæçèéêëìíîïñòóôöøùúûüýÿΑβγδελπφΣΩЖДЯяюΩøšžłđħŋœþß©™</comment></unit>
+
+<unit revision="1.0.0" language="C" pos:tabs="8"><comment type="line" pos:start="1:1" pos:end="1:1563">//áäåæçèéêëìíîïñòóôöøùúûüýÿĀāĂăĄąĆćĈĉĊċČčĎďĐđĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİıĲĳĴĵĶķĹĺĻļĽľĿŀŁłŃńŅņŇňŉŊŋŌōŎŏŐőŒœŔŕŖŗŘřŚśŜŝŞşŠšŢţŤťŦŧŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŹźŻżŽžƀƁƂƃƄƅƆƇƈƉƊƋƌƍƎƏƐƑƒƓƔƕƖƗƘƙƚƛƜƝƞƟƠơƢƣƤƥƦƧƨƩƪƫƬƭƮƯưƱƲƳƴƵƶƷƸƹƺƻƼƽƾƿǀǁǂǃǍǎǏǐǑǒǓǔǕǖǗǘǙǚǛǜǝǞǟǠǡǢǣǤǥǦǧǨǩǪǫǬǭǮǯǰǱǲǳǴǵǶǷǸǹǺǻǼǽǾǿȀȁȂȃȄȅȆȇȈȉȊȋȌȍȎȏȐȑȒȓȔȕȖȗȘșȚțȜȝȞȟȠȡȢȣȤȥȦȧȨȩȪȫȬȭȮȯȰȱȲȳȴȵȶȷȸȹȺȻȼȽȾȿɀɁɂɃɄɅɆɇɈɉɊɋɌɍɎɏɑɒɓɖɗɘəɚɛɜɝɞɟɠɡɢɣɤɥɦɧɨɩɪɫɬɭɮɯɰɱɲɳɴɵɶɷɸɹɺɻɼɽɾɿʀʁʂʃʄʅʆʇʈʉʊʋʌʍʎʏʐʑʒʓʔʕʖʗʘʙʚʛʜʝʞʟʠʡʢʣʤʥʦʧʨʩʪʫʬʭʮʯΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρσςτυφχψωЁЂЃЄЅІЇЈЉЊЋЌЎЏАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяѐёђѓєѕіїјљњћќўџҐґҒғҚқҜҝҞҟҠҡҢңҤҥҨҩҺһҴҵҶҷҸҹҺһҼҽҾҿӀӁӂӃӄӅӆӇӈӉӊӋӌӍӎӏӐӑӒӓӔӕӖӗӘәӚӛӜӝӞӟӠӡӢӣӤӥӦӧӨөӪӫӬӭӮӯӰӱӲӳӴӵӶӷӸӹӺӻӼӽӾӿԀԁԂԃԄԅԆԇԈԉԊԋԌԍԎԏԐԑԒԓԔԕԖԗԘԙԚԛԜԝԞԟԠԡԢԣԤԥԦԧԨԩԪԫԬԭԮԯԱԲԳԴԵԶԷԸԹԺԻԼԽԾԿՀՁՂՃՄՅՆՇՈՉՊՋՌՍՎՏՐՑՓՔՕՖաբգդեզէըթժիլխծկհձղճմյնշոչպջռսվտրցփքօֆḀḁḂḃḄḅḆḇḈḉḊḋḌḍḎḏḐḑḒḓḔḕḖḗḘḙḚḛḜḝḞḟḠḡḢḣḤḥḦḧḨḩḪḫḬḭḮḯḰḱḲḳḴḵḶḷḸḹḺḻḼḽḾḿṀṁṂṃṄṅṆṇṈṉṊṋṌṍṎṏṐṑṒṓṔṕṖṗṘṙṚṛṜṝṞṟṠṡṢṣṤṥṦṧṨṩṪṫṬṭṮṯṰṱṲṳṴṵṶṷṸṹṺṻṼṽṾṿẀẁẂẃẄẅẆẇẈẉẊẋẌẍẎẏẐẑẒḓẔẕẖẗẘẙẚẛẜẝẞẟẠạẢảẤấẦầẨẩẪẫẬậẮắẰằẲẳẴẵẶặẸẹẺẻẼẽẾếỀềỂểỄễỆệỈỉỊịỌọỎỏỐốỒồỔổỖỗỘộỚớỜờỞởỠỡỢợỤụỦủỨứỪừỬửỮữỰựỲỳỴỵỶỷỸỹ‐‑‒–—―‖‗‘’‚‛“”„‟†‡•…‧‰‱′″‴‵‶‷‸‹›※‼‽‾‿⁀⁂⁃⁇⁈⁉⁎⁏⁑⁕⁖⁗⁘⁙⁚⁛⁜⁝⁞₠₡₢₣₤₥₦₧₨₩₪₫₭₮₯₰₱₲₳₴₵₶₷₸₺₻₼₽₾₿⃒⃓⃘⃙⃚⃐⃑⃔⃕⃖⃗⃛⃜⃝⃞⃟⃠⃡⃢⃣⃤⃥⃦⃪⃫⃨⃬⃭⃮⃯⃧⃩⃰⃱⃲⃳⃴⃵⃶⃷⃸⃹⃺⃻⃼⃽⃾⃿℀℁ℂ℃℄℅℆ℇ℈℉ℊℋℌℍℎℏℐℑℒℓ℔ℕ№℗℘ℙℚℛℜℝ℞℟℠℡™℣ℤ℥Ω℧ℨ℩KÅℬℭ℮ℯℰℱℲℳℴℵℶℷℸℹ℺℻ℼℽℾℿ⅀⅁⅂⅃⅄ⅅⅆⅇⅈⅉ⅊⅋⅌⅍ⅎ⅏⅐⅑⅒⅓⅔⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞←↑→↓↔↕↖↗↘↙↚↛↜↝↞↟↠↡↢↣↤↥↦↧↨↩↪↫↬↭↮↯↰↱↲↳↴↵↶↷↸↹↺↻↼↽↾↿⇀⇁⇂⇃⇄⇅⇆⇇⇈⇉⇊⇋⇌⇍⇎⇏⇐⇑⇒⇓⇔⇕⇖⇗⇘⇙⇚⇛⇜⇝⇞⇟⇠⇡⇢⇣⇤⇥⇦⇧⇨⇩⇪⇫⇬⇭⇮⇯⇰⇱⇲⇳⇴⇵⇶⇷⇸⇹⇺⇻⇼⇽⇾⇿∀∁∂∃∄∅∆∇∈∉∊∋∌∍∎∏∐∑−∓∔∕∖∗∘∙√∞∟∠∡∢∣∤∥∦∧∨∩∪∫∬∭∮∯∰∱∲∳∴∵∶∷∸∹∺∻∼∽∾∿≀≁≂≃≄≅≆≇≉≊≋≌≍≎≏≐≑≒≓≔≕≖≗≘≙≚≛≜≝≞≟≠≡≢≣≤≥≦≧≨≩≪≫≬≭≮≯≰≱≲≳⌀⌁⌂⌃⌄⌅⌆⌇⌈⌉⌊⌋⌌⌍⌎⌏⌐⌑⌒⌓⌔⌕⌖⌗⌘⌙⌚⌛⌜⌝⌞⌟⌠⌡⌢⌣⌤⌥⌦⌧⌨〈〉⌫⌬⌭⌮⌯⎀⎁⎂⎃⎄⎅⎆</comment></unit>
+
+</unit>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Python" url="formatting">
+
+<unit revision="1.0.0" language="Python">
+<class>class <name>Sample</name><block>:<block_content> <comment type="line">#CommentA</comment>
+                <comment type="line"># Comment B</comment>
+    <function>def <name>method</name><parameter_list>(<parameter><name>self</name></parameter>)</parameter_list><block>:<block_content> <comment type="line"># Comment C</comment>
+        <comment type="line"># Comment D</comment>
+        <pass>pass</pass>      <comment type="line"># Comment E</comment>
+</block_content></block></function></block_content></block></class>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<class>class <name>Sample</name><block>:<block_content><comment type="line"># Comment A</comment>
+    <function>def <name>method</name><parameter_list>(<parameter><name>self</name></parameter>)</parameter_list><block>:<block_content><comment type="line"># Comment B</comment>
+        <pass>pass</pass><comment type="line">#Comment C</comment>
+</block_content></block></function></block_content></block></class>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<class>class <name>Sample</name><block>:<block_content> <comment type="hashbang">#! CommentA</comment>
+                <comment type="hashbang">#! Comment B</comment>
+    <function>def <name>method</name><parameter_list>(<parameter><name>self</name></parameter>)</parameter_list><block>:<block_content> <comment type="hashbang">#! Comment C</comment>
+        <comment type="hashbang">#! Comment D</comment>
+        <pass>pass</pass>      <comment type="hashbang">#! Comment E</comment>
+</block_content></block></function></block_content></block></class>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<class>class <name>Sample</name><block>:<block_content><comment type="hashbang">#! Comment A</comment>
+    <function>def <name>method</name><parameter_list>(<parameter><name>self</name></parameter>)</parameter_list><block>:<block_content><comment type="hashbang">#! Comment B</comment>
+        <pass>pass</pass><comment type="hashbang">#! Comment C</comment>
+</block_content></block></function></block_content></block></class>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>a</name> <operator>=</operator> <literal type="number">0</literal></expr></expr_stmt><comment type="line"># Comment Z</comment>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>a</name> <operator>=</operator> <literal type="number">0</literal></expr></expr_stmt> <comment type="line"># Comment Z</comment>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>a</name> <operator>=</operator> <literal type="number">0</literal></expr></expr_stmt><comment type="hashbang">#! Comment Z</comment>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>a</name> <operator>=</operator> <literal type="number">0</literal></expr></expr_stmt> <comment type="hashbang">#! Comment Z</comment>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<class>class <name>Sample</name> <block>:<block_content>   
+        
+    <function>def <name>method</name><parameter_list>(<parameter><name>self</name></parameter>)</parameter_list> <block>:<block_content>  
+        <pass>pass</pass>    
+</block_content></block></function></block_content></block></class>     
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<if_stmt><if>if <condition><expr><name>__name__</name> <operator>==</operator> <literal type="string">"__main__"</literal></expr></condition><block>:<block_content>
+  <expr_stmt><expr><call><name>main</name><argument_list>()</argument_list></call></expr></expr_stmt>
+</block_content></block></if></if_stmt>  
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<if_stmt><if>if <condition><expr><name>__name__</name> <operator>==</operator> <literal type="string">"__main__"</literal></expr></condition><block>:<block_content>
+  <if_stmt><if>if <condition><expr><literal type="boolean">True</literal></expr></condition><block>:<block_content>
+    <expr_stmt><expr><call><name>main</name><argument_list>()</argument_list></call></expr></expr_stmt>
+</block_content></block></if></if_stmt></block_content></block></if></if_stmt>  
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>a</name> <operator>=</operator> <literal type="number">0</literal></expr></expr_stmt>    
+</unit>
+
+<unit revision="1.0.0" language="Python">
+
+
+
+<expr_stmt><expr><name>a</name> <operator>=</operator> <literal type="number">0</literal></expr></expr_stmt>
+
+
+
+</unit>
+
+<unit revision="1.0.0" language="Python">
+
+
+
+
+
+
+
+</unit>
+
+</unit>

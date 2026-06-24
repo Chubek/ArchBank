@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="C#" url="string" filename="string_cs">
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C#">
+<expr_stmt><expr><literal type="string">@"goodmorning"</literal></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C#">
+<expr_stmt><expr><literal type="string">@"c:\Docs\Source\a.txt"</literal></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C#">
+<expr_stmt><expr><literal type="string">@"c:\Docs\Source\"</literal></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C#">
+<expr_stmt><expr><literal type="string">@"""Ahoy!""criedthecaptain."</literal></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C#">
+<expr_stmt><expr><literal type="string">@"'Ahoy!'""criedthecaptain."""</literal></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C#">
+<expr_stmt><expr><literal type="string">@"""'Ahoy!'criedthecaptain."""</literal></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C#">
+<expr_stmt><expr><literal type="string">@"""""""Ahoy!""criedthecaptain."""""</literal></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C#">
+<expr_stmt><expr><literal type="string">@"one
+two
+three"</literal></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C#">
+<expr_stmt><expr><literal type="string">@"\""\"")"</literal></expr>;</expr_stmt> <expr_stmt><expr><literal type="string">@"[@\"</literal></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C#">
+<expr_stmt><expr><literal type="string">@"\""\"")"</literal></expr>;</expr_stmt> <expr_stmt><expr><literal type="string">@"[]@\"</literal></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C#">
+<expr_stmt><expr><literal type="string">@"""""@\"</literal></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C#">
+<expr_stmt><expr><literal type="string">@""""</literal><literal type="string">@""""</literal></expr>;</expr_stmt>
+</unit>
+
+</unit>

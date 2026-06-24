@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Python" url="import">
+
+<unit revision="1.0.0" language="Python">
+<import>import <name>module</name></import>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<import>import <name>module_1</name>, <name>module_2</name></import>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<import>import <name>module</name> <alias>as <expr><name>alias</name></expr></alias></import>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<import>import <name>module_1</name> <alias>as <expr><name>alias_1</name></expr></alias>, <name>module_2</name> <alias>as <expr><name>alias_2</name></expr></alias></import>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<import><from>from <name>module</name></from> import <name>name</name></import>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<import><from>from <name>module</name></from> import (<name>name</name>)</import>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<import><from>from <name>module</name></from> import <name>name_1</name>, <name>name_2</name></import>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<import><from>from <name>module</name></from> import (<name>name_1</name>, <name>name_2</name>)</import>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<import><from>from <name>module</name></from> import <name>name</name> <alias>as <expr><name>alias</name></expr></alias></import>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<import><from>from <name>module</name></from> import (<name>name</name> <alias>as <expr><name>alias</name></expr></alias>)</import>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<import><from>from <name>module</name></from> import <name>name_1</name> <alias>as <expr><name>name_1</name></expr></alias>, <name>name_2</name> <alias>as <expr><name>alias_2</name></expr></alias></import>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<import><from>from <name>module</name></from> import (<name>name_1</name> <alias>as <expr><name>name_1</name></expr></alias>, <name>name_2</name> <alias>as <expr><name>alias_2</name></expr></alias>)</import>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<import><from>from <name>module</name></from> import <name>name_1</name>, <name>name_2</name> <alias>as <expr><name>alias</name></expr></alias>, <name>name_3</name></import>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<import><from>from <name>module</name></from> import (<name>name_1</name>, <name>name_2</name> <alias>as <expr><name>alias</name></expr></alias>, <name>name_3</name>)</import>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<import><from>from <name>module</name></from> import <name>*</name></import>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<import><from>from <name>.</name></from> import <name>name</name></import>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<import><from>from <name>..</name></from> import <name>name</name></import>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<import><from>from <name>.module</name></from> import <name>name</name></import>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<import><from>from <name>..module</name></from> import <name>name</name></import>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<import><from>from <name>.module</name></from> import (
+    <name>a</name>,
+    <name>b</name>,
+    <name>c</name>,
+    <name>d</name>,
+    <name>e</name>,
+)</import>
+</unit>
+
+</unit>

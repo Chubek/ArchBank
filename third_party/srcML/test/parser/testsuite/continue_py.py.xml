@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Python" url="continue">
+
+<unit revision="1.0.0" language="Python">
+<for>for <control><expr><name>x</name></expr> <range>in <expr><call><name>range</name><argument_list>(<argument><expr><literal type="number">10</literal></expr></argument>)</argument_list></call></expr></range></control><block>:<block_content>
+    <continue>continue</continue>
+</block_content></block></for>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<while>while <condition><expr><name>loop</name></expr></condition><block>:<block_content>
+    <continue>continue</continue>
+</block_content></block></while>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<for>for <control><expr><name>x</name></expr> <range>in <expr><call><name>range</name><argument_list>(<argument><expr><literal type="number">10</literal></expr></argument>)</argument_list></call></expr></range></control><block>:<block_content>
+    <if_stmt><if>if <condition><expr><name>x</name> <operator>!=</operator> <literal type="number">3</literal></expr></condition><block>:<block_content>
+        <continue>continue</continue>
+</block_content></block></if></if_stmt></block_content></block></for>
+</unit>
+
+</unit>

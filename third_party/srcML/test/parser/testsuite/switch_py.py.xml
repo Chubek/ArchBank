@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Python" url="switch">
+
+<unit revision="1.0.0" language="Python">
+<switch>match <condition><expr><name>x</name></expr></condition><block>:<block_content>
+    <case>case <expr><literal type="number">1</literal></expr><block>:<block_content>
+        <expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></case></block_content></block></switch>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<switch>match <condition><expr><call><name>input</name><argument_list>()</argument_list></call></expr></condition><block>:<block_content>
+    <case>case <expr><literal type="string">"/hi"</literal></expr><block>:<block_content>
+        <expr_stmt><expr><call><name>call_hi</name><argument_list>()</argument_list></call></expr></expr_stmt>
+</block_content></block></case>    <case>case <expr><literal type="string">"/bye"</literal></expr><block>:<block_content>
+        <expr_stmt><expr><call><name>exit</name><argument_list>()</argument_list></call></expr></expr_stmt>
+</block_content></block></case></block_content></block></switch>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<switch>match <condition><expr><call><name>input</name><argument_list>()</argument_list></call><operator>.</operator><call><name>split</name><argument_list>()</argument_list></call></expr></condition><block>:<block_content>
+    <case>case <expr><array>[<expr><literal type="string">'./'</literal></expr>]</array></expr><block>:<block_content>
+        <expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><literal type="string">'Home'</literal></expr></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></case>    <case>case <expr><array>[<expr><literal type="string">'remove'</literal> <operator>|</operator> <literal type="string">'delete'</literal></expr>]</array></expr><block>:<block_content>
+        <delete>del <name>print</name></delete>
+</block_content></block></case>    <case>case <expr><array>[<expr><literal type="string">'move'</literal></expr>]</array></expr> if <condition><expr><name>auth</name></expr></condition><block>:<block_content>
+        <expr_stmt><expr><call><name>move</name><argument_list>()</argument_list></call></expr></expr_stmt>
+</block_content></block></case>    <case>case <expr><name>_</name></expr><block>:<block_content>
+        <expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><literal type="string">"Incorrect"</literal></expr></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></case></block_content></block></switch>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<switch>match <condition><expr><name>point</name></expr></condition><block>:<block_content>
+    <case>case <expr><tuple>(<expr><literal type="number">0</literal></expr>, <expr><literal type="number">0</literal></expr>)</tuple></expr><block>:<block_content>
+        <expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><literal type="string">"Origin"</literal></expr></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></case>    <case>case <expr><tuple>(<expr><name>x</name></expr>, <expr><literal type="number">0</literal></expr>)</tuple></expr> <alias>as <expr><name>p</name></expr></alias><block>:<block_content>
+        <expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><literal type="string">f"X={x}, point={p}"</literal></expr></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></case></block_content></block></switch>
+</unit>
+
+</unit>

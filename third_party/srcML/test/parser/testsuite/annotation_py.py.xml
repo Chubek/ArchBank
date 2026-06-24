@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Python" url="annotation">
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>do_nothing</name><parameter_list>()</parameter_list> <annotation>-&gt; <expr><literal type="null">None</literal></expr></annotation><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>annotation</name><parameter_list>(<parameter><name>a</name></parameter>, <parameter><name>b</name></parameter>)</parameter_list> <annotation>-&gt; <expr><literal type="string">"srcML"</literal></expr></annotation><block>:<block_content>
+    <return>return <expr><literal type="string">"srcML"</literal></expr></return>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>annotation</name><parameter_list>(<parameter><name>a</name></parameter>, <parameter><name>b</name></parameter>)</parameter_list> <annotation>-&gt; <expr><array>[<expr><literal type="number">1</literal></expr>, <expr><literal type="number">2</literal></expr>]</array></expr></annotation><block>:<block_content>
+    <return>return <expr><array>[<expr><literal type="number">1</literal></expr>, <expr><literal type="number">2</literal></expr>]</array></expr></return>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>annotation</name><parameter_list>(<parameter><name>a</name></parameter>, <parameter><name>b</name></parameter>)</parameter_list> <annotation>-&gt; <expr><call><name>call_one</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr></annotation><block>:<block_content>
+    <return>return <expr><call><name>call_one</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr></return>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>annotation</name><parameter_list>(<parameter><name>a</name></parameter>, <parameter><name>b</name></parameter>)</parameter_list> <annotation>-&gt; <expr><call><call><name>call_one</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call><argument_list>()</argument_list></call></expr></annotation><block>:<block_content>
+    <return>return <expr><call><call><name>call_one</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call><argument_list>()</argument_list></call></expr></return>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>example</name><parameter_list>(
+    <parameter><name>a</name><annotation>: <expr><name>int</name></expr></annotation></parameter>,
+    <parameter><name>b</name><annotation>: <expr><name>int</name></expr></annotation></parameter>,
+)</parameter_list> <annotation>-&gt; <expr><name>int</name> <operator>|</operator> <name><name>Sequence</name><index>[<expr><name>int</name> <operator>|</operator> <literal type="null">None</literal></expr>]</index></name> <operator>|</operator> <literal type="null">None</literal></expr></annotation><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>print_square</name><parameter_list>(<parameter><name>x</name><annotation>: <expr><name>int</name></expr></annotation></parameter>)</parameter_list><block>:<block_content>
+    <expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><name>x</name><operator>**</operator><literal type="number">2</literal></expr></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>multiply</name><parameter_list>(<parameter><name>a1</name><annotation>: <expr><name>int</name></expr></annotation></parameter>, <parameter><name>a2</name><annotation>: <expr><name>int</name></expr></annotation></parameter>)</parameter_list> <annotation>-&gt; <expr><name>int</name></expr></annotation><block>:<block_content>
+    <return>return <expr><name>a1</name><operator>*</operator><name>a2</name></expr></return>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>printf</name><parameter_list>(<parameter type="args">*<name>args</name><annotation>: <expr><name>tuple</name></expr></annotation></parameter>, <parameter type="kwargs">**<name>kwargs</name><annotation>: <expr><name>dict</name></expr></annotation></parameter>)</parameter_list><block>:<block_content>
+    <expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><name>args</name></expr></argument>,<argument><expr><name>kwargs</name></expr></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>a</name> <annotation>: <expr><literal type="number">10</literal></expr></annotation></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>Vector</name> <annotation>: <expr><name>TypeAlias</name></expr></annotation> <operator>=</operator> <name><name>list</name><index>[<expr><name>float</name></expr>]</index></name></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>out</name><annotation>: <expr><call><name>CustomType</name><argument_list>(<argument><expr><tuple>(<expr><name>a</name></expr>, <expr><name>b</name></expr>, <expr><name>c</name></expr>)</tuple></expr></argument>)</argument_list></call></expr></annotation> <operator>=</operator> <call><name>call_one</name><argument_list>(<argument><expr><name>d</name></expr></argument>)</argument_list></call></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>out</name><annotation>: <expr><call><call><name>CustomType</name><argument_list>(<argument><expr><name>a</name></expr></argument>)</argument_list></call><argument_list>(<argument><expr><name>b</name></expr></argument>)</argument_list></call></expr></annotation> <operator>=</operator> <call><name>call_one</name><argument_list>(<argument><expr><name>c</name></expr></argument>)</argument_list></call></expr></expr_stmt>
+</unit>
+
+</unit>

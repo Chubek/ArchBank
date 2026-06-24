@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Python" url="comprehension">
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><operator>(</operator><name>x</name> <comprehension><for>for <control><expr><name>x</name></expr> <range>in <expr><call><name>range</name><argument_list>(<argument><expr><literal type="number">10</literal></expr></argument>)</argument_list></call></expr></range></control></for></comprehension><operator>)</operator></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><operator>(</operator><name>x</name> <comprehension><for><specifier>async</specifier> for <control><expr><name>x</name></expr> <range>in <expr><call><name>async_range</name><argument_list>(<argument><expr><literal type="number">10</literal></expr></argument>)</argument_list></call></expr></range></control></for></comprehension><operator>)</operator></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><array>[<expr><name>x</name></expr> <comprehension><for>for <control><expr><name>x</name></expr> <range>in <expr><call><name>range</name><argument_list>(<argument><expr><literal type="number">10</literal></expr></argument>)</argument_list></call></expr></range></control></for></comprehension>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><array>[<expr><name>x</name></expr> <comprehension><for><specifier>async</specifier> for <control><expr><name>x</name></expr> <range>in <expr><call><name>async_range</name><argument_list>(<argument><expr><literal type="number">10</literal></expr></argument>)</argument_list></call></expr></range></control></for></comprehension>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><set>{<expr><name>x</name></expr> <comprehension><for>for <control><expr><name>x</name></expr> <range>in <expr><call><name>range</name><argument_list>(<argument><expr><literal type="number">10</literal></expr></argument>)</argument_list></call></expr></range></control></for></comprehension>}</set></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><set>{<expr><name>x</name></expr> <comprehension><for><specifier>async</specifier> for <control><expr><name>x</name></expr> <range>in <expr><call><name>async_range</name><argument_list>(<argument><expr><literal type="number">10</literal></expr></argument>)</argument_list></call></expr></range></control></for></comprehension>}</set></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><dictionary>{<expr><name>x</name></expr>:<expr><name>x</name><operator>+</operator><literal type="number">1</literal></expr> <comprehension><for>for <control><expr><name>x</name></expr> <range>in <expr><call><name>range</name><argument_list>(<argument><expr><literal type="number">10</literal></expr></argument>)</argument_list></call></expr></range></control></for></comprehension>}</dictionary></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><dictionary>{<expr><name>x</name></expr>:<expr><name>x</name><operator>+</operator><literal type="number">1</literal></expr> <comprehension><for><specifier>async</specifier> for <control><expr><name>x</name></expr> <range>in <expr><call><name>async_range</name><argument_list>(<argument><expr><literal type="number">10</literal></expr></argument>)</argument_list></call></expr></range></control></for></comprehension>}</dictionary></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>=</operator> <array>[<expr><name>x</name></expr> <comprehension><for>for <control><expr><name>x</name></expr> <range>in <expr><call><name>range</name><argument_list>(<argument><expr><literal type="number">10</literal></expr></argument>)</argument_list></call></expr></range></control></for></comprehension>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><array>[<expr><name>val</name> <operator>*</operator> <literal type="number">2</literal></expr> <comprehension><for>for <control><expr><name>val</name></expr> <range>in <expr><name>array</name></expr></range></control></for></comprehension>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><array>[<expr><call><name><name>val</name><operator>.</operator><name>example</name></name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>b</name></expr></argument>)</argument_list></call> <operator>*</operator> <literal type="number">2</literal></expr> <comprehension><for>for <control><expr><tuple><expr><name>a</name></expr>,<expr><name>b</name></expr></tuple></expr> <range>in <expr><name>array</name></expr></range></control></for></comprehension>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><array>[<expr><name>user</name> <operator>+</operator> <literal type="string">' '</literal> <operator>+</operator> <name>status</name></expr> <comprehension><for>for <control><expr><tuple><expr><name>user</name></expr>, <expr><name>status</name></expr></tuple></expr> <range>in <expr><call><name><name>users</name><operator>.</operator><name>items</name></name><argument_list>()</argument_list></call></expr></range></control></for></comprehension>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><array>[<expr><name>val</name></expr> <comprehension><for>for <control><expr><name>val</name></expr> <range>in <expr><name>a</name></expr></range></control></for> <if>if <condition><expr><name>val</name> <operator>%</operator> <literal type="number">2</literal> <operator>==</operator> <literal type="number">0</literal></expr></condition></if></comprehension>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><array>[<expr><name>val</name></expr> <comprehension><for>for <control><expr><name>val</name></expr> <range>in <expr><name>a</name></expr></range></control></for> <if>if <condition><expr><name>val</name> <operator>%</operator> <literal type="number">2</literal> <operator>==</operator> <literal type="number">0</literal></expr></condition></if> <if>if <condition><expr><name>val</name> <operator>%</operator> <literal type="number">3</literal> <operator>==</operator> <literal type="number">0</literal></expr></condition></if></comprehension>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><array>[<expr><name>x</name></expr> <comprehension><for>for <control><expr><name>x</name></expr> <range>in <expr><array>[<expr><name>a</name></expr> <comprehension><for>for <control><expr><name>a</name></expr> <range>in <expr><call><name>range</name><argument_list>(<argument><expr><literal type="number">100</literal></expr></argument>)</argument_list></call></expr></range></control></for> <if>if <condition><expr><name>a</name> <operator>&lt;</operator> <literal type="number">50</literal></expr></condition></if></comprehension>]</array></expr></range></control></for> <if>if <condition><expr><name>x</name> <operator>%</operator> <literal type="number">2</literal> <operator>==</operator> <literal type="number">0</literal></expr></condition></if></comprehension>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>result</name> <operator>=</operator> <array>[<expr><operator>(</operator><name>val</name> <operator>*</operator> <literal type="number">2</literal> <comprehension><for>for <control><expr><name>val</name></expr> <range>in <expr><name>array</name></expr></range></control></for></comprehension><operator>)</operator></expr>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>options</name> <operator>=</operator> <operator>(</operator>
+    <name>a</name>
+    <comprehension><for>for <control><expr><tuple><expr><name>_</name></expr>, <expr><name>a</name></expr>, <expr><name>_</name></expr></tuple></expr> <range>in <expr><call><name>example</name><argument_list>(
+        <argument><expr><name>a</name></expr></argument>, <argument><expr><call><name>sample</name><argument_list>(<argument><expr><array>[]</array></expr></argument>)</argument_list></call></expr></argument>
+    )</argument_list></call></expr></range></control></for></comprehension>
+<operator>)</operator></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<if_stmt><if>if <condition><expr><literal type="boolean">True</literal></expr></condition><block>:<block_content>
+    <expr_stmt><expr><call><name>next</name><argument_list>(<argument><expr><name>a</name></expr> <comprehension><for>for <control><expr><name>a</name></expr> <range>in <expr><name>b</name></expr></range></control></for> <if>if <condition><expr><literal type="boolean">True</literal></expr></condition></if></comprehension></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></if></if_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<if_stmt><if>if <condition><expr><literal type="boolean">True</literal></expr></condition><block>:<block_content>
+    <expr_stmt><expr><call><name>next</name><argument_list>(<argument><expr><name>a</name></expr> <comprehension><for>for <control><expr><name>a</name></expr> <range>in <expr><name>b</name></expr></range></control></for> <if>if <condition><expr><literal type="boolean">True</literal></expr></condition></if> <if>if <condition><expr><literal type="boolean">True</literal></expr></condition></if></comprehension></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></if></if_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>example</name> <operator>=</operator> <array>[<expr><name>a</name></expr> <comprehension><for>for <control><expr><name>b</name></expr> <range>in <expr><call><name>enumerate</name><argument_list>(<argument><expr><call><name>zip</name><argument_list>(<argument><expr><name>c</name></expr></argument>, <argument><expr><name>d</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></range></control></for></comprehension>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>example</name> <operator>=</operator> <array>[<expr><name>a</name></expr> <comprehension><for>for <control><expr><operator>(</operator><name>b</name><operator>)</operator></expr> <range>in <expr><call><name>enumerate</name><argument_list>(<argument><expr><call><name>zip</name><argument_list>(<argument><expr><name>c</name></expr></argument>, <argument><expr><name>d</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></range></control></for></comprehension>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>example</name> <operator>=</operator> <array>[<expr><name>a</name></expr> <comprehension><for>for <control><expr><operator>(</operator><operator>(</operator><operator>(</operator><name>b</name><operator>)</operator><operator>)</operator><operator>)</operator></expr> <range>in <expr><call><name>enumerate</name><argument_list>(<argument><expr><call><name>zip</name><argument_list>(<argument><expr><name>c</name></expr></argument>, <argument><expr><name>d</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></range></control></for></comprehension>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>example</name> <operator>=</operator> <array>[<expr><name>a</name></expr> <comprehension><for>for <control><expr><tuple><expr><name>b</name></expr>, <expr><name>c</name></expr></tuple></expr> <range>in <expr><call><name>enumerate</name><argument_list>(<argument><expr><call><name>zip</name><argument_list>(<argument><expr><name>d</name></expr></argument>, <argument><expr><name>e</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></range></control></for></comprehension>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>example</name> <operator>=</operator> <array>[<expr><name>a</name></expr> <comprehension><for>for <control><expr><tuple>(<expr><name>b</name></expr>, <expr><name>c</name></expr>)</tuple></expr> <range>in <expr><call><name>enumerate</name><argument_list>(<argument><expr><call><name>zip</name><argument_list>(<argument><expr><name>d</name></expr></argument>, <argument><expr><name>e</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></range></control></for></comprehension>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>example</name> <operator>=</operator> <array>[<expr><name>a</name></expr> <comprehension><for>for <control><expr><tuple>(<expr><operator>(</operator><operator>(</operator><name>b</name><operator>)</operator><operator>)</operator></expr>, <expr><operator>(</operator><operator>(</operator><name>c</name><operator>)</operator><operator>)</operator></expr>)</tuple></expr> <range>in <expr><call><name>enumerate</name><argument_list>(<argument><expr><call><name>zip</name><argument_list>(<argument><expr><name>d</name></expr></argument>, <argument><expr><name>e</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></range></control></for></comprehension>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>example</name> <operator>=</operator> <array>[<expr><name>a</name></expr> <comprehension><for>for <control><expr><tuple>(<expr><operator>(</operator><tuple>(<expr><name>b</name></expr>, <expr><name>c</name></expr>)</tuple><operator>)</operator></expr>, <expr><name>d</name></expr>)</tuple></expr> <range>in <expr><call><name>enumerate</name><argument_list>(<argument><expr><call><name>zip</name><argument_list>(<argument><expr><name>e</name></expr></argument>, <argument><expr><name>f</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></range></control></for></comprehension>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>example</name> <operator>=</operator> <array>[<expr><name>a</name></expr> <comprehension><for>for <control><expr><tuple><expr><name>b</name></expr>, <expr><tuple>(<expr><name>c</name></expr>, <expr><tuple>(<expr><name>d</name></expr>, <expr><name>e</name></expr>)</tuple></expr>)</tuple></expr></tuple></expr> <range>in <expr><call><name>enumerate</name><argument_list>(<argument><expr><call><name>zip</name><argument_list>(<argument><expr><name>f</name></expr></argument>, <argument><expr><name>g</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></range></control></for></comprehension>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>example</name> <operator>=</operator> <array>[<expr><name>a</name></expr> <comprehension><for>for <control><expr><tuple><expr><operator>(</operator><name>b</name><operator>)</operator></expr>, <expr><tuple>(<expr><operator>(</operator><name>c</name><operator>)</operator></expr>, <expr><tuple>(<expr><operator>(</operator><name>d</name><operator>)</operator></expr>, <expr><operator>(</operator><name>e</name><operator>)</operator></expr>)</tuple></expr>)</tuple></expr></tuple></expr> <range>in <expr><call><name>enumerate</name><argument_list>(<argument><expr><call><name>zip</name><argument_list>(<argument><expr><name>f</name></expr></argument>, <argument><expr><name>g</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></range></control></for></comprehension>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>result</name> <operator>=</operator> <array>[<expr><name>a</name></expr> <comprehension><for>for <control><expr><array>[<expr><name>b</name></expr>]</array></expr> <range>in <expr><call><name>enumerate</name><argument_list>(<argument><expr><name>c</name></expr></argument>)</argument_list></call></expr></range></control></for></comprehension>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>result</name> <operator>=</operator> <array>[<expr><name>a</name></expr> <comprehension><for>for <control><expr><array>[<expr><name>b</name></expr>, <expr><name>c</name></expr>]</array></expr> <range>in <expr><call><name>enumerate</name><argument_list>(<argument><expr><name>d</name></expr></argument>)</argument_list></call></expr></range></control></for></comprehension>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>result</name> <operator>=</operator> <array>[<expr><name>a</name></expr> <comprehension><for>for <control><expr><array>[<expr><operator>(</operator><name>b</name><operator>)</operator></expr>]</array></expr> <range>in <expr><call><name>enumerate</name><argument_list>(<argument><expr><name>c</name></expr></argument>)</argument_list></call></expr></range></control></for></comprehension>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>result</name> <operator>=</operator> <array>[<expr><name>a</name></expr> <comprehension><for>for <control><expr><array>[<expr><operator>(</operator><name>b</name><operator>)</operator></expr>, <expr><operator>(</operator><name>c</name><operator>)</operator></expr>]</array></expr> <range>in <expr><call><name>enumerate</name><argument_list>(<argument><expr><name>d</name></expr></argument>)</argument_list></call></expr></range></control></for></comprehension>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>result</name> <operator>=</operator> <array>[<expr><name>a</name></expr> <comprehension><for>for <control><expr><operator>(</operator><array>[<expr><name>b</name></expr>, <expr><name>c</name></expr>]</array><operator>)</operator></expr> <range>in <expr><call><name>enumerate</name><argument_list>(<argument><expr><name>d</name></expr></argument>)</argument_list></call></expr></range></control></for></comprehension>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>result</name> <operator>=</operator> <array>[<expr><name>a</name></expr> <comprehension><for>for <control><expr><array>[<expr><tuple>(<expr><name>b</name></expr>, <expr><name>c</name></expr>)</tuple></expr>, <expr><tuple>(<expr><name>d</name></expr>, <expr><name>e</name></expr>)</tuple></expr>]</array></expr> <range>in <expr><call><name>enumerate</name><argument_list>(<argument><expr><name>f</name></expr></argument>)</argument_list></call></expr></range></control></for></comprehension>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>result</name> <operator>=</operator> <array>[<expr><name>a</name></expr> <comprehension><for>for <control><expr><operator>(</operator><array>[<expr><tuple>(<expr><name>b</name></expr>, <expr><name>c</name></expr>)</tuple></expr>, <expr><tuple>(<expr><name>d</name></expr>, <expr><name>e</name></expr>)</tuple></expr>]</array><operator>)</operator></expr> <range>in <expr><call><name>enumerate</name><argument_list>(<argument><expr><name>f</name></expr></argument>)</argument_list></call></expr></range></control></for></comprehension>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>result</name> <operator>=</operator> <array>[<expr><name>a</name></expr> <comprehension><for>for <control><expr><array>[<expr><array>[<expr><name>b</name></expr>, <expr><name>c</name></expr>]</array></expr>, <expr><array>[<expr><name>d</name></expr>, <expr><name>e</name></expr>]</array></expr>]</array></expr> <range>in <expr><call><name>enumerate</name><argument_list>(<argument><expr><name>f</name></expr></argument>)</argument_list></call></expr></range></control></for></comprehension>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>result</name> <operator>=</operator> <array>[<expr><name>a</name></expr> <comprehension><for>for <control><expr><tuple>(<expr><array>[<expr><array>[<expr><name>b</name></expr>, <expr><name>c</name></expr>]</array></expr>, <expr><array>[<expr><name>d</name></expr>, <expr><name>e</name></expr>]</array></expr>]</array></expr>, <expr><array>[<expr><array>[<expr><name>f</name></expr>, <expr><name>g</name></expr>]</array></expr>, <expr><array>[<expr><name>h</name></expr>, <expr><name>i</name></expr>]</array></expr>]</array></expr>)</tuple></expr> <range>in <expr><call><name>enumerate</name><argument_list>(<argument><expr><name>j</name></expr></argument>)</argument_list></call></expr></range></control></for></comprehension>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>types</name> <operator>=</operator> <set>{ <expr><call><name>type</name><argument_list>(<argument><expr><name>a</name></expr></argument>)</argument_list></call></expr> <comprehension><for>for <control><expr><operator>*</operator><name>_</name></expr> <range>in <expr><name>a</name></expr></range></control></for></comprehension> }</set></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>types</name> <operator>=</operator> <set>{ <expr><call><name>type</name><argument_list>(<argument><expr><name>a</name></expr></argument>)</argument_list></call></expr> <comprehension><for>for <control><expr><operator>(</operator><operator>*</operator><name>_</name><operator>)</operator></expr> <range>in <expr><name>a</name></expr></range></control></for></comprehension> }</set></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>types</name> <operator>=</operator> <set>{ <expr><call><name>type</name><argument_list>(<argument><expr><name>a</name></expr></argument>)</argument_list></call></expr> <comprehension><for>for <control><expr><tuple><expr><name>a</name></expr>, <expr><operator>*</operator><name>_</name></expr></tuple></expr> <range>in <expr><name>b</name></expr></range></control></for></comprehension> }</set></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>types</name> <operator>=</operator> <set>{ <expr><call><name>type</name><argument_list>(<argument><expr><name>a</name></expr></argument>)</argument_list></call></expr> <comprehension><for>for <control><expr><tuple>(<expr><operator>*</operator><name>_</name></expr>, <expr><name>a</name></expr>)</tuple></expr> <range>in <expr><name>b</name></expr></range></control></for></comprehension> }</set></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>types</name> <operator>=</operator> <set>{ <expr><call><name>type</name><argument_list>(<argument><expr><name>a</name></expr></argument>)</argument_list></call></expr> <comprehension><for>for <control><expr><array>[<expr><operator>*</operator><name>_</name></expr>, <expr><name>a</name></expr>]</array></expr> <range>in <expr><name>b</name></expr></range></control></for></comprehension> }</set></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>types</name> <operator>=</operator> <set>{ <expr><call><name>type</name><argument_list>(<argument><expr><name>a</name></expr></argument>)</argument_list></call></expr> <comprehension><for>for <control><expr><operator>**</operator><name>_</name></expr> <range>in <expr><name>a</name></expr></range></control></for></comprehension> }</set></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>types</name> <operator>=</operator> <set>{ <expr><call><name>type</name><argument_list>(<argument><expr><name>a</name></expr></argument>)</argument_list></call></expr> <comprehension><for>for <control><expr><operator>(</operator><operator>**</operator><name>_</name><operator>)</operator></expr> <range>in <expr><name>a</name></expr></range></control></for></comprehension> }</set></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>types</name> <operator>=</operator> <set>{ <expr><call><name>type</name><argument_list>(<argument><expr><name>a</name></expr></argument>)</argument_list></call></expr> <comprehension><for>for <control><expr><tuple><expr><name>a</name></expr>, <expr><operator>**</operator><name>_</name></expr></tuple></expr> <range>in <expr><name>b</name></expr></range></control></for></comprehension> }</set></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>types</name> <operator>=</operator> <set>{ <expr><call><name>type</name><argument_list>(<argument><expr><name>a</name></expr></argument>)</argument_list></call></expr> <comprehension><for>for <control><expr><tuple>(<expr><operator>**</operator><name>_</name></expr>, <expr><name>a</name></expr>)</tuple></expr> <range>in <expr><name>b</name></expr></range></control></for></comprehension> }</set></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>types</name> <operator>=</operator> <set>{ <expr><call><name>type</name><argument_list>(<argument><expr><name>a</name></expr></argument>)</argument_list></call></expr> <comprehension><for>for <control><expr><array>[<expr><operator>**</operator><name>_</name></expr>, <expr><name>a</name></expr>]</array></expr> <range>in <expr><name>b</name></expr></range></control></for></comprehension> }</set></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>result</name> <operator>=</operator> <array>[<expr><name>a</name></expr> <comprehension><for>for <control><expr><operator>(</operator><name>b</name> <ternary>if <condition><expr><name>c</name></expr></condition> <else>else <expr><name>d</name></expr></else></ternary><operator>)</operator><index>[<expr><literal type="number">0</literal></expr>]</index></expr> <range>in <expr><call><name>range</name><argument_list>(<argument><expr><literal type="number">10</literal></expr></argument>)</argument_list></call></expr></range></control></for></comprehension>]</array></expr></expr_stmt>
+</unit>
+
+</unit>

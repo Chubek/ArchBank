@@ -1,0 +1,17 @@
+name: "Set srcml version"
+description: "Extracts the version"
+runs:
+  using: "composite"
+  steps:
+    - id: set_version
+      shell: bash
+      run: |
+        version=""
+        while IFS= read -r l; do
+          if [[ "$l" == *SRCML_CLIENT_VERSION_STRING*\"*\"* ]]; then
+            version="${l#*\"}"
+            version="${version%%\"*}"
+            break
+          fi
+        done < src/client/srcml.cpp
+        echo "VERSION=$version" >> $GITHUB_ENV

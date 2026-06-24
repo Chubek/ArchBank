@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Python" url="tuple">
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><tuple>()</tuple></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><tuple>(,)</tuple></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><tuple>(<expr><literal type="number">1</literal></expr>,)</tuple></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><tuple>(<expr><literal type="number">1</literal></expr>, <expr><literal type="number">2</literal></expr>)</tuple></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><tuple>(<expr><literal type="number">1</literal></expr>, <expr><literal type="number">2</literal></expr>,)</tuple></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><tuple>(<expr><literal type="number">1</literal></expr>,<expr><literal type="number">2</literal></expr>,<expr><literal type="number">3</literal></expr>)</tuple></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><tuple>(<expr><literal type="number">1</literal></expr>,<expr><literal type="number">2</literal></expr>,<expr><literal type="number">3</literal></expr>,)</tuple></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><tuple>(<expr><call><name>b</name><argument_list>()</argument_list></call></expr>, <expr><call><name>c</name><argument_list>()</argument_list></call></expr>)</tuple></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>x</name> <operator>=</operator> <tuple>(<expr><literal type="string">"hello"</literal></expr>,<expr><literal type="string">"world"</literal></expr>)</tuple></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><tuple>(<expr><tuple>()</tuple></expr>,<expr><tuple>()</tuple></expr>)</tuple></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><tuple>(<expr><operator>(</operator><name>d</name><operator>)</operator></expr>, <expr><operator>(</operator><name>e</name><operator>)</operator></expr>)</tuple></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>empty</name> <operator>=</operator> <tuple>()</tuple></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>empty</name> <operator>=</operator> <operator>(</operator><tuple>()</tuple><operator>)</operator></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>empty</name> <operator>=</operator> <operator>(</operator><operator>(</operator><tuple>()</tuple><operator>)</operator><operator>)</operator></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><tuple>(<expr><tuple>(<expr><literal type="number">1</literal></expr>,<expr><literal type="number">2</literal></expr>)</tuple></expr>,<expr><tuple>(<expr><literal type="number">3</literal></expr>,<expr><literal type="number">4</literal></expr>)</tuple></expr>,<expr><tuple>(<expr><literal type="number">5</literal></expr>,<expr><literal type="number">6</literal></expr>)</tuple></expr>)</tuple></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>empty</name> <operator>=</operator> <array>[<expr><tuple>()</tuple></expr>]</array></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>inputs</name> <operator>=</operator> <tuple>(
+    <expr><name>a</name> <ternary>if <condition><expr><literal type="boolean">True</literal></expr></condition> <else>else <expr><call><name>call_one</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr></else></ternary></expr>,
+    <expr><name>b</name></expr>
+)</tuple></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><tuple><expr><literal type="number">1</literal></expr>,</tuple></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><tuple><expr><literal type="number">1</literal></expr>,<expr><literal type="number">2</literal></expr></tuple></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><tuple><expr><literal type="number">1</literal></expr>,<expr><literal type="number">2</literal></expr>,</tuple></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><tuple><expr><name>x</name></expr>, <expr><name>y</name></expr>, <expr><name>z</name></expr></tuple> <operator>=</operator> <tuple><expr><literal type="number">1</literal></expr>, <expr><literal type="number">2</literal></expr>, <expr><literal type="number">3</literal></expr></tuple></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><tuple><expr><tuple>(<expr><name>a</name></expr>, <expr><name>b</name></expr>)</tuple></expr>,</tuple></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><tuple><expr><literal type="number">1</literal></expr>,<expr><literal type="number">2</literal></expr>,<expr><tuple>(<expr><literal type="number">3</literal></expr>,<expr><literal type="number">4</literal></expr>)</tuple></expr></tuple></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><tuple>(<expr><name>a</name></expr>, <expr><name>b</name></expr>, <expr><name>c</name></expr>)</tuple> <operator>=</operator> <tuple>(<expr><literal type="number">4</literal></expr>, <expr><literal type="number">5</literal></expr>, <expr><literal type="number">6</literal></expr>)</tuple></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><tuple>(<expr><call><name>a</name><argument_list>(<argument><expr><tuple>(<expr><name>x</name></expr>, <expr><name>y</name></expr>)</tuple></expr></argument>, <argument><expr><name>z</name></expr></argument>)</argument_list></call></expr>, <expr><name>b</name></expr>)</tuple></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>result</name> <operator>=</operator> <tuple>(<expr><name>a</name></expr>, <expr><operator>*</operator><array>[<expr><name>b</name></expr> <comprehension><for>for <control><expr><name>_</name></expr> <range>in <expr><call><name>c</name><argument_list>(<argument><expr><call><name>d</name><argument_list>(<argument><expr><name>e</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></range></control></for></comprehension>]</array></expr>)</tuple></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>construct</name> <operator>=</operator> <operator>(</operator><operator>(</operator><tuple>(<expr><call><name>a</name><argument_list>()</argument_list></call></expr>, <expr><call><name>b</name><argument_list>()</argument_list></call></expr>)</tuple><operator>)</operator><operator>)</operator></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><name>construct</name> <operator>=</operator> <operator>(</operator><tuple>(<expr><operator>(</operator><name>a</name><operator>)</operator></expr>, <expr><operator>(</operator><name>b</name><operator>)</operator></expr>, <expr><name>c</name></expr>)</tuple><operator>)</operator></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>keyword_arguments</name><parameter_list>(<parameter><name>a</name></parameter>, <parameter><name>b</name></parameter>, <parameter><name>c</name></parameter>, <parameter><name>d</name></parameter>)</parameter_list><block>:<block_content>
+    <return>return <expr><tuple><expr><call><name><name>a</name><operator>.</operator><name>sample</name></name><argument_list>(<argument><expr><name>b</name></expr></argument>, <argument><name>example</name>=<expr><name>c</name></expr></argument>)</argument_list></call></expr>, <expr><call><name><name>a</name><operator>.</operator><name>sample</name></name><argument_list>(<argument><expr><name>d</name></expr></argument>)</argument_list></call></expr></tuple></expr></return>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>keyword_arguments</name><parameter_list>(<parameter><name>a</name></parameter>, <parameter><name>b</name></parameter>, <parameter><name>c</name></parameter>, <parameter><name>d</name></parameter>, <parameter><name>e</name></parameter>)</parameter_list><block>:<block_content>
+    <return>return <expr><tuple><expr><call><name><name>a</name><operator>.</operator><name>sample</name></name><argument_list>(<argument><expr><name>b</name></expr></argument>, <argument><name>example</name>=<expr><name>c</name></expr></argument>)</argument_list></call></expr>, <expr><call><name><name>a</name><operator>.</operator><name>sample</name></name><argument_list>(<argument><expr><name>d</name></expr></argument>, <argument><name>example</name>=<expr><name>e</name></expr></argument>)</argument_list></call></expr></tuple></expr></return>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>named_arguments</name><parameter_list>(<parameter><name>a</name></parameter>, <parameter><name>b</name></parameter>)</parameter_list><block>:<block_content>
+    <return>return <expr><tuple><expr><call><name>call_one</name><argument_list>(<argument><expr><name>type</name><operator>=</operator><name>a</name></expr></argument>)</argument_list></call></expr>, <expr><call><name>call_one</name><argument_list>(<argument><expr><name>type</name><operator>=</operator><name>b</name></expr></argument>)</argument_list></call></expr></tuple></expr></return>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<with>with <expr><call><name>open</name><argument_list>(<argument><expr><literal type="string">'test.txt'</literal></expr></argument>,<argument><expr><literal type="string">'w'</literal></expr></argument>)</argument_list></call></expr> <alias>as <expr><name>a</name></expr></alias><block>:<block_content>
+    <expr_stmt><expr><tuple><expr><name>indices</name></expr>, <expr><name>values</name></expr></tuple> <operator>=</operator> <call><name><name>a</name><operator>.</operator><name>zip</name></name><argument_list>()</argument_list></call></expr></expr_stmt>
+</block_content></block></with>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<with><specifier>async</specifier> with <expr><call><name>open</name><argument_list>(<argument><expr><literal type="string">'test.txt'</literal></expr></argument>,<argument><expr><literal type="string">'w'</literal></expr></argument>)</argument_list></call></expr> <alias>as <expr><name>a</name></expr></alias><block>:<block_content>
+    <expr_stmt><expr><tuple><expr><name>indices</name></expr>, <expr><name>values</name></expr></tuple> <operator>=</operator> <call><name><name>a</name><operator>.</operator><name>zip</name></name><argument_list>()</argument_list></call></expr></expr_stmt>
+</block_content></block></with>
+</unit>
+
+</unit>

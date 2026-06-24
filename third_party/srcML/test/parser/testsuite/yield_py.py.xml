@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Python" url="yield">
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>generator</name><parameter_list>()</parameter_list><block>:<block_content>
+    <yield>yield</yield>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>generator</name><parameter_list>()</parameter_list><block>:<block_content>
+    <yield>yield <expr><literal type="number">1</literal></expr></yield>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>generator</name><parameter_list>()</parameter_list><block>:<block_content>
+    <yield>yield <expr><literal type="number">1</literal></expr></yield>
+    <yield>yield <expr><literal type="number">2</literal></expr></yield>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>generator</name><parameter_list>(<parameter><name>x</name></parameter>)</parameter_list><block>:<block_content>
+    <for>for <control><expr><name>i</name></expr> <range>in <expr><call><name>range</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr></range></control><block>:<block_content>
+        <yield>yield <expr><name>i</name></expr></yield>
+</block_content></block></for></block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>generator</name><parameter_list>(<parameter><name>x</name></parameter>)</parameter_list><block>:<block_content>
+    <yield type="from">yield from <expr><call><name>range</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr></yield>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>generator</name><parameter_list>(<parameter><name>x</name></parameter>)</parameter_list><block>:<block_content>
+    <if_stmt><if>if <condition><expr><operator>(</operator><yield>yield <expr><name>x</name></expr></yield><operator>)</operator></expr></condition><block>:<block_content>
+        <pass>pass</pass>
+</block_content></block></if></if_stmt></block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>generator</name><parameter_list>()</parameter_list><block>:<block_content>
+    <expr_stmt><expr><name>val</name> <operator>=</operator> <yield>yield</yield></expr></expr_stmt>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>generator</name><parameter_list>(<parameter><name>x</name></parameter>)</parameter_list><block>:<block_content>
+    <for>for <control><expr><name>i</name></expr> <range>in <expr><call><name>range</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr></range></control><block>:<block_content>
+        <expr_stmt><expr><name>val</name> <operator>=</operator> <yield>yield <expr><name>i</name></expr></yield></expr></expr_stmt>
+</block_content></block></for></block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<function>def <name>generator</name><parameter_list>(<parameter><name>x</name></parameter>)</parameter_list><block>:<block_content>
+    <expr_stmt><expr><name>arr</name> <operator>=</operator> <yield type="from">yield from <expr><call><name>range</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr></yield></expr></expr_stmt>
+</block_content></block></function>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><call><name>call_one</name><argument_list>(
+    <argument><expr><call><name>call_two</name><argument_list>(<argument><expr><operator>(</operator><lambda>lambda: <expr><operator>(</operator><yield>yield <expr><name>a</name></expr></yield><operator>)</operator></expr></lambda><operator>)</operator></expr></argument>)</argument_list></call></expr></argument>,
+    <argument><expr><name>a</name></expr></argument>,
+)</argument_list></call></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><call><name>call_one</name><argument_list>(
+    <argument><expr><call><name>call_two</name><argument_list>(<argument><expr><operator>(</operator><lambda>lambda: <expr><operator>(</operator><yield type="from">yield from <expr><name>a</name></expr></yield><operator>)</operator></expr></lambda><operator>)</operator></expr></argument>)</argument_list></call></expr></argument>,
+    <argument><expr><name>a</name></expr></argument>,
+)</argument_list></call></expr></expr_stmt>
+</unit>
+
+</unit>

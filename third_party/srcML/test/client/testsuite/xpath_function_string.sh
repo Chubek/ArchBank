@@ -1,0 +1,35 @@
+#!/bin/bash
+# SPDX-License-Identifier: GPL-3.0-only
+#
+# @file xpath_function_string.sh
+#
+# @copyright Copyright (C) 2013-2024 srcML, LLC. (www.srcML.org)
+
+# test framework
+source $(dirname "$0")/framework_test.sh
+
+# test combining xpath's string function with queries
+defineXML srcml_nested <<- 'STDOUT'
+	<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+	<unit xmlns="http://www.srcML.org/srcML/src" revision="REVISION">
+
+	<unit revision="REVISION" language="C++" filename="b.cpp"><expr_stmt><expr><name>b</name></expr>;</expr_stmt>
+	</unit>
+
+	</unit>
+STDOUT
+
+define output <<- 'STDOUT'
+	b.cpp
+STDOUT
+
+createfile sub/a.cpp.xml "$srcml_nested"
+
+srcml sub/a.cpp.xml --xpath "string(//src:unit/@filename)"
+check "$output"
+
+srcml --xpath "string(//src:unit/@filename)" sub/a.cpp.xml
+check "$output"
+
+srcml --xpath "string(//src:unit/@filename)" <<< "$srcml_nested"
+check "$output"

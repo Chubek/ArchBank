@@ -1,0 +1,35 @@
+name: 'Test srcML Client'
+description: 'Run srcML client tests and upload test logs'
+inputs:
+  prefix:
+    description: 'Prefix for artifact names'
+    required: true
+  working-directory:
+    description: 'Working directory for tests'
+    required: false
+    default: 'build'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Test client
+      working-directory: ${{ inputs.working-directory }}
+      continue-on-error: true
+      shell: bash
+      run: |
+        cmake --build . --target test_client
+    
+    - name: Upload LastTest.log
+      uses: actions/upload-artifact@v4
+      continue-on-error: true
+      if: ${{ hashFiles('Testing/Temporary/LastTest.log') != '' }}
+      with:
+        name: ${{ inputs.prefix }}-client_last_test.log
+        path: ${{ inputs.working-directory }}/Testing/Temporary/LastTest.log
+    
+    - name: Upload client logs
+      uses: actions/upload-artifact@v4
+      continue-on-error: true
+      with:
+        name: "${{ inputs.prefix }} Client Test Log"
+        path: ${{ inputs.working-directory }}/dist/*-client.log

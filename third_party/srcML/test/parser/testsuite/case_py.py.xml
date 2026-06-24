@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Python" url="case">
+
+<unit revision="1.0.0" language="Python">
+<switch>match <condition><expr><name>x</name></expr></condition><block>:<block_content>
+    <case>case <expr><literal type="number">3</literal></expr><block>:<block_content>
+        <expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><literal type="string">"three"</literal></expr></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></case></block_content></block></switch>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<switch>match <condition><expr><name>word</name></expr></condition><block>:<block_content>
+    <case>case <expr><literal type="string">"one"</literal></expr><block>:<block_content>
+        <expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></case>    <case>case <expr><literal type="string">"two"</literal></expr><block>:<block_content>
+        <expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></case>    <case>case <expr><name>other</name></expr><block>:<block_content>
+        <expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><literal type="string">"Number not reognized"</literal></expr></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></case></block_content></block></switch>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<switch>match <condition><expr><name>truth</name></expr></condition><block>:<block_content>
+    <case>case <expr><literal type="boolean">True</literal></expr><block>:<block_content>
+        <expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><literal type="string">"Yes"</literal></expr></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></case>    <case>case <expr><name>_</name></expr><block>:<block_content>
+        <expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><literal type="string">"No"</literal></expr></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></case></block_content></block></switch>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<switch>match <condition><expr><name>a</name></expr></condition><block>:<block_content>
+    <case>case <expr><literal type="string">"a"</literal></expr><block>:<block_content>
+        <expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><literal type="string">"a"</literal></expr></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></case>    <case>case <expr><name>_</name></expr><block>:<block_content>
+        <if_stmt><if>if <condition><expr><operator>not</operator> <literal type="string">"a"</literal></expr></condition><block>:<block_content>
+            <expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><literal type="string">"not a"</literal></expr></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></if></if_stmt></block_content></block></case></block_content></block></switch>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<switch>match <condition><expr><name>a</name></expr></condition><block>:<block_content>
+    <case>case <expr><literal type="string">"a"</literal></expr><block>:<block_content>
+        <expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><literal type="string">"a"</literal></expr></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></case>    <case>case <expr><name>_</name></expr> if <condition><expr><literal type="boolean">True</literal></expr></condition><block>:<block_content>
+        <if_stmt><if>if <condition><expr><operator>not</operator> <literal type="string">"a"</literal></expr></condition><block>:<block_content>
+            <expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><literal type="string">"not a"</literal></expr></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></if></if_stmt></block_content></block></case></block_content></block></switch>
+</unit>
+
+</unit>

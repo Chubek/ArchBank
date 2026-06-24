@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="C++" url="operator" filename="operator_cpp">
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>=</operator><operator>&gt;</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>=</operator><operator>&gt;=</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>=</operator><operator>&gt;&gt;</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>=</operator><operator>&gt;&gt;=</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>&gt;&gt;=</operator><operator>&gt;</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>&gt;&gt;=</operator><operator>&gt;=</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>&gt;&gt;=</operator><operator>&gt;&gt;</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>&gt;&gt;=</operator><operator>&gt;&gt;=</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name><name>a</name><index>[<expr><literal type="number">0</literal></expr><operator>,</operator> <expr><literal type="number">0</literal></expr>]</index></name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name><name>a</name><index>[<expr><literal type="number">0</literal></expr><operator>,</operator> <expr><literal type="string">"1"</literal></expr><operator>,</operator> <expr><literal type="char">'2'</literal></expr><operator>,</operator> <expr><name><name>foo</name><operator>.</operator><name>bar</name></name></expr><operator>,</operator> <expr><literal type="complex">5 + 2i</literal></expr>]</index></name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><literal type="number">1</literal> <operator>.*</operator> <literal type="number">2</literal></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>=</operator><operator>.*</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>+=</operator><operator>.*</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>-=</operator><operator>.*</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>*=</operator><operator>.*</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>/=</operator><operator>.*</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>%=</operator><operator>.*</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>&amp;=</operator><operator>.*</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>|=</operator><operator>.*</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>^=</operator><operator>.*</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>&lt;&lt;=</operator><operator>.*</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>&gt;&gt;=</operator><operator>.*</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><literal type="number">1</literal> <operator>.*</operator> <literal type="number">2</literal></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>=</operator><operator>.*</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>+=</operator><operator>.*</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>-=</operator><operator>.*</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>*=</operator><operator>.*</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>/=</operator><operator>.*</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>%=</operator><operator>.*</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>&amp;=</operator><operator>.*</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>|=</operator><operator>.*</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>^=</operator><operator>.*</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>&lt;&lt;=</operator><operator>.*</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>&gt;&gt;=</operator><operator>.*</operator><name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>=</operator> <name>a</name> <operator>*</operator> <name>b</name></expr>;</expr_stmt>
+</unit>
+
+<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C++">
+<expr_stmt><expr><name>a</name> <operator>=</operator> <name>a</name> <operator>^</operator> <name>b</name></expr>;</expr_stmt>
+</unit>
+
+</unit>

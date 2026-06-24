@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Python" url="argument">
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><call><name>print</name><argument_list>()</argument_list></call></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><literal type="string">"Hello World"</literal></expr></argument>)</argument_list></call></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><literal type="string">"Hello"</literal></expr></argument>, <argument><expr><literal type="string">"World"</literal></expr></argument>)</argument_list></call></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><call><name>print</name><argument_list>(<argument><name>end</name>=<expr><literal type="string">"\t"</literal></expr></argument>)</argument_list></call></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><call><name>print</name><argument_list>(<argument><expr><literal type="string">"Hello"</literal></expr></argument>, <argument><expr><literal type="string">"World"</literal></expr></argument>, <argument><name>sep</name>=<expr><literal type="string">"|"</literal></expr></argument>)</argument_list></call></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><call><name>process</name><argument_list>(<argument><name>arg1</name>=<expr><name>sample</name></expr></argument>, <argument><name>arg2</name>=<expr><literal type="string">"Name"</literal></expr></argument>, <argument><name>arg3</name>=<expr><literal type="null">None</literal></expr></argument>)</argument_list></call></expr></expr_stmt>
+</unit>
+
+</unit>

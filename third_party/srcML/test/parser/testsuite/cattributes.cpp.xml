@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="C++" url="c-attributes">
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>unused</name></expr>))</attribute></decl>
+;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<function><type><name>void</name></type> <name>f</name><parameter_list>(<parameter><decl><type><name>void</name></type></decl></parameter>)</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>int</name></type> <name>lv</name> <attribute>__attribute__((<expr><name>unused</name></expr>))</attribute></decl>;</decl_stmt>
+</block_content>}</block></function>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<function_decl><type><name>void</name></type> <name>f</name><parameter_list>(<parameter><decl><type><name>void</name></type></decl></parameter>)</parameter_list> <attribute>__attribute__((<expr><name>noreturn</name></expr>))</attribute>;</function_decl>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<function_decl><type><name>void</name></type> <name>f</name><parameter_list>(<parameter><decl><type><name>void</name></type></decl></parameter>)</parameter_list> <attribute>__attribute__((<expr><name>unused</name></expr>))</attribute>;</function_decl>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<function_decl><type><name>void</name></type> <name>f</name><parameter_list>(<parameter><decl><type><name>void</name></type></decl></parameter>)</parameter_list> <attribute>__attribute__((<expr><call><name>deprecated</name><argument_list>(<argument><expr><literal type="string">"Use something else"</literal></expr></argument>)</argument_list></call></expr>))</attribute>;</function_decl>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<struct>struct <attribute>__attribute__((<expr><name>packed</name></expr>))</attribute> <name>S</name> <block>{<public type="default">
+    <decl_stmt><decl><type><name>int</name></type> <name>a</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>char</name></type> <name>b</name></decl>;</decl_stmt>
+</public>}</block>;</struct>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name><name>struct</name> <name>S</name></name></type> <attribute>__attribute__((<expr><call><name>aligned</name><argument_list>(<argument><expr><literal type="number">8</literal></expr></argument>)</argument_list></call></expr>))</attribute> <name>s1_instance</name></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<struct>struct <name>S</name> <block>{<public type="default">
+    <decl_stmt><decl><type><name>int</name></type> <name>x</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>double</name></type> <name>y</name> <attribute>__attribute__((<expr><call><name>aligned</name><argument_list>(<argument><expr><literal type="number">16</literal></expr></argument>)</argument_list></call></expr>))</attribute></decl>;</decl_stmt>
+</public>}</block>;</struct>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<typedef>typedef <type><name>int</name></type> <name>myint</name> <attribute>__attribute__((<expr><call><name>aligned</name><argument_list>(<argument><expr><literal type="number">8</literal></expr></argument>)</argument_list></call></expr>))</attribute>;</typedef>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<label><name>l</name>: <attribute>__attribute__((<expr><name>unused</name></expr>))</attribute></label><empty_stmt>;</empty_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<typedef>typedef <function_decl><type><name>void</name></type> (<modifier>*</modifier><name>fp_t</name>)<parameter_list>(<parameter><decl><type><name>void</name></type></decl></parameter>)</parameter_list> <attribute>__attribute__((<expr><name>nonnull</name></expr>))</attribute>;</function_decl></typedef>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<enum>enum <attribute>__attribute__((<expr><name>packed</name></expr>))</attribute> <name>MyEnum</name> <block>{ <decl><name>VALUE1</name></decl>, <decl><name>VALUE2</name></decl> }</block>;</enum>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><call><name>aligned</name><argument_list>(<argument><expr><literal type="number">32</literal></expr></argument>)</argument_list></call></expr>))</attribute> <init>= <expr><literal type="number">42</literal></expr></init></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<decl_stmt><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>unused</name></expr>))</attribute> <init>= <expr><literal type="number">10</literal></expr></init></decl>;</decl_stmt>
+</unit>
+
+<unit revision="1.0.0" language="C++"><struct>struct <name>S</name> <block>{<public type="default">
+    <constructor_decl><name>S</name><parameter_list>()</parameter_list> <attribute>__attribute__((<expr><name>noinline</name></expr>))</attribute>;</constructor_decl>
+</public>}</block>;</struct>
+</unit>
+
+<unit revision="1.0.0" language="C++"><struct>struct <name>S</name> <block>{<public type="default">
+    <destructor_decl><name>~S</name><parameter_list>()</parameter_list> <attribute>__attribute__((<expr><name>noinline</name></expr>))</attribute>;</destructor_decl>
+</public>}</block>;</struct>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<function_decl><type><name>int</name></type> <name>f</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>n</name> <attribute>__attribute__((<expr><name>unused</name></expr>))</attribute></decl></parameter>)</parameter_list>;</function_decl>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<function_decl><type><name>int</name></type> <name>f</name><parameter_list>(<parameter><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>unused</name></expr>))</attribute> <name>n</name></decl></parameter>)</parameter_list>;</function_decl>
+</unit>
+
+<unit revision="1.0.0" language="C++">
+<function_decl><type><name>int</name></type> <name>f</name><parameter_list>(<parameter><decl><type><name>int</name></type> <attribute>__attribute__((<expr><name>unused</name></expr>))</attribute></decl></parameter>)</parameter_list>;</function_decl>
+</unit>
+
+</unit>

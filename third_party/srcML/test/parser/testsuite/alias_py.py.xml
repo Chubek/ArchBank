@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Python" url="alias">
+
+<unit revision="1.0.0" language="Python">
+<import>import <name>random</name> <alias>as <expr><name>rnd</name></expr></alias></import>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<import>import <name>os</name> <alias>as <expr><name>OS</name></expr></alias>, <name>threading</name> <alias>as <expr><name>thrd</name></expr></alias></import>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<import><from>from <name>sys</name></from> import <name>audit</name> <alias>as <expr><name>ad</name></expr></alias></import>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<import><from>from <name>math</name></from> import <name>pi</name> <alias>as <expr><name>PI</name></expr></alias>, <name>sin</name> <alias>as <expr><name>sine</name></expr></alias></import>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<with>with <expr><call><name>open</name><argument_list>(<argument><expr><literal type="string">"text.txt"</literal></expr></argument>,<argument><expr><literal type="string">'w'</literal></expr></argument>)</argument_list></call></expr> <alias>as <expr><name>file</name></expr></alias><block>:<block_content>
+    <expr_stmt><expr><call><name><name>file</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><literal type="string">"Hello World"</literal></expr></argument>)</argument_list></call></expr></expr_stmt>
+</block_content></block></with>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<try>try<block>:<block_content>
+    <import>import <name>a</name></import>
+</block_content></block><catch>except <expr><name>ImportError</name></expr><block>:<block_content>
+    <import><from>from <name>b.c.d</name></from> import (
+        <name>e</name>,
+        <name>f</name> <alias>as <expr><name>g</name></expr></alias>,
+    )</import>
+</block_content></block></catch></try>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<switch>match <condition><expr><name>a</name></expr></condition><block>:<block_content>
+    <case>case <expr><name>b</name></expr> if <condition><expr><name>b</name></expr></condition><block>:<block_content>
+        <expr_stmt><expr><name>d</name> <operator>=</operator> <literal type="number">0</literal></expr></expr_stmt>
+</block_content></block></case>    <case>case <expr><name>_</name></expr> <alias>as <expr><name>c</name></expr></alias> if <condition><expr><name>c</name> <operator>==</operator> <name>b</name> <operator>and</operator> <name>c</name></expr></condition><block>:<block_content>
+        <expr_stmt><expr><name>d</name> <operator>=</operator> <literal type="number">1</literal></expr></expr_stmt>
+</block_content></block></case></block_content></block></switch>
+</unit>
+
+</unit>

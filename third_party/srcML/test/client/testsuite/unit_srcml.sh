@@ -1,0 +1,79 @@
+#!/bin/bash
+# SPDX-License-Identifier: GPL-3.0-only
+#
+# @file unit_srcml.sh
+#
+# @copyright Copyright (C) 2013-2024 srcML, LLC. (www.srcML.org)
+
+# test framework
+source $(dirname "$0")/framework_test.sh
+
+defineXML nestedfile <<- 'STDIN'
+	<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+	<unit xmlns="http://www.srcML.org/srcML/src" revision="REVISION">
+
+	<unit revision="REVISION" language="C++" filename="sub/a.cpp" hash="1a2c5d67e6f651ae10b7673c53e8c502c97316d6">
+	<expr_stmt><expr><name>a</name></expr>;</expr_stmt>
+	</unit>
+
+	<unit revision="REVISION" language="C++" filename="sub/b.cpp" hash="aecf18b52d520ab280119febd8ff6c803135ddfc">
+	<expr_stmt><expr><name>b</name></expr>;</expr_stmt>
+	</unit>
+
+	</unit>
+STDIN
+
+defineXML sxmlfile1 <<- 'STDOUT'
+	<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+	<unit xmlns="http://www.srcML.org/srcML/src" revision="REVISION" language="C++" filename="sub/a.cpp" hash="1a2c5d67e6f651ae10b7673c53e8c502c97316d6">
+	<expr_stmt><expr><name>a</name></expr>;</expr_stmt>
+	</unit>
+STDOUT
+
+srcml -X --unit "1" - <<< "$nestedfile"
+check "$sxmlfile1"
+
+srcml -X --unit "1" <<< "$nestedfile"
+check "$sxmlfile1"
+
+defineXML sxmlfile2 <<- 'STDOUT'
+	<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+	<unit xmlns="http://www.srcML.org/srcML/src" revision="REVISION" language="C++" filename="sub/b.cpp" hash="aecf18b52d520ab280119febd8ff6c803135ddfc">
+	<expr_stmt><expr><name>b</name></expr>;</expr_stmt>
+	</unit>
+STDOUT
+
+defineXML sxmlfile2fragment <<- 'STDOUT'
+	<unit revision="REVISION" language="C++" filename="sub/b.cpp" hash="aecf18b52d520ab280119febd8ff6c803135ddfc">
+	<expr_stmt><expr><name>b</name></expr>;</expr_stmt>
+	</unit>
+STDOUT
+
+define sxmlfile2raw <<- 'STDOUT'
+
+	<expr_stmt><expr><name>b</name></expr>;</expr_stmt>
+STDOUT
+
+define sxmlfile2src <<- 'STDOUT'
+
+	b;
+STDOUT
+
+# single newline
+define emptysrc <<- 'STDOUT'
+STDOUT
+
+srcml -X --unit "2" - <<< "$nestedfile"
+check "$sxmlfile2"
+
+srcml --unit "2" --output-srcml-outer <<< "$nestedfile"
+check "$sxmlfile2fragment"
+
+srcml --unit "2" --output-srcml-inner <<< "$nestedfile"
+check "$sxmlfile2raw"
+
+srcml --text="\nb;\n" --filename="sub/b.cpp" -l C++ --hash | srcml
+check "$sxmlfile2src"
+
+srcml --text="" --filename="sub/b.cpp" -l C++ --hash | srcml
+check "$emptysrc"

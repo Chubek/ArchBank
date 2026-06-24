@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Python" url="condition">
+
+<unit revision="1.0.0" language="Python">
+<assert>assert <condition><expr><literal type="boolean">True</literal></expr></condition></assert>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<expr_stmt><expr><literal type="string">"even"</literal> <ternary>if <condition><expr><name>x</name> <operator>%</operator> <literal type="number">2</literal> <operator>==</operator> <literal type="number">0</literal></expr></condition> <else>else <expr><literal type="string">"odd"</literal></expr></else></ternary></expr></expr_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<while>while <condition><expr><literal type="boolean">False</literal></expr></condition><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></while>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<if_stmt><if>if <condition><expr><literal type="boolean">True</literal></expr></condition><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></if><if type="elseif">elif <condition><expr><literal type="boolean">False</literal></expr></condition><block>:<block_content>
+    <pass>pass</pass>
+</block_content></block></if></if_stmt>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<switch>match <condition><expr><name>value</name></expr></condition><block>:<block_content>
+    <case>case <expr><literal type="number">1</literal></expr><block>:<block_content>
+        <pass>pass</pass>
+</block_content></block></case></block_content></block></switch>
+</unit>
+
+</unit>

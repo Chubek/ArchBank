@@ -1,0 +1,27 @@
+name: 'Test srcML Parser'
+description: 'Run srcML parser tests and upload test logs'
+inputs:
+  prefix:
+    description: 'Prefix for artifact names'
+    required: true
+  working-directory:
+    description: 'Working directory for tests'
+    required: false
+    default: 'build'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Test parser
+      working-directory: ${{ inputs.working-directory }}
+      continue-on-error: true
+      shell: bash
+      run: |
+        cmake --build . --target test_parser
+    
+    - name: Upload parser test log
+      uses: actions/upload-artifact@v4
+      continue-on-error: true
+      with:
+        name: "${{ inputs.prefix }} Parser Test Log"
+        path: ${{ inputs.working-directory }}/dist/*-parser.log

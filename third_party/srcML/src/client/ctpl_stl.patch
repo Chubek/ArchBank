@@ -1,0 +1,7 @@
+diff --git a/ctpl_stl.h b/ctpl_stl.h
+index 5956cf0..2c0f3a7 100644
+--- a/ctpl_stl.h
++++ b/ctpl_stl.h
+@@ -123 +123 @@ namespace ctpl {
+-            std::function<void(int id)> * _f;
++            std::function<void(int id)> * _f = nullptr;

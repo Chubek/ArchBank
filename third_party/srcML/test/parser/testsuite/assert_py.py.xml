@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Python" url="assert">
+
+<unit revision="1.0.0" language="Python">
+<assert>assert <condition><expr><literal type="boolean">True</literal></expr></condition></assert>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<assert>assert <condition><expr><literal type="number">1</literal> <operator>+</operator> <literal type="number">1</literal> <operator>==</operator> <literal type="number">2</literal></expr></condition></assert>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<assert>assert <condition><expr><operator>not</operator> <literal type="boolean">False</literal></expr></condition></assert>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<assert>assert <condition><expr><literal type="boolean">False</literal></expr></condition>, <expr><literal type="string">"Fail Message"</literal></expr></assert>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<assert>assert <condition><expr><set>{<expr><literal type="boolean">True</literal></expr>, <expr><literal type="boolean">False</literal></expr>}</set></expr></condition>, <expr><literal type="string">"Fail Message"</literal></expr></assert>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<assert>assert <condition><expr><dictionary>{<expr><literal type="string">'a'</literal></expr>: <expr><name>a</name></expr>, <expr><literal type="string">'b'</literal></expr>: <expr><name>b</name></expr>}</dictionary></expr></condition>, <expr><literal type="string">"Fail Message"</literal></expr></assert>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<assert>assert <condition><expr><array>[<expr><name>a</name></expr>, <expr><name>b</name></expr>]</array></expr></condition>, <expr><literal type="string">"Fail Message"</literal></expr></assert>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<assert>assert <condition><expr><tuple>(<expr><name>a</name></expr>, <expr><name>b</name></expr>)</tuple></expr></condition>, <expr><literal type="string">"Fail Message"</literal></expr></assert>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<assert>assert <condition><expr><name><name>a</name><index>[<expr><name>b</name></expr>, <expr><name>c</name></expr>]</index></name></expr></condition>, <expr><literal type="string">"Fail Message"</literal></expr></assert>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<assert>assert <condition><expr><call><name>sample</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>b</name></expr></argument>)</argument_list></call></expr></condition>, <expr><literal type="string">"Fail Message"</literal></expr></assert>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<assert>assert <condition><expr><call><name>sample</name><argument_list>(<argument><expr><call><name>example</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>b</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>c</name></expr></argument>)</argument_list></call></expr></condition>, <expr><literal type="string">"Fail Message"</literal></expr></assert>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<assert>assert <condition><expr><call><name>sample</name><argument_list>(<argument><expr><lambda>lambda <parameter><name>a</name></parameter>, <parameter><name>b</name></parameter>: <expr><name>a</name><operator>**</operator><name>b</name></expr></lambda></expr></argument>)</argument_list></call></expr></condition>, <expr><literal type="string">"Fail Message"</literal></expr></assert>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<assert>assert <condition><expr><call><name>list</name><argument_list>(<argument><expr><call><name>map</name><argument_list>(<argument><expr><lambda>lambda <parameter><name>x</name></parameter>: <expr><name>x</name><operator>**</operator><literal type="number">2</literal></expr></lambda></expr></argument>, <argument><expr><name>numbers</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></condition>, <expr><literal type="string">"Fail Message"</literal></expr></assert>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<assert>assert <condition><expr><call><name>list</name><argument_list>(<argument><expr><call><name>map</name><argument_list>(<argument><expr><lambda>lambda <parameter><name>x</name></parameter>: <expr><set>{<expr><name>x</name></expr>, <expr><name>x</name></expr>}</set></expr></lambda></expr></argument>, <argument><expr><name>numbers</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></condition>, <expr><literal type="string">"Fail Message"</literal></expr></assert>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<assert>assert <condition><expr><call><name>list</name><argument_list>(<argument><expr><call><name>map</name><argument_list>(<argument><expr><lambda>lambda <parameter><name>x</name></parameter>: <expr><dictionary>{<expr><literal type="string">'x'</literal></expr>: <expr><name>x</name></expr>, <expr><literal type="string">'x'</literal></expr>: <expr><name>x</name></expr>}</dictionary></expr></lambda></expr></argument>, <argument><expr><name>numbers</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></condition>, <expr><literal type="string">"Fail Message"</literal></expr></assert>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<assert>assert <condition><expr><call><name>list</name><argument_list>(<argument><expr><call><name>map</name><argument_list>(<argument><expr><lambda>lambda <parameter><name>x</name></parameter>: <expr><array>[<expr><name>x</name></expr>, <expr><name>x</name></expr>]</array></expr></lambda></expr></argument>, <argument><expr><name>numbers</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></condition>, <expr><literal type="string">"Fail Message"</literal></expr></assert>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<assert>assert <condition><expr><call><name>list</name><argument_list>(<argument><expr><call><name>map</name><argument_list>(<argument><expr><lambda>lambda <parameter><name>x</name></parameter>: <expr><tuple>(<expr><name>x</name></expr>, <expr><name>x</name></expr>)</tuple></expr></lambda></expr></argument>, <argument><expr><name>numbers</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></condition>, <expr><literal type="string">"Fail Message"</literal></expr></assert>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<assert>assert <condition><expr><call><name>list</name><argument_list>(<argument><expr><call><name>map</name><argument_list>(<argument><expr><lambda>lambda <parameter><name>x</name></parameter>: <expr><name><name>x</name><index>[<expr><name>x</name></expr>, <expr><name>x</name></expr>]</index></name></expr></lambda></expr></argument>, <argument><expr><name>numbers</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></condition>, <expr><literal type="string">"Fail Message"</literal></expr></assert>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<assert>assert <condition><expr><call><name><name>a</name><operator>.</operator><name>call_one</name></name><argument_list>(<argument><expr><name>b</name></expr></argument>)</argument_list></call><operator>.</operator><name>c</name> <operator>==</operator> <tuple>(<expr><call><name>len</name><argument_list>(<argument><expr><name>b</name></expr></argument>)</argument_list></call></expr>,)</tuple></expr></condition></assert>
+</unit>
+
+<unit revision="1.0.0" language="Python">
+<assert>assert <condition><expr><call><name><name>a</name><operator>.</operator><name>call_one</name></name><argument_list>(<argument><expr><name>b</name></expr></argument>)</argument_list></call><operator>.</operator><name>c</name> <operator>==</operator> <tuple>(<expr><call><name>len</name><argument_list>(<argument><expr><name>b</name></expr></argument>)</argument_list></call></expr>, <expr><literal type="number">2</literal></expr>)</tuple></expr></condition></assert>
+</unit>
+
+</unit>
