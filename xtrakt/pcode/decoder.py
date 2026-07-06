@@ -89,7 +89,7 @@ def decode_signature(encoding_function: str, width: Any) -> DecodeResult:
     body_forms = form[2:]
     if len(body_forms) < 2:
         return DecodeResult(None, None, True, "malformed define-encoding")
-    w_tok = body_forms[-2] if isinstance(body_forms[-2], int) else body_forms[-2]
+    w_tok = body_forms[-2]
     body = body_forms[-1]
 
     instr_width = width if isinstance(width, int) else (

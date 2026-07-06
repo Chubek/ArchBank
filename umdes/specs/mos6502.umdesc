@@ -1,0 +1,38 @@
+// MOS 6502 — illustrative uMDesc exercising grammar breadth:
+// nested comments, dotted register names, variable-width fields, mode decls,
+// keyword field names (`op`, `mode`), all action operators, indexed lvalues.
+arch mos6502 {
+    wordsize 8;
+    endianness little;
+
+    /* Three programmer-visible registers. Dotted slot names confirm
+       single-token lexing (R8.R15-style). */
+    register REG[3, 8] = { A.X.Y };
+
+    alias ACC = A;
+
+    mode imm8(src: u8) { }      // body reserved
+    mode zp(addr: u8) { }
+
+    format main {
+        opcode[4], op[3], mode[1], operand[0..8]
+    }
+
+    op LDA(src: imm8) {
+        syntax "lda #$src";
+        image "0xA9 /operand=$src";
+        action {
+            A = src;
+            flags.nz(A);
+        }
+    }
+
+    op ADC(src: imm8) {
+        syntax "adc #$src";
+        action {
+            A = (A + src) ^ 0;
+            A[0] = A & 1;
+            setzn(A);
+        }
+    }
+}

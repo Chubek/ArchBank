@@ -36,8 +36,8 @@ architectures:
     encoding_class: prefix-modrm
     width_bits: variable
     operand_types: [GPR8, GPR16, GPR32, GPR64, XMM, YMM, ZMM, MASK, IMM, REL, MEM, MIB]
-    encoding_banks:  [nasm-data, x86-dataset, xed-datafiles, zydis-metadata, bochs-cpu, distorm-disops, keystone-arch, xbyak-instructions, yasm-arch, binutils-libopcode]
-    semantics_banks: [boomerang-ssl, miasm-arch, ghidra-cpu, gcc-md]
+    encoding_banks:  [nasm-data, x86-dataset, xed-datafiles, zydis-metadata, bochs-cpu, distorm-disops, keystone-arch, xbyak-instructions, yasm-arch, binutils-libopcode, courtier-x86, xmlreference-x86, hotspot-cpu]
+    semantics_banks: [boomerang-ssl, miasm-arch, ghidra-cpu, gcc-md, smlnj-targets]
     record:
       - { name: legacy_prefixes, kind: struct, width: 0-4, note: "66/F2/F3, segment, LOCK/REP" }
       - { name: rex,             kind: struct, width: 8,   note: "REX/REX2 when set" }
@@ -85,8 +85,8 @@ architectures:
     encoding_class: fixed-32
     width_bits: 32
     operand_types: [GPR, GPR32, FPR, VEC, PRED, PRED-REG, IMM, SHIFT, EXTEND, SYSREG, LABEL, COND]
-    encoding_banks:  [asmjit-db, keystone-arch, capstone-arch, binutils-libopcode, gem5-arch]
-    semantics_banks: [ghidra-cpu, gem5-arch, qemu-targets, miasm-arch]
+    encoding_banks:  [asmjit-db, keystone-arch, capstone-arch, binutils-libopcode, gem5-arch, hotspot-cpu]
+    semantics_banks: [ghidra-cpu, gem5-arch, qemu-targets, miasm-arch, smlnj-targets]
     record:
       - { name: sf,     kind: bv, width: 1, note: "operand width 32/64" }
       - { name: op,     kind: bv, width: 1 }
@@ -125,7 +125,7 @@ architectures:
     encoding_class: fixed-32
     width_bits: "{16 (T16), 32 (T32, A32)}"
     operand_types: [GPR, GPR-PC, FPR, VEC, IMM, ROT, SHIFT, PSR, COPROC, LABEL, COND]
-    encoding_banks:  [keystone-arch, capstone-arch, binutils-libopcode, asmjit-db, dynasm-opcodes]
+    encoding_banks:  [keystone-arch, capstone-arch, binutils-libopcode, asmjit-db, dynasm-opcodes, hotspot-cpu]
     semantics_banks: [boomerang-ssl, ghidra-cpu, qemu-targets, miasm-arch]
     record:
       - { name: cond,         kind: COND, width: 4, note: "condition gate; 1111 = unconditional" }
@@ -162,7 +162,7 @@ architectures:
     encoding_class: fixed-32
     width_bits: "{16 (RVC), 32 (base), variable (VLEN-typed)}"
     operand_types: [GPR, FPR, VEC, VREG, IMM, RM, CSR, AQRL, LABEL]
-    encoding_banks:  [riscv-opcodes, qemu-targets, capstone-arch, binutils-libopcode, gdb-arch]
+    encoding_banks:  [riscv-opcodes, qemu-targets, capstone-arch, binutils-libopcode, gdb-arch, hotspot-cpu]
     semantics_banks: [pydgin-arch, qemu-targets, ghidra-cpu]
     record:
       - { name: opcode, kind: bv, width: 7 }
@@ -224,7 +224,7 @@ architectures:
     encoding_class: fixed-32
     width_bits: "{16 (VLE), 32}"
     operand_types: [GPR, FPR, VS, CR, IMM, MB, ME, SH, SPR, LABEL]
-    encoding_banks:  [keystone-arch, capstone-arch, binutils-libopcode, binaryninja-arch, qemu-targets]
+    encoding_banks:  [keystone-arch, capstone-arch, binutils-libopcode, binaryninja-arch, qemu-targets, hotspot-cpu]
     semantics_banks: [boomerang-ssl, ghidra-cpu, qemu-targets, gcc-md]
     record:
       - { name: opcd,  kind: bv,  width: 6 }
@@ -289,7 +289,7 @@ architectures:
     encoding_class: variable
     width_bits: "{2,4,6}"
     operand_types: [GPR, FPR, VEC, ACC, IMM, MASK, BASE, DISP, LABEL, LEN]
-    encoding_banks:  [capstone-arch, binutils-libopcode, qemu-targets, dynasm-opcodes]
+    encoding_banks:  [capstone-arch, binutils-libopcode, qemu-targets, dynasm-opcodes, hotspot-cpu]
     semantics_banks: [ghidra-cpu, qemu-targets]
     record:
       - { name: op1,  kind: bv, width: 8,  note: "primary opcode byte" }
@@ -351,7 +351,7 @@ architectures:
     encoding_class: stack-leb
     width_bits: variable
     operand_types: [VALTYPE, BLOCKTYPE, LOCALIDX, FUNCIDX, MEMARG, LABELIDX]
-    encoding_banks:  [binaryen-wasm, capstone-arch, qemu-targets]
+    encoding_banks:  [binaryen-wasm, capstone-arch, qemu-targets, wabt-wasm]
     semantics_banks: [binaryen-wasm, capstone-arch]
     record:
       - { name: opcode,     kind: bv, width: 1, note: "+LEB128 multi-byte (0xFC/0xFD/0xFE/0xFF prefixes)" }

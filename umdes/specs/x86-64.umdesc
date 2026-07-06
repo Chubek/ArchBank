@@ -1,0 +1,71 @@
+// x86-64 (Intel 64 / AMD64) — variable length, map-indexed opcode space
+// with ModRM/SIB addressing. Field layout matches RECORDS.yaml `x86-64`:
+// legacy_prefixes(0-4) rex(8) opcode(8-24) modrm(8) sib(8)
+// displacement({0,8,16,32}) immediate({0,8,16,32,64}) vex_evex({24,32}).
+// decode mask/match span the fixed opcode + ModRM.reg slice; prefix
+// context (66/F2/F3, REX, VEX/EVEX) is a separate join key.
+arch x86-64 {
+    wordsize 64;
+    endianness little;
+
+    // 16 GPRs (64-bit view); the 32/16/8-bit sub-registers alias them.
+    register GPR[16, 64] = {
+        rax rcx rdx rbx rsp rbp rsi rdi
+        r8 r9 r10 r11 r12 r13 r14 r15
+    };
+    alias STACK = rsp;
+    alias FRAME = rbp;
+    alias COUNTER = rip;
+
+    // Flags register; low byte is the classic status flags.
+    register RFLAGS[1, 64];
+    // Instruction pointer.
+    register RIP[1, 64];
+    // 16 SSE/AVX vector registers (XMM=128, YMM=256, ZMM=512 views).
+    register XMM[16, 128];
+
+    mode gpr32(r: GPR) { }
+    mode gpr64(r: GPR) { }
+    mode imm8(v: u8) { }
+    mode imm32(v: u32) { }
+    // r/m operand: modrm selects register or memory effective address.
+    mode rm(mod: u2, reg: u3, r: u3) { }
+
+    // Core encoding skeleton; modrm/sib/disp/imm are conditionally present.
+    format instr {
+        legacy_prefixes[0..32],
+        rex[8],
+        opcode[8..24],
+        modrm[8],
+        sib[8],
+        displacement[0..32],
+        immediate[0..64]
+    }
+
+    op ADD_RM32_R32(dst: rm, src: gpr32) {
+        syntax "add $dst, $src";
+        image "/opcode=0x01 /mod=11";          // reg=src, rm=dst
+        action {
+            dst = dst + src;
+            rflags(dst);
+        }
+    }
+
+    op ADD_R32_RM32(dst: gpr32, src: rm) {
+        syntax "add $dst, $src";
+        image "/opcode=0x03 /mod=11";          // reg=dst, rm=src
+        action {
+            dst = dst + src;
+            rflags(dst);
+        }
+    }
+
+    op ADD_AL_IMM8(src: imm8) {
+        syntax "add al, $src";
+        image "/opcode=0x04";
+        action {
+            al = al + src;
+            rflags(al);
+        }
+    }
+}

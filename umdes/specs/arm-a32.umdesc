@@ -1,0 +1,25 @@
+// Canonical uMDesc example (mirrors uMDesc.md §Example).
+arch arm-a32 {
+    wordsize 32;
+    endianness little;
+
+    register GPR[16, 32] = { r0 r1 r2 r3 r4 r5 r6 r7 r8 r9 r10 fp ip sp lr pc };
+    register CPSR[1, 32];
+    alias FP = r11;
+    alias IP = r12;
+    alias LR = r14;
+    alias PC = r15;
+
+    format arm {
+        cond[4] op[2] imm[1] opcode[4] S[1] Rn[4] Rd[4] operand2[12]
+    }
+
+    op ADD(cond: cond, Rd: GPR, Rn: GPR, operand2: operand2) {
+        syntax "add$cond $Rd, $Rn, $operand2";
+        image "0x0 /op=0 /S=0";
+        action {
+            Rd = Rn + operand2;
+            flags(Rd);
+        }
+    }
+}

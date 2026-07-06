@@ -56,4 +56,9 @@ from . import (  # noqa: E402,F401
     source_scan,
     metadata_only,
     spec_only,
+    courtier_json,
+    xmlreference_x86,
+    wabt_wasm,
+    smlnj_targets,
+    hotspot_adl,
 )

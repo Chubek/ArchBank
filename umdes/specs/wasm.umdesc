@@ -1,0 +1,54 @@
+// WebAssembly (core 1/2, SIMD, GC, threads) — a stack machine. Operands
+// are implicit (popped/pushed), not encoded; indices use LEB128. Field
+// layout matches RECORDS.yaml `wasm`: opcode(1 byte, with 0xFC/0FD/0xFE/
+// 0xFF multi-byte prefixes) immediates(variable, LEB128) stack_in(list)
+// stack_out(list). The `encoding_function` width below covers the opcode
+// byte(s) only — the real operand data lives on the value stack.
+arch wasm {
+    wordsize 32;          // logical; physical operands are stack values
+    endianness little;
+
+    // No GPRs: an abstract value stack is the operand file. Width here is
+    // the canonical value-type bit width (i32/i64/f32/f64).
+    register VALSTACK[1, 64];
+    // Function-local mutable slots, indexed by LEB128.
+    register LOCAL[256, 64];
+
+    mode i32(v: u32) { }
+    mode i64(v: u64) { }
+    mode memarg(offset: u32, align: u32) { }
+    mode blocktype(t: i7) { }
+
+    // Opcode byte; multi-byte opcodes carry an extra LEB128 after the prefix.
+    format opcode {
+        prefix[0..8] code[8] immediates[0..32]
+    }
+
+    op I32_ADD() {
+        syntax "i32.add";
+        image "/code=0x6A";                     // no immediates
+        action {
+            // a, b are the logical stack operands (implicit); the result
+            // is pushed back. Calls are statement-form only (the grammar
+            // does not allow a call as an assignment RHS).
+            valstack = a + b;
+            push(valstack);
+        }
+    }
+
+    op I32_CONST(v: i32) {
+        syntax "i32.const $v";
+        image "/code=0x41 /imm=$v";             // $v is LEB128-encoded
+        action {
+            push(v);
+        }
+    }
+
+    op LOCAL_GET() {
+        syntax "local.get";
+        image "/code=0x20";                     // local index is LEB128
+        action {
+            push(local);
+        }
+    }
+}

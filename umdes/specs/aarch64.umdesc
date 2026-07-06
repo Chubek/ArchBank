@@ -1,0 +1,50 @@
+// AArch64 (A64) — fixed 32-bit, ~12 major instruction classes.
+// Field layout mirrors RECORDS.yaml `aarch64`: add-sub immediate is
+// sf op S class(5) sh imm12(12) rn(5) rd(5), MSB-first.
+arch aarch64 {
+    wordsize 64;
+    endianness little;
+
+    // X0..X30 general-purpose; the 32nd slot is the zero register (ZR),
+    // which doubles as SP in some encodings. Width is 64 (Wn = low 32).
+    register GPR[32, 64] = {
+        x0 x1 x2 x3 x4 x5 x6 x7
+        x8 x9 x10 x11 x12 x13 x14 x15
+        x16 x17 x18 x19 x20 x21 x22 x23
+        x24 x25 x26 x27 x28 x29 x30 xzr
+    };
+    // ALIAS lets us spell the stack/link roles without new registers.
+    alias FP = x29;
+    alias LR = x30;
+    alias SP = xzr;
+
+    // NZCV condition flags occupy the top nibble of PSTATE.
+    register NZCV[1, 4];
+
+    // Operand modes (nML `mode`); bodies reserved for later transcoding.
+    mode gpr(rn: GPR) { }
+    mode imm12(v: u12) { }
+    mode shift(b: u1) { }
+
+    // add-sub (immediate): the canonical arithmetic class.
+    format addsub_imm {
+        sf[1] op[1] S[1] class[5] sh[1] imm12[12] rn[5] rd[5]
+    }
+
+    op ADD(rd: GPR, rn: GPR, imm: imm12) {
+        syntax "add $rd, $rn, $imm";
+        image "0x1 /op=0 /S=0 /class=100010 /sh=0";
+        action {
+            rd = rn + imm;
+        }
+    }
+
+    op ADDS(rd: GPR, rn: GPR, imm: imm12) {
+        syntax "adds $rd, $rn, $imm";
+        image "0x1 /op=0 /S=1 /class=100010 /sh=0";
+        action {
+            rd = rn + imm;
+            nzcv(rd);
+        }
+    }
+}

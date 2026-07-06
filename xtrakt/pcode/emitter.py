@@ -32,7 +32,7 @@ class Operand:
     width: int = 0
     op_type: str = "IMM"          # operand-type tag (:TYPE) for the decl
 
-    def __postinit__(self):
+    def __post_init__(self):
         if self.operand is None:
             self.operand = self.name
 
@@ -75,8 +75,6 @@ def _render_seg(seg: Union[Fixed, Operand]) -> str:
 
 
 def _width_token(width: Any) -> str:
-    if isinstance(width, int):
-        return str(width)
     return str(width)
 
 
@@ -101,9 +99,7 @@ def emit_encoding(name: str, layout: FieldLayout,
     wt = _width_token(width)
 
     if isinstance(width, int):
-        total = sum(
-            (s.width if isinstance(s, Fixed) else s.width) for s in layout
-        )
+        total = sum(s.width for s in layout)
         if total != width:
             raise ValueError(
                 f"emit_encoding({name}): field widths sum to {total} != width {width}"

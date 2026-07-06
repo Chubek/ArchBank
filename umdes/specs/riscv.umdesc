@@ -1,0 +1,60 @@
+// RISC-V — RV32I/RV64I base + standard extensions. Fixed 32-bit core
+// encodings; RVC adds 16-bit forms sharing the GPR file. Field layout
+// matches RECORDS.yaml `riscv`: opcode(7) funct3(3) funct7(7) rd(5)
+// rs1(5) rs2(5), MSB-first.
+arch riscv {
+    wordsize 64;
+    endianness little;
+
+    // x0 is hardwired zero; 31 real GPRs follow. XLEN is a mode input
+    // (32/64/128) so width here is the largest common width.
+    register GPR[32, 64] = {
+        x0 x1 x2 x3 x4 x5 x6 x7
+        x8 x9 x10 x11 x12 x13 x14 x15
+        x16 x17 x18 x19 x20 x21 x22 x23
+        x24 x25 x26 x27 x28 x29 x30 x31
+    };
+    alias ZERO = x0;
+    alias RA = x1;
+    alias SP = x2;
+    alias FP = x8;
+
+    register FPR[32, 64];
+
+    mode gpr(r: GPR) { }
+    mode imm12(v: u12) { }
+    mode rm(r: u3) { }
+
+    // R-type: funct7 rs2 rs1 funct3 rd opcode  (MSB-first encoding order)
+    format rtype {
+        funct7[7] rs2[5] rs1[5] funct3[3] rd[5] opcode[7]
+    }
+    // I-type: imm(12) rs1 funct3 rd opcode
+    format itype {
+        imm[12] rs1[5] funct3[3] rd[5] opcode[7]
+    }
+
+    op ADDI(rd: GPR, rs1: GPR, imm: imm12) {
+        syntax "addi $rd, $rs1, $imm";
+        image "/opcode=0010011 /funct3=000";
+        action {
+            rd = rs1 + imm;
+        }
+    }
+
+    op ADD(rd: GPR, rs1: GPR, rs2: gpr) {
+        syntax "add $rd, $rs1, $rs2";
+        image "/opcode=0110011 /funct3=000 /funct7=0000000";
+        action {
+            rd = rs1 + rs2;
+        }
+    }
+
+    op SUB(rd: GPR, rs1: GPR, rs2: gpr) {
+        syntax "sub $rd, $rs1, $rs2";
+        image "/opcode=0110011 /funct3=000 /funct7=0100000";
+        action {
+            rd = rs1 - rs2;
+        }
+    }
+}

@@ -1670,3 +1670,109 @@ $Description: >-
     encoding, flag effects, ISA ext/set, category). No heuristics;
     fastest high-coverage x86 ingest in the reservoir.
 
+- id: "courtier-x86"
+  name: "Felix Cloutier x86 Reference (JSON mirror)"
+  directory: "bank/CourtierWebsite-X86"
+  sourced_from: "The felixcloutier.com x86/x86-64 instruction reference, scraped to structured JSON"
+  extraction_hint: |
+    One JSON file (felixcloutier_x86.json): a mirror of the Intel/AMD
+    SDM instruction pages as structured data. Shape:
+      pages[]                       - one per instruction page (837)
+        .tables[]                   - the Opcode/Instruction tables
+          .rows[]                   - first row = header
+    Header columns: Opcode, Instruction, Op/En, 64-bit Mode,
+    Compat/Leg Mode, Description. The Instruction cell is
+    "MNEMONIC operand, operand" (e.g. "ADC AL, imm8"); the Opcode
+    cell is space-separated hex bytes plus operand markers
+    ("14 ib", "63 /r", "REX.W + 89 /r").
+
+    Gold x86: real mnemonic + operand form + opcode bytes per row.
+    Extraction strategy: walk pages[].tables[].rows[], skip the
+    header row, split Instruction -> mnemonic + operand signature,
+    split Opcode -> Fixed(8) byte slice + Operand markers (ib/iw/id,
+    /r, /0..7). Variable width -> decode_schematic=True (§6.2).
+
+- id: "xmlreference-x86"
+  name: "ref.x86asm.net XML Opcode Tables"
+  directory: "bank/XMLReference-X86"
+  sourced_from: "The x86reference.xml opcode tables from ref.x86asm.net (one-byte + two-byte maps)"
+  extraction_hint: |
+    x86reference.xml (validated by x86reference.dtd/.xsd): a structured
+    opcode map, not prose. Shape:
+      x86reference
+        one-byte / two-byte
+          pri_opcd[value]            - primary opcode byte
+            entry
+              syntax{ mnem, dst, src }
+              grp1/grp2/grp3          - semantic category tags
+              modif_f / def_f         - flag read/write sets
+              note
+    dst/src carry @nr/@group/@type (operand class: gen, b=vqp, etc.).
+
+    Gold x86: opcode byte -> mnemonic + operand slots + flag effects.
+    Extraction strategy: iterate one-byte + two-byte -> pri_opcd ->
+    entry -> syntax/mnem (mnemonic) + dst/src (operand signature);
+    the pri_opcd value -> Fixed(8) opcode byte; grp1..3/modif_f/def_f
+    -> category + flags_read/flags_write. Variable width ->
+    decode_schematic=True (§6.2).
+
+- id: "wabt-wasm"
+  name: "Wabt WebAssembly Opcode Tables"
+  directory: "bank/Wabt-WASM"
+  sourced_from: "The wabt WebAssembly toolkit opcode definitions (C++ X-macro consumers)"
+  extraction_hint: |
+    Two C++ sources that expand the WABT_OPCODE X-macro:
+      opcode.cc             - builds Opcode::infos_[] from opcode.def
+      opcode-code-table.c   - builds the WabtOpcodeEnum from opcode.def
+    Both `#include "wabt/opcode.def"` (the X-macro opcode table), but
+    opcode.def is NOT shipped in this bank, so the X-macro expands to
+    nothing and no opcode row is recoverable here.
+
+    Spec-only in this snapshot: the macro *signature* documents the
+    opcode schema (rtype, type1..3, mem_size, prefix, code, Name, text,
+    decomp) but the opcode values live in the missing opcode.def. The
+    parser scans for opcode.def, notes its absence, and yields 0
+    instruction records (a known gap surfaced in the report, not a
+    silent drop). Re-add opcode.def to enable real WASM records.
+
+- id: "smlnj-targets"
+  name: "SML/NJ Backend Machine Specifications"
+  directory: "bank/SMLNJ-Targets"
+  sourced_from: "The Standard ML of New Jersey compiler backend MACH_SPEC structures (amd64, arm64)"
+  extraction_hint: |
+    Two SML files, each a `structure <Arch>Spec : MACH_SPEC` declaring
+    target ABI/register-frame SCALARS, not instructions:
+      amd64-spec.sml  - architecture="amd64", wordByteWidth=8,
+                        numRegs=10, numArgRegs=4, numFloatRegs=16, ...
+      arm64-spec.sml  - the aarch64 counterpart
+    MACH_SPEC carries frame layout, register counts, and calling
+    conventions; it defines NO instruction encodings.
+
+    Spec-only: 0 instruction records. Provenance is the ABI/register
+    model; useful as a semantics-adjacent metadata source for x86-64
+    and aarch64 (spill layout, arg-register count), not as an encoding
+    bank. The parser reads the scalars and yields 0 records with an
+    explicit note.
+
+- id: "hotspot-cpu"
+  name: "OpenJDK HotSpot ADL Instruction Descriptions"
+  directory: "bank/Hotspot-CPU"
+  sourced_from: "The OpenJDK HotSpot Architecture Description Language (.ad) files across CPU backends"
+  extraction_hint: |
+    Per-arch source trees (aarch64, arm, ppc, riscv, s390, x86, zero),
+    each carrying a `<arch>.ad` ADL file (plus GC-specific .ad frags
+    under gc/{g1,z,shenandoah}/). The .ad `instruct` blocks are the
+    machine-instruction selection rules:
+      instruct <name>(<operand decls>) %{ match(...); format %{ "ASM $x" %}; ins_encode(...); ... %}
+    `format` holds the real assembly mnemonic + operand placeholders;
+    `match` is the IR selection pattern. `zero/` is the interpreter
+    backend (no machine ISA) -> skipped.
+
+    Multi-arch encoding bank: each record carries an arch_hint derived
+    from the .ad path (x86->x86-64, arm->arm-a32, ppc->powerpc,
+    aarch64/riscv/s390 as-is). Extraction strategy: parse `instruct`
+    blocks -> mnemonic (first token of format) + operand signature
+    (operand decls); encoding is symbolic (ins_encode enc class, not
+    bytes) -> decode_schematic=True (§6.2). L4 resolves arch per-record
+    via the hint (§13).
+

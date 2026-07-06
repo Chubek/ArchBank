@@ -1,0 +1,63 @@
+// IBM z/Architecture (S390) — variable length: 2/4/6-byte instruction
+// halves across six formats (RR/RRE/RIL/RX/RSI/SS). Field layout matches
+// RECORDS.yaml `s390`: op1(8) r1(4) r2(4) op2(8) xb2d(24) i2(variable).
+// Operands use base+displacement addressing; CC is a 2-bit field.
+arch s390 {
+    wordsize 64;
+    endianness big;
+
+    // 16 GPRs; the ABI reserves roles for r0..r15.
+    register GPR[16, 64] = {
+        r0 r1 r2 r3 r4 r5 r6 r7
+        r8 r9 r10 r11 r12 r13 r14 r15
+    };
+    alias SP = r15;
+    alias LR = r14;
+    alias FP = r11;
+
+    register FPR[16, 64];
+    // Vector registers (VR) overlay the FPRs 0..15 plus 16 more.
+    register VR[32, 16];
+
+    // Condition code: a 2-bit field in the PSW.
+    register CC[1, 2];
+
+    mode gpr(r: GPR) { }
+    mode imm8(v: u8) { }
+
+    // RR-format (16-bit): op1 r1 r2 — both operands registers.
+    format rr {
+        op1[8] r1[4] r2[4]
+    }
+    // RI-format (32-bit): op1 r1 op2 i2
+    format ri {
+        op1[8] r1[4] op2[8] i2[16]
+    }
+
+    op AR(r1: GPR, r2: gpr) {
+        syntax "ar $r1, $r2";
+        image "/op1=0x1A";
+        action {
+            r1 = r1 + r2;
+            cc(r1);
+        }
+    }
+
+    op ALR(r1: GPR, r2: gpr) {
+        syntax "alr $r1, $r2";
+        image "/op1=0x1E";
+        action {
+            r1 = r1 + r2;          // logical add (no signed overflow)
+            cc(r1);
+        }
+    }
+
+    op AHI(r1: GPR, i2: imm8) {
+        syntax "ahi $r1, $i2";
+        image "/op1=0xA7 /op2=0xA";
+        action {
+            r1 = r1 + i2;
+            cc(r1);
+        }
+    }
+}

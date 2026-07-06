@@ -27,7 +27,7 @@ class NotImplementedParser(SourceParser):
     """Banks whose dedicated parser is not yet wired. Returns zero records with
     an explicit note so the run report surfaces them (never silent). Add a real
     parser in parsers/ + register_parser to enable (§12, open-closed)."""
-    bank_ids: ClassVar[list[str]] = []   # populated by families.py
+    bank_ids: ClassVar[list[str]] = []   # fallback parser; never registered
     spec_only: ClassVar[bool] = False
 
     def parse(self, entry, base_dir: str) -> ParseResult:

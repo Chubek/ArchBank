@@ -1,0 +1,58 @@
+// Motorola 68000 / ColdFire — word-variable: 16-bit instruction words
+// plus 0..N extension words (widths 16/32/48). Field layout matches
+// RECORDS.yaml `m68k`: word1(16) size(2) mode(3) reg(3) ext(variable).
+// The effective-address (mode,reg) sub-encoding decides the extension
+// word count; ColdFire drops a few modes.
+arch m68k {
+    wordsize 32;
+    endianness big;
+
+    // 8 data registers (Dn) + 8 address registers (An); A7 is the SP.
+    register D[8, 32] = { d0 d1 d2 d3 d4 d5 d6 d7 };
+    register A[8, 32] = { a0 a1 a2 a3 a4 a5 a6 a7 };
+    alias USP = a7;
+    alias SP = a7;
+
+    // Condition-code register: 5 condition bits in the high byte.
+    register CCR[1, 8];
+
+    mode dn(r: D) { }
+    mode an(r: A) { }
+    // Effective-address operand: mode nibble + register nibble.
+    mode ea(mode: u3, reg: u3) { }
+    mode imm3(v: u3) { }
+
+    // Primary instruction word; size + effective-address live in low byte.
+    format word1 {
+        line[4] data[3] zero[1] size[2] mode[3] reg[3]
+    }
+    // Extension words (immediates, absolute addresses, displacements).
+    format ext {
+        payload[0..32]
+    }
+
+    op ADDQ(data: imm3, ea: ea) {
+        syntax "addq #$data, $ea";
+        image "/line=0101 /zero=0";
+        action {
+            ea = ea + data;
+        }
+    }
+
+    op ADDQdot(data: imm3, ea: ea) {
+        syntax "addq #$data, $ea";
+        image "/line=0101 /zero=0 /size=10";
+        action {
+            ea = ea + data;
+            ccr(ea);
+        }
+    }
+
+    op MOVEQ(data: imm3, dn: dn) {
+        syntax "moveq #$data, $dn";
+        image "/line=0111";
+        action {
+            dn = data;
+        }
+    }
+}

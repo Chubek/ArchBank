@@ -1,0 +1,66 @@
+// MIPS — MIPS I..V / MIPS32 / MIPS64 / microMIPS. Fixed 32-bit core
+// encodings (16-bit microMIPS shares the GPR set). Field layout matches
+// RECORDS.yaml `mips`: opcode(6) rs(5) rt(5) rd(5) sa(5) funct(6),
+// MSB-first. Three core formats: R / I / J.
+arch mips {
+    wordsize 32;
+    endianness big;
+
+    // r0 is hardwired zero; 32 GPRs. (uMDesc identifiers cannot start with
+    // '$', so we spell the slots r0..r31; the assembler's $-prefixed names
+    // alias them below.)
+    register GPR[32, 32] = {
+        r0 r1 r2 r3 r4 r5 r6 r7
+        r8 r9 r10 r11 r12 r13 r14 r15
+        r16 r17 r18 r19 r20 r21 r22 r23
+        r24 r25 r26 r27 r28 r29 r30 r31
+    };
+    alias ZERO = r0;
+    alias AT = r1;
+    alias V0 = r2;
+    alias SP = r29;
+    alias RA = r31;
+
+    register FPR[32, 32];
+
+    mode gpr(r: GPR) { }
+    mode imm16(v: u16) { }
+    mode sa(v: u5) { }
+
+    // R-type: opcode rs rt rd sa funct
+    format rtype {
+        opcode[6] rs[5] rt[5] rd[5] sa[5] funct[6]
+    }
+    // I-type: opcode rs rt imm
+    format itype {
+        opcode[6] rs[5] rt[5] imm[16]
+    }
+    // J-type: opcode target
+    format jtype {
+        opcode[6] target[26]
+    }
+
+    op ADDIU(rt: GPR, rs: GPR, imm: imm16) {
+        syntax "addiu $rt, $rs, $imm";
+        image "/opcode=001001";
+        action {
+            rt = rs + imm;          // no overflow trap
+        }
+    }
+
+    op ADDU(rd: GPR, rs: GPR, rt: gpr) {
+        syntax "addu $rd, $rs, $rt";
+        image "/opcode=000000 /funct=100001";
+        action {
+            rd = rs + rt;
+        }
+    }
+
+    op OR(rd: GPR, rs: GPR, rt: gpr) {
+        syntax "or $rd, $rs, $rt";
+        image "/opcode=000000 /funct=100101";
+        action {
+            rd = rs | rt;
+        }
+    }
+}

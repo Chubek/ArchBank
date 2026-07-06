@@ -1,0 +1,58 @@
+// PowerPC — Power ISA (PPC32/PPC64/Book E/VLE). Fixed 32-bit core
+// encodings; VLE adds 16-bit forms. Field layout matches RECORDS.yaml
+// `powerpc`: opcd(6) rt(5) ra(5) rb(5) rc(1) oe(1) xo({5,9,10}) d_si(16).
+arch powerpc {
+    wordsize 64;
+    endianness big;
+
+    register GPR[32, 64] = {
+        r0 r1 r2 r3 r4 r5 r6 r7
+        r8 r9 r10 r11 r12 r13 r14 r15
+        r16 r17 r18 r19 r20 r21 r22 r23
+        r24 r25 r26 r27 r28 r29 r30 r31
+    };
+    alias SP = r1;
+    alias TOC = r2;
+
+    register FPR[32, 64];
+    // Condition register: 8 4-bit fields (CR0..CR7).
+    register CR[32, 4];
+
+    mode gpr(r: GPR) { }
+    mode imm16(v: u16) { }
+
+    // D-form: opcd rt ra d_si  (immediate operand)
+    format dform {
+        opcd[6] rt[5] ra[5] d_si[16]
+    }
+    // XO-form: opcd rt ra rb oe xo rc  (register, extended-opcode)
+    format xoform {
+        opcd[6] rt[5] ra[5] rb[5] oe[1] xo[10] rc[1]
+    }
+
+    op ADDI(rt: GPR, ra: GPR, si: imm16) {
+        syntax "addi $rt, $ra, $si";
+        image "/opcd=001110";
+        action {
+            // ra=0 means literal zero, not r0, for D-form immediates.
+            rt = ra + si;
+        }
+    }
+
+    op ADD(rt: GPR, ra: GPR, rb: gpr) {
+        syntax "add $rt, $ra, $rb";
+        image "/opcd=011111 /xo=1000001010 /oe=0 /rc=0";
+        action {
+            rt = ra + rb;
+        }
+    }
+
+    op ADDDOT(rt: GPR, ra: GPR, rb: gpr) {
+        syntax "add. $rt, $ra, $rb";
+        image "/opcd=011111 /xo=1000001010 /oe=0 /rc=1";
+        action {
+            rt = ra + rb;
+            cr0(rt);
+        }
+    }
+}

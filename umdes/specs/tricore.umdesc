@@ -1,0 +1,61 @@
+// Infineon TriCore (TC1.3..1.6P+) — variable length: 16-bit (ABS/SCR/BRC/
+// RC) and 32-bit (RR/RCR/BO/SLR...) formats. Field layout matches
+// RECORDS.yaml `tricore`: opc({7,10,16}) d(4) s1(4) s2(4) const9(9)
+// off18(18). Two register address spaces: D (data) and A (address); 16-bit
+// ops commonly fix s2==s1 (zero-overhead).
+arch tricore {
+    wordsize 32;
+    endianness little;
+
+    // 16 data registers + 16 address registers; A10 is the SP, A11 the RA.
+    register D[16, 32] = {
+        d0 d1 d2 d3 d4 d5 d6 d7
+        d8 d9 d10 d11 d12 d13 d14 d15
+    };
+    register A[16, 32] = {
+        a0 a1 a2 a3 a4 a5 a6 a7
+        a8 a9 a10 a11 a12 a13 a14 a15
+    };
+    alias SP = a10;
+    alias LR = a11;
+
+    register PRED[1, 8];
+
+    mode gd(r: D) { }
+    mode ga(r: A) { }
+    mode const9(v: u9) { }
+    mode off18(v: u18) { }
+
+    // 32-bit RR-format: opc d s1 s2 opmode (s3 alias for s1 in some tables).
+    format rr {
+        opc[16] d[4] s3[4] s2[4] opmode[4]
+    }
+    // 16-bit short format: opc fields (compact, restricted operands).
+    format short {
+        opc[7] d[3] s1[3] opmode[3]
+    }
+
+    op ADD(d: D, s1: gd, s2: gd) {
+        syntax "add $d, $s1, $s2";
+        image "/opc=add-rr /opmode=0000";
+        action {
+            d = s1 + s2;
+        }
+    }
+
+    op ADDI(d: D, s1: gd, imm: const9) {
+        syntax "addi $d, $s1, #$imm";
+        image "/opc=add-rc /opmode=0000";
+        action {
+            d = s1 + imm;
+        }
+    }
+
+    op ADDA(a: A, s1: ga, s2: ga) {
+        syntax "add.a $a, $s1, $s2";
+        image "/opc=adda-rr";
+        action {
+            a = s1 + s2;
+        }
+    }
+}

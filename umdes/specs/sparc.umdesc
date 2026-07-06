@@ -1,0 +1,57 @@
+// SPARC — V8/V9 (LEON, UltraSPARC). Fixed 32-bit. Field layout matches
+// RECORDS.yaml `sparc`: op(2) rd(5) op3(6) rs1(5) i(1) [rs2(5) |
+// simm13(13)]. The `i` bit selects register vs immediate operand.
+arch sparc {
+    wordsize 64;
+    endianness big;
+
+    // 8 globals (g0 hardwired zero) + 24 windowed registers (in/out/local).
+    register GPR[32, 64] = {
+        g0 g1 g2 g3 g4 g5 g6 g7
+        o0 o1 o2 o3 o4 o5 o6 o7
+        l0 l1 l2 l3 l4 l5 l6 l7
+        i0 i1 i2 i3 i4 i5 i6 i7
+    };
+    alias ZERO = g0;
+    alias SP = o6;
+    alias FP = i6;
+
+    register FPR[32, 64];
+
+    mode gpr(r: GPR) { }
+    mode simm13(v: u13) { }
+
+    // Format 3 (arithmetic): op rd op3 rs1 i rs2  (i=0 register form)
+    format format3_reg {
+        op[2] rd[5] op3[6] rs1[5] i[1] resv[8] rs2[5]
+    }
+    // Format 3 (immediate): op rd op3 rs1 i simm13
+    format format3_imm {
+        op[2] rd[5] op3[6] rs1[5] i[1] simm13[13]
+    }
+
+    op ADD(rd: GPR, rs1: GPR, rs2: gpr) {
+        syntax "add $rd, $rs1, $rs2";
+        image "/op=10 /op3=000000 /i=0";
+        action {
+            // g0 as destination discards the result (zero sink).
+            rd = rs1 + rs2;
+        }
+    }
+
+    op ADDI(rd: GPR, rs1: GPR, simm: simm13) {
+        syntax "add $rd, $rs1, $simm";
+        image "/op=10 /op3=000000 /i=1";
+        action {
+            rd = rs1 + simm;
+        }
+    }
+
+    op OR(rd: GPR, rs1: GPR, rs2: gpr) {
+        syntax "or $rd, $rs1, $rs2";
+        image "/op=10 /op3=000010 /i=0";
+        action {
+            rd = rs1 | rs2;
+        }
+    }
+}
