@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Objective-C" url="expression" filename="expression_m">
-
-<unit xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="Objective-C">
-<expr_stmt><expr><call><name>@protocol</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
-</unit>
-
-</unit>

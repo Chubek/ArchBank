@@ -1,0 +1,454 @@
+$Version: 1.0.0
+$Project: "ArchBank"
+$Dataset: "RECORDS.yaml"
+$Description: >-
+  Per-architecture Instruction Record schema for the ArchBank database.
+  Each architecture has a distinct record shape; all carry an
+  `encoding_function` (P-Code, mandatory) and, where a bank provides
+  behavioral data, a `semantics` (P-Code, optional). P-Code is defined
+  in P-Code.md. Bank ids reference BANKS.yaml.
+
+record_base:
+  description: >-
+    Fields present in EVERY instruction record, regardless of arch.
+    Per-arch `record` sections below add/override operand-typed fields.
+  fields:
+    - { name: mnemonic,      kind: str,   required: true }
+    - { name: aliases,       kind: list,  required: false }
+    - { name: isa_ext,       kind: str,   required: true,  note: "feature gate / extension" }
+    - { name: cpuid,         kind: str,   required: false, note: "x86 CPUID flag" }
+    - { name: encoding_class, kind: enum, required: true }
+    - { name: encoding_function, kind: pcode, required: true }
+    - { name: decode_mask,   kind: bv,    required: true,  note: "derived from encoding_function" }
+    - { name: decode_match,  kind: bv,    required: true,  note: "derived from encoding_function" }
+    - { name: semantics,     kind: pcode, required: false }
+    - { name: flags_read,    kind: list,  required: false }
+    - { name: flags_write,   kind: list,  required: false }
+    - { name: memory_access, kind: enum,  required: false, note: "none|read|write|r-w" }
+    - { name: category,      kind: str,   required: false, note: "arithmetic|branch|mem|simd|..." }
+    - { name: privilege,     kind: enum,  required: false, note: "user|supervisor|hypervisor" }
+
+architectures:
+
+  # ───────────────────────── x86-64 ─────────────────────────
+  - arch: x86-64
+    full_name: "Intel 64 / AMD64"
+    encoding_class: prefix-modrm
+    width_bits: variable
+    operand_types: [GPR8, GPR16, GPR32, GPR64, XMM, YMM, ZMM, MASK, IMM, REL, MEM, MIB]
+    encoding_banks:  [nasm-data, x86-dataset, xed-datafiles, zydis-metadata, bochs-cpu, distorm-disops, keystone-arch, xbyak-instructions, yasm-arch, binutils-libopcode]
+    semantics_banks: [boomerang-ssl, miasm-arch, ghidra-cpu, gcc-md]
+    record:
+      - { name: legacy_prefixes, kind: struct, width: 0-4, note: "66/F2/F3, segment, LOCK/REP" }
+      - { name: rex,             kind: struct, width: 8,   note: "REX/REX2 when set" }
+      - { name: opcode,          kind: bv,     width: 8-24, note: "1/2/3-byte + map (0F,0F38,0F3A)" }
+      - { name: modrm,           kind: struct, width: 8,   access: "mod(2),reg(3),rm(3)" }
+      - { name: sib,             kind: struct, width: 8,   required: false, note: "scale(2),index(3),base(3)" }
+      - { name: displacement,    kind: bv,     width: "{0,8,16,32}", required: false }
+      - { name: immediate,       kind: bv,     width: "{0,8,16,32,64}", required: false }
+      - { name: vex_evex,        kind: struct, width: "{24,32}", required: false }
+    encoding_function: |
+      ;; ADD r/m32, r32  (opcode 0x01; reg=source, rm=dest; register-direct form)
+      (define-encoding (add-rm32-r32 (dst :GPR32) (src :GPR32)) variable
+        (let* ((rex  (if (or (rex? dst) (rex? src))
+                         (rex-wr 0 src dst)                 ; REX.R=src-hi, REX.B=dst-hi
+                         (const #b00000000)))
+               (modrm (cat (const #b11)                    ; mod = register-direct
+                           (field reg (lo3 src) 3)
+                           (field rm  (lo3 dst) 3))))
+          (cat (legacy-prefixes)                           ; 0+ legacy bytes
+               rex
+               (const #x01)                                 ; opcode: ADD r/m32, r32
+               modrm)))                                     ; +SIB/disp/imm by ea-expander
+    semantics: |
+      (define-semantics (add-rm32-r32 (dst :GPR32) (src :GPR32))
+        (let* ((a (zext 33 GPR[dst]))
+               (b (zext 33 GPR[src]))
+               (s (+ a b))
+               (r (trunc 32 s)))
+          (set! GPR[dst] r)
+          (set-flags! (CF (> s #xFFFFFFFF))
+                      (OF (overflow-add 32 GPR[dst] GPR[src]))
+                      (SF (msb r))
+                      (ZF (= r 0))
+                      (PF (parity r))
+                      (AF (half-carry a b)))))
+    notes: |
+      Variable length, map-indexed opcode space, ModRM/SIB addressing.
+      VEX/EVEX add a prefix tuple + mask/zero/broadcast operands (AVX-512).
+      decode_mask/match span the fixed opcode+ModRM.reg slice; prefix
+      context is a separate join key.
+
+  # ───────────────────────── AArch64 ─────────────────────────
+  - arch: aarch64
+    full_name: "ARM AArch64 (A64)"
+    encoding_class: fixed-32
+    width_bits: 32
+    operand_types: [GPR, GPR32, FPR, VEC, PRED, PRED-REG, IMM, SHIFT, EXTEND, SYSREG, LABEL, COND]
+    encoding_banks:  [asmjit-db, keystone-arch, capstone-arch, binutils-libopcode, gem5-arch]
+    semantics_banks: [ghidra-cpu, gem5-arch, qemu-targets, miasm-arch]
+    record:
+      - { name: sf,     kind: bv, width: 1, note: "operand width 32/64" }
+      - { name: op,     kind: bv, width: 1 }
+      - { name: S,      kind: bv, width: 1, note: "set flags" }
+      - { name: class,  kind: bv, width: 5, note: "100010 = add-sub imm" }
+      - { name: sh,     kind: bv, width: 1, note: "shift imm<<12" }
+      - { name: imm12,  kind: bv, width: 12 }
+      - { name: rn,     kind: GPR, width: 5 }
+      - { name: rd,     kind: GPR, width: 5 }
+    encoding_function: |
+      ;; ADDS (immediate), 64-bit form
+      (define-encoding (adds-imm (rd :GPR) (rn :GPR) (imm :IMM 12) (sh :SHIFT 1)) 32
+        (cat (const #b1)            ; sf = 64-bit
+             (const #b0)            ; op = ADD
+             (const #b1)            ; S   = set flags
+             (const #b100010)       ; class
+             (field sh sh 1)
+             (field imm imm 12)
+             (field rn rn 5)
+             (field rd rd 5)))
+    semantics: |
+      (define-semantics (adds-imm (rd :GPR) (rn :GPR) (imm :IMM 12) (sh :SHIFT 1))
+        (let* ((k  (if (= sh 1) (<< (zext 64 imm) 12) (zext 64 imm)))
+               (a  (zext 64 GPR[rn]))
+               (r  (+ a k)))
+          (set! GPR[rd] (trunc 64 r))
+          (set-flags! (N (msb r)) (Z (= r 0))
+                      (C (carry-out a k)) (V (overflow-add 64 a k)))))
+    notes: |
+      Fixed 32-bit, ~12 major classes. SVE/SME add governing predicate
+      + vector-length-scalable operands; LDXR/STXR add exclusive tag.
+
+  # ───────────────────────── ARM (A32/T32) ─────────────────────────
+  - arch: arm-a32
+    full_name: "ARM A32 (ARM) + T32 (Thumb-2)"
+    encoding_class: fixed-32
+    width_bits: "{16 (T16), 32 (T32, A32)}"
+    operand_types: [GPR, GPR-PC, FPR, VEC, IMM, ROT, SHIFT, PSR, COPROC, LABEL, COND]
+    encoding_banks:  [keystone-arch, capstone-arch, binutils-libopcode, asmjit-db, dynasm-opcodes]
+    semantics_banks: [boomerang-ssl, ghidra-cpu, qemu-targets, miasm-arch]
+    record:
+      - { name: cond,         kind: COND, width: 4, note: "condition gate; 1111 = unconditional" }
+      - { name: opcode_group, kind: bv,   width: 3 }
+      - { name: i,            kind: bv,   width: 1, note: "immediate-form select" }
+      - { name: dp_opcode,    kind: bv,   width: 4 }
+      - { name: S,            kind: bv,   width: 1 }
+      - { name: rn, rd,       kind: GPR,  width: 4 }
+      - { name: shifter_op,   kind: struct, width: 12, note: "imm8+rot / reg-shift" }
+    encoding_function: |
+      ;; A32 ADD (immediate): cond 00 1 0100 S Rn Rd rotate imm8
+      (define-encoding (add-imm (rd :GPR 4) (rn :GPR 4) (imm8 :IMM 8) (rot :ROT 4) (c :COND 4)) 32
+        (cat (field cond c 4)
+             (const #b001)            ; data-processing, I=1
+             (const #b0100)           ; dp_opcode = ADD
+             (const #b0)              ; S
+             (field rn rn 4)
+             (field rd rd 4)
+             (field rot rot 4)
+             (field imm8 imm8 8)))
+    semantics: |
+      (define-semantics (add-imm (rd :GPR) (rn :GPR) (imm8 :IMM 8) (rot :ROT 4) (c :COND))
+        (when (cond-holds? c)
+          (let* ((k (rotr imm8 (* rot 2)))
+                 (r (+ (zext 32 GPR[rn]) (zext 32 k))))
+            (set! GPR[rd] (trunc 32 r)))))
+    notes: |
+      Conditional execution is a record-level gate, not a field effect.
+      T32 packs 16/32-bit halfwords; shifter operand is a sub-schema.
+
+  # ───────────────────────── RISC-V ─────────────────────────
+  - arch: riscv
+    full_name: "RISC-V (RV32I/RV64I + standard extensions)"
+    encoding_class: fixed-32
+    width_bits: "{16 (RVC), 32 (base), variable (VLEN-typed)}"
+    operand_types: [GPR, FPR, VEC, VREG, IMM, RM, CSR, AQRL, LABEL]
+    encoding_banks:  [riscv-opcodes, qemu-targets, capstone-arch, binutils-libopcode, gdb-arch]
+    semantics_banks: [pydgin-arch, qemu-targets, ghidra-cpu]
+    record:
+      - { name: opcode, kind: bv, width: 7 }
+      - { name: funct3, kind: bv, width: 3 }
+      - { name: funct7, kind: bv, width: 7, required: false }
+      - { name: rd,     kind: GPR, width: 5 }
+      - { name: rs1,    kind: GPR, width: 5 }
+      - { name: rs2,    kind: GPR, width: 5, required: false }
+      - { name: imm,    kind: IMM, width: variable, note: "I/S/B/U/J per format" }
+      - { name: rm,     kind: RM,  width: 3, required: false }
+    encoding_function: |
+      (define-encoding (addi (rd :GPR 5) (rs1 :GPR 5) (imm :IMM 12)) 32
+        (cat (field imm imm 12)
+             (field rs1 rs1 5)
+             (const #b000)            ; funct3
+             (field rd rd 5)
+             (const #b0010011)))      ; opcode OP-IMM
+    semantics: |
+      (define-semantics (addi (rd :GPR) (rs1 :GPR) (imm :IMM))
+        (set! GPR[rd] (trunc XLEN (+ (zext XLEN GPR[rs1]) (sext XLEN imm)))))
+    notes: |
+      Five immediate formats (I/S/B/U/J) scramble imm bits; the
+      encoding_function packs each correctly. XLEN (32/64/128) is a
+      mode input. RVC (16-bit) is a separate format set sharing the
+      same register file; V-extension adds SEW/LMUL type params.
+
+  # ───────────────────────── MIPS ─────────────────────────
+  - arch: mips
+    full_name: "MIPS I..V / MIPS32 / MIPS64 / microMIPS"
+    encoding_class: fixed-32
+    width_bits: "{16 (microMIPS), 32}"
+    operand_types: [GPR, FPR, CC, IMM, SA, CODE, LABEL, COPZ]
+    encoding_banks:  [keystone-arch, capstone-arch, binutils-libopcode, qemu-targets, dynasm-opcodes]
+    semantics_banks: [qemu-targets, ghidra-cpu, miasm-arch]
+    record:
+      - { name: opcode, kind: bv,  width: 6 }
+      - { name: rs, rt, kind: GPR, width: 5 }
+      - { name: rd, sa, kind: GPR, width: 5, required: false }
+      - { name: funct, kind: bv,  width: 6, required: false }
+      - { name: imm,   kind: IMM, width: 16, required: false }
+      - { name: target, kind: bv, width: 26, required: false, note: "J-type" }
+    encoding_function: |
+      ;; ADDIU rt, rs, imm  (I-type; opcode 001001)
+      (define-encoding (addiu (rt :GPR 5) (rs :GPR 5) (imm :IMM 16)) 32
+        (cat (const #b001001)          ; opcode ADDIU
+             (field rs rs 5)
+             (field rt rt 5)
+             (field imm imm 16)))
+    semantics: |
+      (define-semantics (addiu (rt :GPR) (rs :GPR) (imm :IMM))
+        (set! GPR[rt] (trunc 32 (+ GPR[rs] (sext 32 imm)))))  ; no trap on overflow
+    notes: |
+      Three formats (R/I/J). Delay-slot branch semantics is a control
+      attribute. microMIPS reuses the GPR set under 16/32-bit formats.
+
+  # ───────────────────────── PowerPC ─────────────────────────
+  - arch: powerpc
+    full_name: "Power ISA (PPC32 / PPC64 / Book E / VLE)"
+    encoding_class: fixed-32
+    width_bits: "{16 (VLE), 32}"
+    operand_types: [GPR, FPR, VS, CR, IMM, MB, ME, SH, SPR, LABEL]
+    encoding_banks:  [keystone-arch, capstone-arch, binutils-libopcode, binaryninja-arch, qemu-targets]
+    semantics_banks: [boomerang-ssl, ghidra-cpu, qemu-targets, gcc-md]
+    record:
+      - { name: opcd,  kind: bv,  width: 6 }
+      - { name: rt,    kind: GPR, width: 5 }
+      - { name: ra,    kind: GPR, width: 5 }
+      - { name: rb,    kind: GPR, width: 5, required: false }
+      - { name: rc,    kind: bv,  width: 1, note: "record CR0" }
+      - { name: oe,    kind: bv,  width: 1, required: false }
+      - { name: xo,    kind: bv,  width: "{5,9,10}", required: false }
+      - { name: d_si,  kind: IMM, width: 16, required: false }
+    encoding_function: |
+      ;; ADDI rt, ra, si  (D-form; opcd 14)
+      (define-encoding (addi (rt :GPR 5) (ra :GPR 5) (si :IMM 16)) 32
+        (cat (const #b001110)          ; opcd ADDI = 14
+             (field rt rt 5)
+             (field ra ra 5)
+             (field si si 16)))
+    semantics: |
+      (define-semantics (addi (rt :GPR) (ra :GPR) (si :IMM))
+        (set! GPR[rt] (+ (if (= ra 0) 0 GPR[ra]) (sext 64 si))))  ; ra=0 -> literal 0
+    notes: |
+      D/XO-form duality. `ra=0` means zero (not R0) for D-form loads of
+      immediates. CR0 recording gated by `rc`. VLE adds 16-bit forms.
+
+  # ───────────────────────── SPARC ─────────────────────────
+  - arch: sparc
+    full_name: "SPARC V8 / V9 (LEON, UltraSPARC)"
+    encoding_class: fixed-32
+    width_bits: 32
+    operand_types: [GPR, FPR, CC, IMM, PSTATE, ASR, LABEL, COND]
+    encoding_banks:  [capstone-arch, binutils-libopcode, qemu-targets]
+    semantics_banks: [ghidra-cpu, qemu-targets]
+    record:
+      - { name: op,  kind: bv,  width: 2 }
+      - { name: rd,  kind: GPR, width: 5 }
+      - { name: op3, kind: bv,  width: 6 }
+      - { name: rs1, kind: GPR, width: 5 }
+      - { name: i,   kind: bv,  width: 1 }
+      - { name: rs2, kind: GPR, width: 5, required: false }
+      - { name: simm13, kind: IMM, width: 13, required: false }
+    encoding_function: |
+      ;; ADD rd, rs1, rs2  (Format 3, op=10, op3=000000, i=0)
+      (define-encoding (add (rd :GPR 5) (rs1 :GPR 5) (rs2 :GPR 5)) 32
+        (cat (const #b10)             ; op = format 3
+             (field rd rd 5)
+             (const #b000000)         ; op3 = ADD
+             (field rs1 rs1 5)
+             (const #b0)              ; i = 0 (register operand)
+             (const #b00000000)       ; reserved[12:5]
+             (field rs2 rs2 5)))
+    semantics: |
+      (define-semantics (add (rd :GPR) (rs1 :GPR) (rs2 :GPR))
+        (set! GPR[rd] (+ GPR[rs1] GPR[rs2]))
+        (when cc-modified? (set-flags! (icc-from (+ GPR[rs1] GPR[rs2])))))
+    notes: |
+      `i` selects register (`rs2`) vs sign-extended `simm13`. Branch
+      annul bit and condition codes are separate attributes.
+
+  # ───────────────────────── S390 (z/Architecture) ─────────────────────────
+  - arch: s390
+    full_name: "IBM z/Architecture (ESA/390 superset)"
+    encoding_class: variable
+    width_bits: "{2,4,6}"
+    operand_types: [GPR, FPR, VEC, ACC, IMM, MASK, BASE, DISP, LABEL, LEN]
+    encoding_banks:  [capstone-arch, binutils-libopcode, qemu-targets, dynasm-opcodes]
+    semantics_banks: [ghidra-cpu, qemu-targets]
+    record:
+      - { name: op1,  kind: bv, width: 8,  note: "primary opcode byte" }
+      - { name: r1,   kind: GPR, width: 4 }
+      - { name: r2,   kind: GPR, width: 4, required: false }
+      - { name: op2,  kind: bv, width: 8,  required: false, note: "2nd opcode byte" }
+      - { name: xb2d, kind: struct, width: 24, required: false, note: "X2/B2/D2" }
+      - { name: i2,   kind: IMM, width: variable, required: false }
+    encoding_function: |
+      ;; AR R1, R2  (RR-format, 16-bit; opcode 0x1A)
+      (define-encoding (ar (r1 :GPR 4) (r2 :GPR 4)) 16
+        (cat (const #x1A)
+             (field r1 r1 4)
+             (field r2 r2 4)))
+    semantics: |
+      (define-semantics (ar (r1 :GPR) (r2 :GPR))
+        (let* ((s (zext 33 (+ GPR[r1] GPR[r2]))) (r (trunc 32 s)))
+          (set! GPR[r1] r)
+          (set-flags! (CC2? s) (CC3? s))))   ; 2's-complement CC encoding
+    notes: |
+      Six length classes (RR/RRE/RIL/RX/RSI/SS). Operands use
+      base+displacement (B/D) addressing, not ModRM. CC is a 2-bit field.
+
+  # ───────────────────────── M68K ─────────────────────────
+  - arch: m68k
+    full_name: "Motorola 68000 / ColdFire"
+    encoding_class: word-variable
+    width_bits: "{16, 32, 48}"
+    operand_types: [GPR-D, GPR-A, FPR, IMM, SIZE, MODE, REG, CC, LABEL]
+    encoding_banks:  [capstone-arch, binutils-libopcode, ghidra-cpu]
+    semantics_banks: [ghidra-cpu, decaf-fpu]
+    record:
+      - { name: word1,   kind: struct, width: 16, note: "primary opcode word" }
+      - { name: size,    kind: SIZE,  width: 2,   note: "byte/word/long" }
+      - { name: mode,    kind: MODE,  width: 3,   note: "effective-address mode" }
+      - { name: reg,     kind: REG,   width: 3,   note: "register/e-mode selector" }
+      - { name: ext,     kind: struct, width: variable, required: false, note: "extension words" }
+    encoding_function: |
+      ;; ADDQ #data, ea  (0101 data 0 size mode reg)
+      (define-encoding (addq (data :IMM 3) (size :SIZE 2) (mode :MODE 3) (reg :REG 3)) 16
+        (cat (const #b0101)
+             (field data data 3)
+             (const #b0)
+             (field size size 2)
+             (field mode mode 3)
+             (field reg  reg  3)))
+    semantics: |
+      (define-semantics (addq (data :IMM) (size :SIZE) (mode :MODE) (reg :REG))
+        (let* ((ea (resolve-ea mode reg size)) (q (if (= data 0) 8 data)))
+          (set! MEM-or-REG[ea size] (+ (read size ea) q))))
+    notes: |
+      16-bit instruction words + N extension words. Effective-address
+      (mode,reg) sub-encoding determines extension-word count. ColdFire
+      drops some modes.
+
+  # ───────────────────────── WebAssembly ─────────────────────────
+  - arch: wasm
+    full_name: "WebAssembly (core 1/2, SIMD, GC, threads)"
+    encoding_class: stack-leb
+    width_bits: variable
+    operand_types: [VALTYPE, BLOCKTYPE, LOCALIDX, FUNCIDX, MEMARG, LABELIDX]
+    encoding_banks:  [binaryen-wasm, capstone-arch, qemu-targets]
+    semantics_banks: [binaryen-wasm, capstone-arch]
+    record:
+      - { name: opcode,     kind: bv, width: 1, note: "+LEB128 multi-byte (0xFC/0xFD/0xFE/0xFF prefixes)" }
+      - { name: immediates, kind: struct, width: variable, note: "LEB128 indices/memarg" }
+      - { name: stack_in,   kind: list, note: "consumed operand types" }
+      - { name: stack_out,  kind: list, note: "produced operand types" }
+    encoding_function: |
+      ;; i32.add  (0x6A) — no immediate operands; operands popped from stack
+      (define-encoding (i32-add) 8
+        (const #x6A))
+    semantics: |
+      (define-semantics (i32-add)
+        (let* ((b (pop)) (a (pop)) (r (+ (zext 33 a) (zext 33 b))))
+          (push (trunc 32 r))))
+    notes: |
+      Stack machine: operands are implicit (consumed/produced), not
+      encoded. Indices use LEB128; block types are signed LEB128 /
+      value-type tags. `encoding_function` width is the opcode byte(s) only.
+
+  # ───────────────────────── 6502 ─────────────────────────
+  - arch: mos6502
+    full_name: "MOS 6502 / 65C02 / 65816"
+    encoding_class: variable
+    width_bits: "{1,2,3}"
+    operand_types: [ACC, IMM, ZP, ZPX, ZPY, ABS, ABSX, ABSY, INDX, INDY, REL]
+    encoding_banks:  [acme-opcodes, capstone-arch, ghidra-cpu, radare2-opcodes]
+    semantics_banks: [ghidra-cpu]
+    record:
+      - { name: opcode, kind: bv,  width: 8,  note: "encodes mnemonic + addressing mode" }
+      - { name: operand, kind: IMM, width: "{0,8,16}", required: false }
+      - { name: addr_mode, kind: enum, width: 0, note: "implicit in opcode byte" }
+    encoding_function: |
+      ;; LDA #imm  (opcode 0xA9; immediate addressing mode)
+      (define-encoding (lda-imm (imm :IMM 8)) 16
+        (cat (const #xA9)
+             (field imm imm 8)))
+    semantics: |
+      (define-semantics (lda-imm (imm :IMM))
+        (set! A imm)
+        (set-flags! (Z (= (and imm #xFF) 0)) (N (msb imm))))
+    notes: |
+      Opcode byte alone selects both mnemonic and addressing mode (a
+      one-byte dispatch lattice). 65816 adds an M/X width-select flag
+      from the P register, making operand size mode-dependent.
+
+  # ───────────────────────── Hexagon ─────────────────────────
+  - arch: hexagon
+    full_name: "Qualcomm Hexagon (V5..V81)"
+    encoding_class: packet
+    width_bits: 32
+    operand_types: [GPR, PRED, VEC, IMM, USR, LC, SA]
+    encoding_banks:  [keystone-arch, capstone-arch, binutils-libopcode, qemu-targets]
+    semantics_banks: [qemu-targets, ghidra-cpu]
+    record:
+      - { name: iclass, kind: bv, width: 6, note: "selects ~32 encoding formats" }
+      - { name: parse-bits, kind: bv, width: "{2,4}", note: "packet/instruction parse" }
+      - { name: slot,  kind: enum, note: "0|1|2|3 execution slot" }
+      - { name: operands, kind: struct, note: "field layout per format table" }
+      - { name: packet,  kind: list, note: "co-issued siblings (VLIW)" }
+    encoding_function: |
+      ;; Schematic: field layout is per-iclass format table (R[end]:R[start]).
+      ;; ADD (register) occupies slot 0/1; register fields per SUB/DUP format.
+      (define-encoding (add (rd :GPR) (rs :GPR) (rt :GPR)) 32
+        (cat (field iclass (iclass-of 'add) 6)
+             (field parse (parse-bits slot) 2)
+             (place-by-format 'duplex rd rs rt)))   ; bit-ranges from format table
+    notes: |
+      VLIW: 4 instructions per packet, parsed from a duplex/triax
+      bit layout. iclass selects one of ~30 format tables defining
+      operand bit-ranges (not a uniform opcode field). No portable
+      single-bit (mask,match) without the format table.
+
+  # ───────────────────────── TriCore ─────────────────────────
+  - arch: tricore
+    full_name: "Infineon TriCore (TC1.3..1.6P+)"
+    encoding_class: variable
+    width_bits: "{16, 32}"
+    operand_types: [GPR-D, GPR-A, EXT, IMM, PRED, DISP]
+    encoding_banks:  [capstone-arch, ghidra-cpu, qemu-targets]
+    semantics_banks: [qemu-targets, ghidra-cpu]
+    record:
+      - { name: opc,  kind: bv, width: "{7,10,16}", note: "primary opcode field" }
+      - { name: d,    kind: GPR-D, width: 4 }
+      - { name: s1,   kind: GPR,   width: 4 }
+      - { name: s2,   kind: GPR,   width: 4, required: false }
+      - { name: const9, kind: IMM, width: 9, required: false }
+      - { name: off18,  kind: DISP, width: 18, required: false }
+    encoding_function: |
+      ;; Schematic RR-format 32-bit ADD (d, s1, s2); opc field per format.
+      (define-encoding (add (d :GPR-D 4) (s1 :GPR 4) (s2 :GPR 4)) 32
+        (cat (field opc (opc-of 'add-rr) 16)
+             (field d  d  4)
+             (field s3 s1 4)
+             (field s2 s2 4)
+             (const #b0000)))            ; op-mode / data-width nibble
+    notes: |
+      16-bit (ABS/SCR/BRC/RC) and 32-bit (RR/RCR/BO/SLR...) formats.
+      Two register address spaces: D (data) and A (address). 16-bit ops
+      commonly fixed s2==s1 (zero-overhead). Format-table driven like
+      Hexagon.

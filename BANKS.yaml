@@ -1,0 +1,1672 @@
+$Version: 1.0.0
+$Project: "ArchBank"
+$Dataset: "BANKS.yaml"
+$Description: >-
+  ArchBank is a project trying to pull together several sources for CPU instructions
+  and create a centeralized extractor application for them.
+  This manifest file lists these sources and gives hints on how these resources can 
+  be extracted.
+  This dataset catalogues these sources and offers strategies for extracting
+  instruction records from them.
+
+- id: "llvm-td"
+  name: "LLVM TableGen Target Descriptions"
+  directory: "bank/LLVM-TD"
+  sourced_from: "The llvm/lib/Target/*/ .td files of the LLVM compiler infrastructure, flattened into one directory"
+  extraction_hint: |
+    A flat dump of LLVM's TableGen (.td) target descriptions - the
+    single richest machine-readable ISA source in the whole reservoir.
+    Starts at reservoid-tree.txt line 5922; END LINE UNKNOWN
+    (retrieval truncated at 6139, Mips in progress). Confirmed so far:
+
+      AArch64   (5923-76)  incl. SVE/SME InstrInfo, SystemOperands,
+                           ~dozen Sched* models (A53..NeoverseV3, Oryon)
+      AMDGPU    (5977-86)  plus GPU-family files scattered at 6032-54:
+                           BUF/DS/DSDIR/EXP/FLATInstructions.td,
+                           Cayman/EvergreenInstructions.td,
+                           GCNProcessors.td, DXIL/DirectX.td
+      ARC       (5987-91)
+      ARM       (5992-6020) incl. InstrNEON/MVE/VFP/Thumb/Thumb2/CDE,
+                           SystemRegister.td, many Schedule* models
+      AVR       (6021-26)
+      BPF       (6027-31)
+      CSKY      (6034-45)
+      Hexagon   (6055-93)  incl. huge auto-generated HexagonDep*.td
+                           (DepInstrInfo = full encodings) and
+                           Schedule V5..V81
+      Lanai     (6094-99)
+      Leon      (6100)     LeonFeatures.td only
+      LoongArch (6101-15)  incl. LSX/LASX/LBT/LVZ extensions
+      M68k      (6116-28)  split by instr class (Arithmetic, Bits,
+                           Control, Data, ShiftRotate...)
+      MicroMips (6129-35)
+      Mips      (6137+)    Mips16/32r6... TRUNCATED, continues
+
+    Per-architecture file taxonomy (uniform across targets):
+      *InstrInfo.td / *Instructions.td  <- THE PAYLOAD: mnemonic,
+                                           operands, encoding bits,
+                                           selection patterns (semantics)
+      *InstrFormats.td                  <- encoding format classes,
+                                           needed to resolve the payload
+      *RegisterInfo.td / *RegisterBanks.td <- register model
+      *SystemOperands/*SystemRegister.td   <- sysreg space (valuable)
+      *.td (top-level, e.g. AArch64.td)    <- feature/processor wiring
+    SKIP or deprioritize: *CallingConv.td, *Sched*/Schedule*.td,
+    *PfmCounters.td, *Combine.td, *GISel.td, *Processors.td/*Devices.td
+    - ABI/scheduling/codegen plumbing, no encoding data.
+
+    Extraction strategy: do NOT regex-scrape; .td classes inherit
+    encodings through deep format hierarchies (InstrFormats.td must be
+    in scope). Ideal path is llvm-tblgen -dump-json (or a TableGen
+    parser) per target to emit (mnemonic, encoding bit-pattern,
+    operands, DAG pattern) records. Files are flattened, so group by
+    filename prefix; watch collisions between prefix families (e.g.
+    MicroMips vs Mips, GPU files with no prefix like BUFInstructions.td
+    belong to AMDGPU). HIGHEST value in the reservoir: encodings +
+    operand constraints + semantics patterns in one formalism.
+
+
+- id: "acme-opcodes"
+  name: "ACME Cross-Assembler Opcode Tables"
+  directory: "bank/ACME-Opcodes"
+  sourced_from: "The mnemonic/opcode table of the ACME cross-assembler (6502 family)"
+  extraction_hint: |
+    The directory contains a single include file, `6502.i` (reservoid-tree.txt,
+    line 3). ACME keeps its CPU knowledge in C-style include files where each
+    mnemonic is registered together with the opcode byte for every addressing
+    mode it supports.
+
+      - Mnemonics are declared in static tables; each row typically maps
+        (mnemonic string) -> (opcode value per addressing mode), with a
+        sentinel/illegal marker for unsupported modes.
+      - Addressing modes (implied, immediate, zero page, zero page,X,
+        absolute, absolute,X/Y, (indirect), (indirect,X), (indirect),Y,
+        relative) are encoded as columns or bit flags, so the extractor
+        should treat the file as a fixed-schema matrix:
+        one instruction x N addressing modes.
+      - Variants of the CPU family (NMOS 6502, undocumented/illegal
+        opcodes, 65C02, 65816 extensions) are usually gated by
+        preprocessor-like conditionals or separate table sections; scan
+        for those markers to tag each opcode with its CPU subset.
+
+    Extraction strategy: parse the table rows with a line-oriented regex
+    (mnemonic followed by a list of opcode bytes), normalize the addressing
+    mode per column position, and emit one record per (mnemonic, mode,
+    opcode) triple.
+
+- id: "asmjit-db"
+  name: "AsmJIT Instruction Database (asmdb)"
+  directory: "bank/AsmJIT-DB"
+  sourced_from: "The JSON architecture databases shipped with the AsmJIT/asmdb project"
+  extraction_hint: |
+    This is the easiest source in the reservoir: four self-describing JSON
+    databases (reservoid-tree.txt, lines 5-8):
+
+      -----------------------------------------------------------------
+      File                    Contents
+      ----------------------- -----------------------------------------
+      isa_x86.json            Full x86/x86-64 instruction set: mnemonic,
+                              operand signatures, opcode encoding string
+                              (prefixes, ModRM, /r, ib/iw/id), CPU
+                              extension flags (SSE, AVX, AVX-512...),
+                              and read/write side effects on EFLAGS.
+
+      isa_aarch64.json        AArch64 (A64) instructions: mnemonic,
+                              operand templates, 32-bit encoding masks /
+                              bit patterns, and feature gates (FEAT_*).
+
+      isa_aarch64_sme.json    Supplemental database for the Scalable
+                              Matrix Extension (SME/SME2) instructions,
+                              same schema as isa_aarch64.json.
+
+      isa_aarch32.json        AArch32 (A32/T32) instructions, including
+                              both ARM and Thumb encodings.
+      -----------------------------------------------------------------
+
+    Extraction strategy: no parsing heuristics required - load the JSON
+    directly. Each database has a top-level `instructions` array where
+    every record is (mnemonic, operands, encoding, extensions). Operand
+    strings use a compact grammar (e.g. "r32, r/m32, ib") that should be
+    tokenized into typed operand descriptors. Merge isa_aarch64_sme.json
+    into the AArch64 set, keyed by mnemonic + encoding.
+
+- id: "beaengine-instrset"
+  name: "BeaEngine Instruction Set Decoders"
+  directory: "bank/BeaEngine-InstrSet"
+  sourced_from: "The opcode decoding sources of the BeaEngine x86/x64 disassembler"
+  extraction_hint: |
+    C sources organized by instruction category (reservoid-tree.txt,
+    lines 10-32). The knowledge is embedded in two complementary forms:
+
+      1. `Data_opcode.h` - dispatch tables: arrays of function pointers
+         indexed by opcode byte (one-byte map, 0x0F two-byte map, group
+         tables). This file gives the authoritative opcode -> handler
+         mapping and should be parsed first to build the opcode lattice.
+
+      2. `opcodes_*.c` - the handler implementations, split by theme:
+
+         --------------------------------------------------------------
+         File pattern            Contents
+         ----------------------- --------------------------------------
+         opcodes_A_M.c,          General-purpose instructions, split
+         opcodes_N_Z.c           alphabetically by mnemonic (A-M, N-Z).
+                                 Each handler fills the mnemonic string,
+                                 operand decoding calls, and EFLAGS info.
+
+         opcodes_Grp1.c ...      The ModRM.reg-extended opcode groups
+         opcodes_Grp16.c         (0x80 /0-/7, 0xF6/0xF7, 0x0F 0x01, ...)
+                                 - one file per Intel "Group" table.
+
+         opcodes_FPU.c           x87 escape opcodes (0xD8-0xDF).
+         opcodes_MMX.c,          SIMD instruction families, keyed by
+         opcodes_SSE.c,          mandatory prefix (66/F2/F3) + 0x0F map.
+         opcodes_AES.c,
+         opcodes_CLMUL.c
+         opcodes_prefixes.c      Prefix handling (segment overrides,
+                                 REX, operand/address size, LOCK/REP).
+         --------------------------------------------------------------
+
+    Extraction strategy: statically parse the handler functions - each
+    one assigns the mnemonic via a strcpy-like call and decodes operands
+    through well-named helpers (GxEx, ExGx, reg/imm routines), so a regex
+    pass over (handler name, mnemonic string, operand-helper calls),
+    joined with the dispatch tables in Data_opcode.h, yields complete
+    (opcode bytes, mnemonic, operand form) records. Track the mandatory
+    prefix context in the SSE/MMX files to disambiguate encodings.
+
+- id: "binaryen-wasm"
+  name: "Binaryen WebAssembly Core"
+  directory: "bank/Binaryen-WASM"
+  sourced_from: "The core `src/wasm` sources of the Binaryen WebAssembly compiler toolkit"
+  extraction_hint: |
+    A flat directory of C++ sources (reservoid-tree.txt, lines 34-49).
+    WebAssembly has no external opcode tables here - the instruction set
+    knowledge is embedded in the binary reader/writer and the IR:
+
+      -----------------------------------------------------------------
+      File                    Contents
+      ----------------------- -----------------------------------------
+      wasm-binary.cpp         THE primary target. Contains the mapping
+                              between wasm binary opcodes (including
+                              multi-byte prefixed opcodes: SIMD 0xFD,
+                              GC/misc 0xFC, atomics 0xFE) and IR nodes,
+                              in both directions (reader switch + writer
+                              emit calls).
+
+      wasm-stack.cpp,         Stack-machine lowering; useful for the
+      wasm-stack-opts.cpp     operand arity / stack signature of each
+                              instruction.
+
+      wasm.cpp,               IR node definitions and operator lists;
+      wasm-ir-builder.cpp     enumerate unary/binary op kinds (i32.add,
+                              f64.sqrt, v128 ops, ...) with their types.
+
+      wasm-interpreter.cpp    Semantic reference: one evaluation case
+                              per operator - good for cross-checking
+                              extracted operator lists for completeness.
+
+      wasm-validator.cpp      Type rules per instruction (param/result
+                              types), usable to derive signatures.
+
+      wasm-type.cpp,          Type-system support (numeric, reference,
+      wasm-type-shape.cpp     GC types) needed to resolve signatures.
+
+      literal.cpp, parsing.cpp, source-map.cpp, wasm-io.cpp,
+      wasm-debug.cpp, wasm-emscripten.cpp
+                              Support code - not opcode-bearing; can be
+                              skipped by the extractor.
+      -----------------------------------------------------------------
+
+    Extraction strategy: parse the opcode enum/constants and the big
+    switch statements in `wasm-binary.cpp` to obtain (binary opcode,
+    prefix, mnemonic) tuples, then join with the operator enumerations in
+    `wasm.cpp` and the typing rules in `wasm-validator.cpp` to attach
+    stack signatures. Verify coverage against `wasm-interpreter.cpp`.
+
+- id: "binaryninja-arch"
+  name: "Binary Ninja Open-Source Architecture Plugins"
+  directory: "bank/BinaryNinja-Arch"
+  sourced_from: "Vector 35's open-source architecture (disassembler + lifter) plugins for Binary Ninja"
+  extraction_hint: |
+    A multi-architecture collection - one subdirectory per ISA
+    (reservoid-tree.txt, lines 50-229). Each follows the same pattern:
+    `arch_*.cpp` (plugin glue), `il.cpp/il.h` (lifting - semantic info),
+    and a self-contained disassembler core that holds the opcode data.
+    The extractor should treat each subdirectory as its own sub-source:
+
+      -----------------------------------------------------------------
+      Subdir          Opcode-bearing core
+      --------------- -------------------------------------------------
+      arm64/          `disassembler/` - a generated AArch64 decoder:
+                      `encodings_dec.c` / `encodings_fmt.c` (encoding
+                      tables + format strings), `decode0/1/2.c` (decode
+                      tree), `decode_fields32.c` (bitfield extraction),
+                      `operations.c` (operation enum ~= mnemonic list),
+                      `regs.c` and `sysregs_gen.c` (register and system-
+                      register tables). Richest ARM64 source in the
+                      reservoir; `test_cases.txt` gives (bytes -> text)
+                      pairs for validation.
+
+      armv7/          `armv7_disasm/armv7.c|.h` - table-driven A32
+                      decoder with mnemonic and operand tables.
+
+      thumb2_disasm/  `spec.txt` - a TEXTUAL Thumb-2 instruction spec
+                      (encodings + pseudocode) compiled by
+                      `generator.py` and `arm_pcode_parser/` (EBNF
+                      grammar `pcode.ebnf`) into `spec.cpp`. Prefer
+                      parsing `spec.txt` directly - it is the most
+                      machine-friendly artifact here.
+
+      mips/           `mips/mips.c|.h` - decoder tables for MIPS;
+                      `unittest/mips-test.txt` for validation pairs.
+
+      msp430/         Rust plugin (`src/*.rs`); instruction knowledge
+                      lives in `architecture.rs` / `lift.rs` (the
+                      decoder itself is an external crate, so this dir
+                      mainly yields register/flag models).
+
+      powerpc/        `decode/` - `decode.c` (opcode dispatch),
+                      `mnemonic.c` (mnemonic tables), `operands.c`,
+                      `names.c` (register names), `vle16.c`/`vle32.c`
+                      (PowerPC VLE variable-length encodings - rare
+                      data, worth extracting).
+
+      riscv/          Rust plugin; decoding delegated to the `disasm/`
+                      crate (`disasm/src/lib.rs`) - parse its match
+                      arms for (encoding mask, mnemonic) pairs.
+
+      x86/            Thin wrapper around Intel XED (`xed` is an
+                      external submodule - see the dedicated XED source
+                      if present elsewhere in the reservoir). Locally
+                      valuable: `code_generator/iform-type-dump.txt`
+                      (XED iform dump) and the four
+                      `x86_intrinsic_*_types.include` files mapping
+                      instructions to intrinsic input/output types.
+      -----------------------------------------------------------------
+
+    Extraction strategy: run per-subdirectory extractors. For C decoders
+    (arm64, armv7, mips, powerpc) parse the static encoding/mnemonic
+    tables; for thumb2 parse `spec.txt` with a grammar based on
+    `pcode.ebnf`; for Rust plugins (msp430, riscv) parse enum + match
+    constructs. The `il.cpp` files across all subdirs additionally
+    provide per-instruction semantics (BNIL lifting) if the extractor
+    wants behavioral metadata, not just encodings.
+
+- id: "binutils-libopcode"
+  name: "GNU Binutils libopcodes + opcode headers"
+  directory: "bank/Binutils-LibOpcode"
+  sourced_from: "The `opcodes/` library and `include/opcode/` headers of GNU Binutils"
+  extraction_hint: |
+    The broadest single source in the reservoir: GNU Binutils' assembler/
+    disassembler back-end, split into two subdirectories
+    (reservoid-tree.txt, lines 231-650).
+
+      * `Body/`  (lines 231-577) - the `opcodes/` library sources.
+      * `Headers/` (lines 578-650) - the matching `include/opcode/*.h`
+        declarations (one per architecture: aarch64.h, arm.h, i386.h,
+        mips.h, ppc.h, riscv.h, ... up to wasm.h/xgate.h).
+
+    Per-architecture the files follow a rigid, machine-parseable naming
+    convention - THIS is what makes binutils the highest-value source:
+
+      -----------------------------------------------------------------
+      Pattern                 Role
+      ----------------------- -----------------------------------------
+      <arch>-opc.c            The opcode TABLE: a big static array of
+                              {mnemonic, opcode bits, operand-type
+                              codes, arch/feature flags}. Primary target.
+
+      <arch>-opc.h /          Operand-type enums, macros, and flag
+      <arch>-tbl.h            definitions referenced by the opc tables.
+
+      <arch>-dis.c            Disassembler; useful for operand decoding
+                              semantics when the table encodes operands
+                              by index.
+
+      <arch>-asm.c            Assembler-side encoding (aarch64).
+
+      <arch>-gen.c            Generators that emit the *-2.c / *-tbl.h
+                              tables at build time (e.g. aarch64-gen.c,
+                              i386-gen.c) - describes the table schema.
+      -----------------------------------------------------------------
+
+    Notable special cases:
+      * x86: `i386-opc.tbl` + `i386-reg.tbl` are TEXTUAL, column-based
+        tables (compiled by `i386-gen.c` into `i386-tbl.h`). Parse the
+        .tbl files directly - they are the cleanest x86 opcode source
+        available. EVEX/APX detail lives in `i386-dis-evex*.h`.
+      * aarch64: `aarch64-tbl.h` holds the master instruction table;
+        `aarch64-sys-regs.def` enumerates system registers.
+      * CGEN architectures (m32r, fr30, ...): described via `cgen-*.in`
+        templates rather than hand-written tables - lower priority.
+      * `po/` (lines 482-519, translation catalogs) and all `ChangeLog*`,
+        `configure*`, `config.in` files carry NO opcode data - the
+        extractor must ignore them.
+
+    Coverage: aarch64, alpha, arc, arm, avr, bfin, bpf, cgen family,
+    cr16, cris, crx, csky, d10v, d30v, i386/x86-64, ia64, loongarch,
+    m68k, mips, msp430, ppc/powerpc, riscv, sh, sparc, tilegx, tilepro,
+    xtensa, z80, and more (Headers/ lists ~70 architectures).
+
+    Extraction strategy: drive extraction from `Headers/<arch>.h`
+    (operand-type + flag definitions) joined to `Body/<arch>-opc.c`
+    (the instruction array). Emit (mnemonic, encoding, operand types,
+    ISA-feature flags) per row. Handle the two textual x86 `.tbl` files
+    with a dedicated column parser.
+
+- id: "bochs-cpu"
+  name: "Bochs x86 CPU Decoder"
+  directory: "bank/Boch-CPU"
+  sourced_from: "The instruction fetch/decode tables of the Bochs IA-32/x86-64 emulator"
+  extraction_hint: |
+    The x86 decode front-end of the Bochs emulator (reservoid-tree.txt,
+    lines 651-668). Instruction knowledge is centralized in `.def` files
+    that are #included with varying macro definitions ("X-macro" style):
+
+      -----------------------------------------------------------------
+      File                        Contents
+      --------------------------- -------------------------------------
+      ia_opcodes.def              THE master instruction list: one
+                                  bx_define_opcode(...) entry per
+                                  instruction giving the internal
+                                  mnemonic/IA name, execution handler,
+                                  and operand form. Primary target.
+      ia_opcodes_evex.def         The same for EVEX/AVX-512 forms.
+      ia_opcodes.h                Enum of all IA_* instruction ids
+                                  generated from the .def entries.
+
+      fetchdecode32.cc,           The decode TABLES mapping opcode bytes
+      fetchdecode64.cc            to those IA_* ids for 32-/64-bit modes.
+      fetchdecode_opmap_0f38.cc,  Sub-maps for the 0F38 / 0F3A three-
+      fetchdecode_opmap_0f3a.cc   byte opcode escapes.
+      fetchdecode_opmap_avx.cc,   VEX / EVEX / XOP prefixed maps.
+      fetchdecode_opmap_evex.cc,
+      fetchdecode_opmap_xop.cc
+      fetchdecode_x87.h           x87 FPU escape decode.
+      disasm.cc                   Bochs' own disassembler - handy cross-
+                                  reference for mnemonic text + operands.
+      decoder.h, features.h,      Support structures / CPU feature gates.
+      instr.h, fetchdecode*.h
+      -----------------------------------------------------------------
+
+    Extraction strategy: parse `ia_opcodes.def` (+ the evex variant) by
+    defining the X-macro yourself to harvest (IA id, mnemonic, operand
+    form, feature). Then parse the `fetchdecode*` opcode-map arrays to
+    attach the actual (byte sequence, prefix context) -> IA id mapping.
+    `disasm.cc` provides readable mnemonic strings for validation.
+
+- id: "boomerang-ssl"
+  name: "Boomerang SSL Semantic Specifications"
+  directory: "bank/Boomerang-SSL"
+  sourced_from: "The Semantic Specification Language (.ssl) files of the Boomerang decompiler"
+  extraction_hint: |
+    A tiny but semantically rich source: three SSL files (reservoid-tree.txt,
+    lines 670-672):
+
+      * ppc.ssl   - PowerPC
+      * st20.ssl  - INMOS/ST20 transputer
+      * x86.ssl   - IA-32
+
+    SSL (Semantic Specification Language) is a purpose-built DSL: each
+    instruction is defined as `MNEMONIC operands { RTL... }`, where the
+    body is a register-transfer list describing the instruction's effect
+    (assignments to registers/flags/memory). Unlike every other source
+    here, SSL gives explicit *semantics*, not just encodings - so it is
+    the best source for behavioral/effect metadata and for cross-checking
+    lifters.
+
+    Key SSL constructs the extractor must handle:
+      - `INSTRUCTION` / operator definitions and `TABLE`-based expansion
+        (SSL uses table cross-products to define instruction families
+        compactly - the extractor must expand them).
+      - Register bank declarations (`INTEGER`/`FLOAT` reg sets) at the
+        top of each file.
+      - RTL side-effect blocks (flag updates, memory access).
+
+    Extraction strategy: write/borrow an SSL grammar, expand the TABLE
+    macros to enumerate concrete mnemonics, and emit (mnemonic, operand
+    pattern, RTL semantics) records. Note SSL carries little encoding
+    detail - pair it with an encoding source (binutils/Capstone) for the
+    same arch to get complete instruction records.
+
+- id: "capstone-arch"
+  name: "Capstone Disassembler Architecture Modules"
+  directory: "bank/Capstone-Arch"
+  sourced_from: "The per-architecture arch/ modules of the Capstone disassembly framework"
+  extraction_hint: |
+    The largest directory in the reservoir: Capstone's per-architecture
+    disassembler modules (reservoid-tree.txt, lines 673-1113), one
+    subdirectory per ISA:
+
+      AArch64 (674-700), Alpha (701-718), ARC (719-739), ARM (740-767),
+      BPF (768-777), EVM (778-787), HPPA (788-797), LoongArch (798-820),
+      M680X (821-841), M68K (842-849), Mips (850-876), MOS65XX (877-887),
+      PowerPC (888-910), RISCV (911-942), SH (943-951), Sparc (952-975),
+      SystemZ (976-999), TMS320C64x (1000-1012), TriCore (1013-1031),
+      WASM (1032-1040), X86 (1041-1079), XCore (1080-1093),
+      Xtensa (1094-1113).
+
+    The modules fall into TWO structural families:
+
+    (a) LLVM-derived modules (AArch64, Alpha, ARC, ARM, LoongArch, Mips,
+        PowerPC, RISCV, Sparc, SystemZ, TriCore, Xtensa, and largely X86):
+        instruction knowledge lives in AUTO-GENERATED `.inc` files
+        produced from LLVM TableGen by Capstone's auto-sync tooling.
+        Per architecture the key files are:
+
+          <Arch>GenInstrInfo.inc         - instruction enum + properties
+          <Arch>GenDisassemblerTables.inc- bit-level decode tables
+          <Arch>GenAsmWriter.inc         - mnemonic/asm-string tables
+          <Arch>GenRegisterInfo.inc      - register enums/classes
+          <Arch>GenCSMappingInsn.inc     - Capstone id <-> LLVM id map,
+          <Arch>GenCSMappingInsnName.inc   mnemonic names,
+          <Arch>GenCSMappingInsnOp.inc     PER-OPERAND access/type info
+          <Arch>GenCSOpGroup.inc         - operand-group dispatch
+          <Arch>GenCSFeatureName.inc /   - ISA feature names, alias
+          <Arch>GenCSAliasMnemMap.inc      mnemonic maps (where present)
+          <Arch>GenSystemRegister.inc /  - system registers (AArch64/ARM)
+          <Arch>GenSystemOperands.inc
+          <Arch>Mapping.c / .h           - hand-written glue + operand
+                                           detail filling
+
+        The `GenCSMappingInsnOp.inc` files are gold: they enumerate every
+        instruction's operands with type + read/write access - data that
+        raw LLVM .td extraction does not hand you pre-flattened.
+
+    (b) Hand-written modules (BPF, EVM, HPPA, M680X, M68K, MOS65XX, SH,
+        TMS320C64x, WASM, XCore): tables live in C sources or bespoke
+        .inc files, e.g.:
+          - M680X: per-CPU tables `cpu12.inc`, `hcs08.inc`, `hd6301.inc`...
+          - M68K: `M68KInstructionTable.inc`
+          - MOS65XX: `m6502.inc`, `m65c02.inc`, `m65816.inc`,
+            `instruction_info.inc` (6502-family variants - cross-check
+            against acme-opcodes)
+          - SH: `SHInsnTable.inc` (+ its generator `mktable.rb`)
+          - X86: `X86DisassemblerDecoder.c` + decoder .inc tables
+
+    Extraction strategy: for family (a), parse the `.inc` files directly -
+    they are plain C arrays/enums, far easier to consume than TableGen.
+    Join <Arch>GenInstrInfo.inc (ids) + GenCSMappingInsnName.inc
+    (mnemonics) + GenCSMappingInsnOp.inc (operand records) +
+    GenCSFeatureName.inc (features). For family (b), write small ad-hoc
+    parsers per table format. Skip InstPrinter/Module glue except when
+    operand formatting semantics are needed.
+
+- id: "ddisasm-arch"
+  name: "ddisasm Datalog Architecture Specifications"
+  directory: "bank/DDISASM-Arch"
+  sourced_from: "The per-architecture Datalog (.dl) modules of GrammaTech's ddisasm disassembler"
+  extraction_hint: |
+    A small, unusual, high-signal source (reservoid-tree.txt, lines
+    1114-1151): ddisasm classifies instructions declaratively in
+    souffle-Datalog, one subdirectory per architecture:
+
+      * arm32/  (1115-1122)
+      * arm64/  (1123-1130)
+      * intel/  (1131-1143)  - arch_x86.dl + 32/64-bit specializations
+      * mips32/ (1144-1151)
+
+    Every subdirectory follows the same file pattern:
+
+      arch_<arch>.dl          - core architecture facts (mnemonic
+                                classification, operation properties)
+      jump_operations.dl      - which mnemonics are jumps/branches/calls,
+                                conditional vs unconditional
+      float_operations.dl     - FP instruction sets
+      interrupt_operations.dl - traps/syscalls/interrupts
+      memory_access.dl        - which instructions/operands touch memory
+      registers.dl (or        - register names, aliasing/subregister
+        registers_*.dl)         relations, ABI roles (stack ptr, etc.)
+      elf_relocations*.dl     - relocation handling (ignorable for
+                                instruction extraction)
+
+    This source does NOT provide encodings - it provides CATEGORY facts:
+    per-mnemonic membership in semantic classes (jump, call, return,
+    float, interrupt, memory-reading/writing) and register alias graphs.
+    That makes it ideal for enriching records extracted elsewhere
+    (capstone-arch, binutils-libopcode) with behavioral tags.
+
+    Extraction strategy: parse the Datalog facts - they are mostly flat
+    relations like `jump_operation("JMP").` or list-style definitions -
+    with a simple grammar; emit (arch, mnemonic, semantic-class) tuples
+    and (register, parent-register, role) tuples. Normalize mnemonic
+    casing before joining with other sources.
+
+- id: "decaf-fpu"
+  name: "DECAF GDB Target-Description Register XMLs"
+  directory: "bank/DECAF-FPU"
+  sourced_from: "GDB-style target-description XML files (register/FPU feature sets) bundled with the DECAF analysis platform"
+  extraction_hint: |
+    Eleven flat XML files (reservoid-tree.txt, lines 1153-1163) in GDB
+    target-description format, grouped by architecture:
+
+      ARM:      arm-core.xml, arm-vfp.xml, arm-vfp3.xml, arm-neon.xml
+      ColdFire: cf-core.xml, cf-fp.xml
+      PowerPC:  power-core.xml, power64-core.xml, power-fpu.xml,
+                power-altivec.xml, power-spe.xml
+
+    These contain NO instructions - they define register banks: each
+    <reg> element gives name, bitsize, type (ieee_single/double, vector
+    types), regnum, and group (core/float/vector). Valuable as an
+    authoritative register-model source for ARM VFP/NEON, ColdFire FP,
+    and PowerPC AltiVec/SPE.
+
+    Extraction strategy: trivial XML parse; emit
+    (arch, feature-set, register, bitsize, type, regnum) tuples. Use to
+    enrich register operands extracted from encoding-bearing sources.
+
+- id: "decaf-qemu"
+  name: "DECAF/QEMU Target Translators"
+  directory: "bank/DECAF-QEMU"
+  sourced_from: "The target-*/ guest-CPU frontends of the DECAF-instrumented QEMU emulator"
+  extraction_hint: |
+    Fifteen QEMU guest-architecture frontends (reservoid-tree.txt, lines
+    1164-1323), one `target-<arch>/` subdirectory each:
+
+      alpha, arm, cris, i386, lm32, m68k, microblaze, mips, ppc, s390x,
+      sh4, sparc, unicore32, xtensa
+
+    Every subdirectory follows the same QEMU pattern:
+      translate.c   - THE key file: the full instruction decoder; giant
+                      switch/if cascades over opcode bit-fields that
+                      lift each guest instruction to TCG ops (i.e.
+                      encoding AND semantics in one place)
+      cpu.h         - CPU state: register file layout, flags, features
+      helper.c / op_helper.c / helper.h - semantics of complex
+                      instructions implemented as C helpers
+      Arch extras: ops_sse.h (i386 SSE semantics), neon_helper.c /
+      iwmmxt_helper.c (arm), vis_helper.c (sparc), crisv10/32-decode.h
+      (cris bitfield decode macros), core-dc232b/ + core-fsf/ (xtensa
+      per-core configs), DECAF_target.c|.h (DECAF taint glue - ignore).
+
+    Extraction strategy: mine translate.c per arch - decode masks/shifts
+    give encodings and the emitted TCG calls give operational semantics.
+    Heavy C parsing; best used selectively for arches with weak coverage
+    elsewhere (lm32, microblaze, unicore32, sh4, cris). Skip machine.c,
+    kvm*.c, STATUS/TODO files.
+
+- id: "distorm-disops"
+  name: "diStorm x86 Instruction Database (disOps)"
+  directory: "bank/Distom-DisOps"
+  sourced_from: "The Python instruction-set database/generator (disOps) of the diStorm x86/x64 disassembler"
+  extraction_hint: |
+    Six Python files (reservoid-tree.txt, lines 1325-1330) forming a
+    self-contained, machine-readable x86 ISA database:
+
+      x86sets.py      - THE payload: every instruction defined as Python
+                        calls with opcode bytes, mnemonic, operand list,
+                        and flag constants, grouped by ISA set (FPU, MMX,
+                        SSE1-4, AVX, ...)
+      x86header.py    - the constant vocabulary: OperandType enum,
+                        instruction flags, CPU flags - needed to decode
+                        x86sets.py entries
+      registers.py    - x86 register table
+      x86db.py        - trie/DB construction logic
+      disOps.py /     - table generators emitting diStorm's C tables
+      x86generator.py   (ignorable)
+
+    Extraction strategy: the cleanest possible - import (or AST-parse)
+    x86sets.py with the constants from x86header.py and iterate: each
+    entry yields (opcode byte path incl. prefix/table, mnemonic, operand
+    types, flags: modrm-required, privileged, 32/64-bit validity).
+    No C parsing required. Excellent cross-check against bochs-cpu and
+    the x86 side of capstone-arch.
+
+- id: "dynasm-opcodes"
+  name: "DynASM Encoding Templates (LuaJIT)"
+  directory: "bank/DynASM-Opcodes"
+  sourced_from: "The dasm_<arch>.lua encoding modules of LuaJIT's DynASM dynamic assembler"
+  extraction_hint: |
+    Flat directory (reservoid-tree.txt, lines 1332-1346) with paired
+    files per architecture:
+
+      dasm_<arch>.lua - THE payload: a `map_op` Lua table mapping
+                        `mnemonic_operandsig` keys (e.g. "add_3") to
+                        encoding template strings (base opcode word +
+                        operand field placement)
+      dasm_<arch>.h   - runtime encoder for the templates (structure
+                        reference only)
+
+    Architectures: arm (1334-35), arm64 (1332-33), mips (1337-38) +
+    mips64 (1336, lua only), ppc (1339-40), x86 (1343-44) + x64 (1342,
+    lua overlay on dasm_x86). Shared: dasm_proto.h, dynasm.lua,
+    minilua.c (ignore).
+
+    This is an ASSEMBLER-side view: mnemonics + operand-arity signatures
+    + exact bit templates, chosen for the subset useful to a JIT - so
+    coverage is partial but encodings are very compact and reliable.
+
+    Extraction strategy: load each dasm_<arch>.lua in a Lua interpreter
+    (or regex-parse the map_op literal) and emit
+    (mnemonic, operand-signature, template word/format chars). Decode
+    the template format per the action rules at the top of each file.
+
+- id: "dyninst-instrapi"
+  name: "Dyninst Mnemonic & Register Tables"
+  directory: "bank/Dyninst-InstrAPI"
+  sourced_from: "Python-format mnemonic/register definition tables used by Dyninst's InstructionAPI code generators"
+  extraction_hint: |
+    Four per-architecture subdirectories (reservoid-tree.txt, lines
+    1347-1365), each containing plain-Python data tables:
+
+      aarch64/ (1348-54): mnemonics.py, registers.py, sysregs.py
+                          (system-register table!), dwarf.py (DWARF
+                          register numbering), README.md
+      ppc/     (1355-58): mnemonics.py, registers.py
+      riscv64/ (1359-61): mnemonics.py, registers.py
+      x86/     (1362-65): mnemonics.py, registers.py
+
+    Content is NAME-LEVEL only: mnemonic enumerations and register
+    catalogs (name, size, categories, DWARF numbers) - no encodings,
+    no semantics. Best used as: (a) a canonical mnemonic namespace to
+    normalize spellings across sources, (b) register metadata incl.
+    the rare aarch64 sysregs.py system-register list.
+
+    Extraction strategy: import or AST-parse each .py; emit
+    (arch, mnemonic) and (arch, register, size, class, dwarf-num)
+    tuples. Trivial effort, low but clean yield.
+
+- id: "fasm-inc"
+  name: "FASM Assembler Instruction Tables"
+  directory: "bank/FASM-INC"
+  sourced_from: "The assembler-core include files of the flat assembler (FASM), which is written in x86 assembly"
+  extraction_hint: |
+    Flat directory of 14 .INC files (reservoid-tree.txt, lines
+    1366-1380) - the FASM assembler's own source, WRITTEN IN x86
+    ASSEMBLY. Only three matter:
+
+      TABLES.INC   (1377) - THE payload: the mnemonic dispatch table
+                     mapping every instruction name to its handler
+                     routine plus packed opcode/flag parameters
+      X86_64.INC   (1380) - the encoder handlers: for each instruction
+                     family, the logic choosing opcode bytes, ModRM,
+                     REX, prefixes per operand combination
+      AVX.INC      (1368) - VEX/EVEX-encoded instruction handling
+
+    Ignore the rest (parser, preprocessor, expression evaluator,
+    formats, messages).
+
+    This is an assembler-side x86/x64 source with near-complete ISA
+    coverage including AVX-512, but the encoding knowledge is embedded
+    in assembly-language code paths, not declarative tables - only
+    TABLES.INC is cleanly declarative (mnemonic -> handler + base
+    opcode).
+
+    Extraction strategy: parse TABLES.INC lines
+    (`db 'mnemonic'` / handler label / dw params) to get the mnemonic
+    universe and base opcodes; treat X86_64.INC/AVX.INC as reference
+    for operand-form disambiguation only. HIGH parsing effort for full
+    encodings - prefer as a mnemonic-coverage cross-check against
+    distorm-disops and bochs-cpu.
+
+- id: "fracture-target"
+  name: "Fracture Inverse-ISel IR Emitters"
+  directory: "bank/Fracture-Target"
+  sourced_from: "The per-target inverse instruction selection (decompilation to LLVM IR) modules of Draper Lab's Fracture project"
+  extraction_hint: |
+    Three target subdirectories (reservoid-tree.txt, lines 1381-1397),
+    each with the same trio:
+
+      ARM/     (1382-86): ARMBaseInfo.h, ARMInvISelDAG.cpp,
+                          ARMIREmitter.cpp
+      PowerPC/ (1388-92): PowerPCBaseInfo.h, PPCInvlSelDAG.cpp,
+                          PowerPCIREmitter.cpp
+      X86/     (1393-97): X86BaseInfo.h, X86InvISelDAG.cpp,
+                          X86IREmitter.cpp
+
+    Semantics-side source: no encodings (Fracture reuses LLVM MC for
+    decode). The *InvISelDAG.cpp files contain giant switches over
+    LLVM MachineInstr opcodes that reverse-map each instruction to
+    SelectionDAG/LLVM-IR operations - i.e. per-instruction SEMANTIC
+    templates. *BaseInfo.h holds target constants/flags.
+
+    Extraction strategy: parse the switch cases in *InvISelDAG.cpp /
+    *IREmitter.cpp to emit (llvm-opcode-name, IR-op sequence) pairs;
+    join with LLVM instruction names from an llvm-td-derived source to
+    attach encodings. Coverage is partial (project abandoned ~LLVM 3.x)
+    - treat as supplementary semantics only.
+
+- id: "gcc-md"
+  name: "GCC Machine Descriptions"
+  directory: "bank/GCC-MD"
+  sourced_from: "The *.md machine-description files from GCC's config/<arch>/ backends (flattened into one directory)"
+  extraction_hint: |
+    ~340 flat .md files (reservoid-tree.txt, lines 1398-1737) - GCC's
+    RTL machine descriptions for essentially every architecture GCC
+    supports. Three file kinds are mixed together:
+
+    1. CORE ISA files - the valuable ones: define_insn patterns pairing
+       an RTL semantic template with the exact assembler mnemonic/
+       operand syntax + constraints + attributes:
+         aarch64.md/-simd/-sme/-sve/-sve2 (1437-43), alpha.md (1445),
+         arc.md (1453), arm.md (1460), avr.md (1470), bfin.md, bpf.md
+         (1478), c6x.md, cris.md (1510), csky.md (1516), epiphany.md,
+         frv.md, ft32.md, gcn.md (1549, AMD GCN!), h8300.md, i386.md
+         (1565), ia64.md (1567), loongarch.md (1582), m32c.md, m68k.md
+         (1590), microblaze.md, mips.md (1601), mmix.md, nds32.md,
+         nvptx.md (1638, PTX!), pdp11.md (1646), riscv.md (1664),
+         rl78.md, rs6000.md (1669), rx.md, s390.md (1672), sh.md,
+         sparc.md (1690), v850.md, vax.md (1716), visium.md, xtensa.md
+         (1732)
+    2. Extension/feature files: altivec.md, vsx.md, neon.md (1633),
+       vfp.md, thumb1.md, mmx.md, sse.md (1692), crypto.md, mips-msa.md,
+       mips-dsp.md, autovec*.md, atomic(s).md, sync.md, simd.md,
+       vector.md
+    3. Pipeline/tuning files - SKIP for ISA purposes: numeric names
+       (10000.md, 2064.md, 4000.md, 5k.md, 9175.md), cortex-*.md,
+       athlon/atom/haswell/k6/znver.md, power4/power10.md,
+       *-tune.md, cell.md, tpf.md
+
+    NOTE: files are flattened - arch attribution must come from
+    filename conventions, not paths (e.g. sse.md -> i386; altivec.md
+    -> rs6000; neon.md/vfp.md/thumb1.md -> arm).
+
+    Extraction strategy: S-expression parse of define_insn /
+    define_insn_and_split: extract (insn name, RTL semantics, operand
+    constraints, output asm template -> mnemonic). Assembler syntax +
+    formal semantics but NO binary encodings (except a few backends
+    with attrs). Strong semantics complement to encoding-bearing
+    sources.
+
+- id: "gdb-arch"
+  name: "GDB Common Architecture Support"
+  directory: "bank/GDB-Arch"
+  sourced_from: "The gdb/arch/ shared architecture-definition sources of the GNU debugger"
+  extraction_hint: |
+    Flat C/C++ directory (reservoid-tree.txt, lines 1738-1784) from
+    gdb/arch/: per-architecture target-description builders and a few
+    instruction helpers. Architectures: aarch32, aarch64 (+ mte,
+    scalable/SVE, gcs variants), amd64, arc, arm (+ linux,
+    get-next-pcs), csky, i386, loongarch, ppc-linux, riscv, tic6x,
+    x86-linux tdesc features, xtensa.h.
+
+    Mostly REGISTER-MODEL content: <arch>.c/.h construct register sets
+    (names, sizes, feature groups - e.g. SVE scalable vectors, MTE).
+    Two files carry instruction knowledge:
+      aarch64-insn.c/.h  (1744-45) - encode/decode helpers for key
+        AArch64 instruction classes (branches, ldr/str, adr...) with
+        explicit bit masks
+      arm-get-next-pcs.c (1759) - ARM/Thumb instruction decoding for
+        single-step (branch-semantics knowledge)
+      loongarch-insn.h   (1772) - LoongArch opcode masks/values table
+
+    Extraction strategy: harvest register models via the tdesc-builder
+    calls in <arch>.c; grep the three insn files for mask/value macro
+    tables. Low instruction yield - primarily useful to validate
+    register operands and as a second source for LoongArch encodings.
+
+- id: "gem5-arch"
+  name: "gem5 Simulator ISA Descriptions"
+  directory: "bank/Gem5-Arch"
+  sourced_from: "The src/arch/ subtree of the gem5 full-system simulator (amdgpu, arm, riscv targets)"
+  extraction_hint: |
+    Three architecture families (reservoid-tree.txt, lines 1785-2342),
+    with very different payload styles:
+
+    1. amdgpu/vega/ (1813-67) - HAND-WRITTEN C++ GPU ISA:
+       insts/ (1824-52) implements every VEGA encoding family as
+       .cc/.hh pairs named after the hardware encoding formats:
+       sop1/sop2/sopc/sopk/sopp (scalar), vop1/vop2/vop3/vop3_cmp/
+       vop3p/vop3p_mai/vopc (vector), smem, mubuf/mtbuf/mimg (memory),
+       ds, flat, exp, vinterp. Plus op_encodings.cc/.hh (format
+       layouts), gpu_decoder.cc/.hh (opcode -> class dispatch),
+       gpu_registers.cc/.hh. Bonus: common/dtype/ (1788-1804) defines
+       MX microscaling float formats (fp4_e2m1, fp6_e2m3/e3m2,
+       fp8_e4m3/e5m2, fp16_e5m10/e8m7) - rare documentation of
+       low-precision GPU types.
+
+    2. arm/isa/ (2051-2134) - THE PRIME PAYLOAD: gem5's declarative
+       .isa DSL, split into:
+         decoder/  (2055-59): aarch64.isa, arm.isa, thumb.isa -
+                    bit-pattern decode trees (encodings!)
+         insts/    (2081-2110): per-class instruction definitions
+                    incl. sve.isa, sme.isa, pauth.isa, crypto64.isa,
+                    amo64.isa, neon64.isa - very modern coverage
+         formats/  (2060-79) + templates/ (2113-34): operand layouts
+                    and C++ codegen templates
+         operands.isa, bitfields.isa: field/operand vocabulary
+       Also arm/insts/*.cc (2005-48) with execution semantics
+       (fplib.cc = full IEEE FP soft-float reference).
+
+    3. riscv/isa/ (2239-2317) - same .isa DSL, organized by extension:
+       rv32/rv64 x {a,c,f,i,m,v,z} subdirectories plus decoder.isa,
+       encoding.isa, formats.isa, operands.isa, regs.isa.
+
+    SKIP: arm/fastmodel/ (1886-1984, ARM FastModel/LISA+ glue),
+    kvm/, linux/, mmu/tlb/pagetable files, SConscript/Kconfig,
+    workload/system files - simulator plumbing, no ISA data.
+
+    Extraction strategy: parse the .isa DSL (Python-ish decode blocks:
+    nested `decode FIELD { 0x1: ClassName(...) }`) to get
+    (bit-pattern, mnemonic, format, semantics-template) tuples for ARM
+    and RISC-V; for VEGA, scrape the InFmt_*/decode tables in
+    op_encodings.* and gpu_decoder.cc for (encoding, opcode-number,
+    mnemonic). HIGH value: encodings + semantics together, and one of
+    the few sources for SME/SVE2 and AMD VEGA.
+
+- id: "ghidra-cpu"
+  name: "Ghidra SLEIGH Processor Modules"
+  directory: "bank/Ghidra-CPU"
+  sourced_from: "The Ghadira/processor submodule (per-architecture SLEIGH specs) of the NSA Ghidra SRE suite"
+  extraction_hint: |
+    ~40 architecture subdirectories (PowerPC, x86, AARCH64, ARM, RISCV,
+    MIPS, 68000, 6502, 8051, HCS08/HCS12, TriCore, Hexagon, Sparc,
+    PA-RISC, SuperH, V850, Z80, eBPF, NDS32, PIC, M16C, MC6800, MCS96,
+    CR16, 8085, 8048, Atmel, CP1600, M8C, TI_MSP430, Loongarch, JVM,
+    Dalvik, Toy, DATA, ...). Each carries the Ghidra module scaffold
+    (build.gradle, Module.manifest, certification.manifest) plus the
+    PAYLOAD under `data/languages/`:
+
+      *.sinc     (209 files) - SLEIGH instruction CONSTRUCTORS: one per
+                  instruction/encoding, giving the mnemonic, the
+                  bitfield match pattern (encoding), operand
+                  definitions, AND the semantic body (p-code).
+      *.slaspec  (148 files) - one per concrete language variant
+                  (e.g. ARM4_le, AARCH64:base, x86:LE:64:default);
+                  an `.slaspec` is the entry point that `@include`s a
+                  set of `.sinc` files + sets endianness/alignment.
+      *.cspec    (112) - compiler model (calling conv, proto) - skip.
+      *.pspec    (85)  - processor variant metadata - skip.
+      *.ldefs    (52)  - language registry - index only.
+      *.java     (421) - analyzer/loader code - skip.
+
+    SLEIGH is the single most complete formalism in the reservoir:
+    bit-precise encodings + p-code semantics in one syntax.
+
+    Extraction strategy: write/borrow a SLEIGH parser. Each constructor
+    line is `[:bits] mnemonic operands ; semantics` within
+    `define <space> [(field1 field2...) ]` context blocks (cross-
+    product tables). Emit (constructor mnemonic, match-mask + match-
+    value, operand list, p-code op sequence). Resolve field widths via
+    the `define bitrange`/`attach`/`token` declarations. Ignore
+    `.cspec/.pspec/.java`. HIGH value: one of only two sources
+    (besides miasm-arch) giving encodings AND semantics together for
+    40+ arches.
+
+- id: "granary-arch"
+  name: "Granary x86-64 Instrumentation Decoder"
+  directory: "bank/Granary-Arch"
+  sourced_from: "The instruction decode/encode core of the Granary dynamic binary instrumentation framework (x86-64)"
+  extraction_hint: |
+    A single-architecture (x86-64) instrumentation engine. Top-level
+    headers define the IR (instruction.h, operand.h, register.h,
+    decode.h, encode.h); `x86-64/` holds the implementation
+    (decode.cc = the decoder, encode.cc = the encoder, instruction.cc,
+    operand.cc, register.cc, builder.h = IR construction).
+
+    Granary models only the instruction SUBSET relevant to binary
+    instrumentation (control flow, memory, register-motion it must
+    track), not the full ISA.
+
+    Extraction strategy: parse `x86-64/decode.cc` (opcode byte/ModRM
+    dispatch) and `encode.cc` (template emission) for
+    (opcode bytes, mnemonic, operand form) triples. Narrow coverage;
+    useful only as a cross-check for the x86-64 subset, not primary.
+
+- id: "ildjit-vm"
+  name: "ILDJIT JIT Codegen + Selection Rules"
+  directory: "bank/ILDJIT-VM"
+  sourced_from: "The JIT code-generator and instruction-selection rule sources of the ILDJIT dynamic compilation framework"
+  extraction_hint: |
+    Flat directory (no subdirs) of the ILDJIT JIT, four file families:
+      jit-gen-<arch>.h   - GENERATED instruction-emitter tables
+                            (arm, x86, x86-64, alpha); the payload:
+                            per (mnemonic, operand signature) the
+                            template/opcode bytes.
+      jit-rules-<arch>.ins/.c - instruction-selection + semantics rules
+                            mapping ILDJIT IR nodes to machine insns.
+      jit-apply-<arch>.c/.h   - ABI / call-apply glue (ignore for ISA).
+      jit-opcode-apply.c, jit-rules.c/.h, jit-rules-interp.* - shared.
+
+    Architectures: arm, x86, x86-64, alpha, interp (reference).
+
+    Extraction strategy: parse jit-gen-*.h static arrays for
+    (mnemonic, operand arity, encoding template); optionally
+    jit-rules-*.ins for the IR -> instruction mapping (semantics-side).
+    Encoder + isel view; partial, no semantics for complex ops.
+
+- id: "impact-mspec"
+  name: "IMPACT Machine Specifications (m_spec)"
+  directory: "bank/IMPACT-Mspec"
+  sourced_from: "The IMPACT compiler's per-target machine-specification C (m_spec) sources"
+  extraction_hint: |
+    Academic VLIW compiler back-end. Two header/data roles per target:
+      m_<arch>.h / ml_<arch>.c - machine MODEL + machine-level
+                                  instruction definitions: struct
+                                  arrays of (opcode name, operand
+                                  classes, latency, resource use,
+                                  RTL-style semantics).
+      mi_<arch>.c              - micro-arch / instruction mix helpers.
+    Targets: arm, x86, bx86 (branch-extended x86), sparc, hppa, tahoe,
+    ti (TI DSP), starcore (StarCore SC1x DSP), wims, hpl_pd (HPL PD -
+    an IA-64/VLIW research ISA), impact (reference), spec (generic).
+    Plus m_spec.h, mi_spec.c, ml_spec.c (shared framework).
+
+    Extraction strategy: parse ml_<arch>.c opcode-definition arrays to
+    extract (instruction, operand descriptors, semantic attributes).
+    Heavy C; high effort. Distinctive value: rare DSP (StarCore/TI) and
+    the HPL_PD VLIW model not found elsewhere in the reservoir.
+
+- id: "jikesrvm-burs"
+  name: "Jikes RVM BURS Rule Grammars"
+  directory: "bank/JikesRVM-BURS"
+  sourced_from: "The BURS (bottom-up rewrite system) tree-grammar rule files of the Jikes Research Virtual Machine"
+  extraction_hint: |
+    Two target subdirectories, ia32/ and ppc/, each holding a set of
+    BURG-style `.rules` files. Each rule is a tree pattern -> cost ->
+    action that EMITs a real machine instruction:
+
+      #PRODUCTIONS of the form
+      <tree-pattern> -> <nonterminal> (COST)
+      EMIT(...mnemonic + operand refs...)
+
+    Files are split by op class: IA32.rules (core), IA32_SSE2.rules,
+    IA32_x87.rules, IA32-IntAdd.rules, IA32-LongIfCmp-64.rules, ... ;
+    ppc/ mirrors with PPC rules.
+
+    This is a SELECTION/LOWERING grammar (IR tree -> machine instr),
+    NOT an encoding source. No binary encodings.
+
+    Extraction strategy: parse `.rules` files (LHS pattern, cost, the
+    mnemonic in the EMIT() action, operand refs) to emit
+    (target, IR-tree-pattern, machine-mnemonic, operand-form) tuples.
+    Value: per-instruction semantic templates (what IR each instr
+    implements), pair with an encoding source for full records.
+
+- id: "keystone-arch"
+  name: "Keystone Assembler LLVM Targets"
+  directory: "bank/Keystone-Arch"
+  sourced_from: "The LLVM-derived per-architecture assembler back-ends of the Keystone assembler engine"
+  extraction_hint: |
+    Keystone = LLVM MC assembler, frozen as generated C. One subdir per
+    target (AArch64, ARM, Hexagon, Mips, PowerPC, RISCV, Sparc,
+    SystemZ, X86). Each contains the LLVM `*Gen*.inc` auto-generated
+    tables - identical family to capstone-arch but ASSEMBLER-side
+    (encoder-bearing), plus the hand-written MCTargetDesc/AsmParser glue:
+
+      <Arch>GenMCCodeEmitter.inc   - THE encoder: the function that
+                                     emits opcode bytes from operands.
+      <Arch>GenInstrInfo.inc       - instruction id, sizes, TSFlags.
+      <Arch>GenAsmMatcher.inc      - mnemonic/operand -> id matching.
+      <Arch>GenRegisterInfo.inc / GenSubtargetInfo.inc - reg/subtarget.
+      <Arch>GenCompressInstEmitter.inc (RISCV) / GenSystemOperands.inc
+      (AArch64) - extension-specific.
+
+    Extraction strategy: parse the `.inc` arrays directly (plain C
+    arrays/enums - no TableGen needed). Join GenInstrInfo (id + flags)
+    + GenAsmMatcher (mnemonic) + GenMCCodeEmitter (encoding map) to
+    emit (mnemonic, operands, encoding bytes). High fidelity for the
+    9 Keystone targets; cross-check against capstone-arch (decode side)
+    for the same LLVM revision.
+
+- id: "lcc-md"
+  name: "lcc Machine Descriptions"
+  directory: "bank/LCC-MD"
+  sourced_from: "The per-target *.md machine-description files of the lcc retargetable C compiler (burg code generator)"
+  extraction_hint: |
+    Six `.md` files (no subdirs): x86.md, x86linux.md, alpha.md,
+    sparc.md, mips.md, dagcheck.md. lcc uses burg (bottom-up rewrite):
+    each `.md` is a `%%`-separated grammar whose rules map an RTL
+    register-transfer tree to a C action that prints assembler text
+    with `%0/%1` operand placeholders.
+
+    Provides: tree-pattern semantics (the LHS) + exact asm syntax +
+    operand constraints; NO binary encodings.
+
+    Extraction strategy: parse the rule blocks (nonterminal,
+    pattern-tree, action containing the asm template) to emit
+    (pattern, mnemonic, operand-syntax) tuples. Semantics complement
+    to encoding-bearing sources (binutils/keystone) for x86, alpha,
+    sparc, mips. dagcheck.md is a validation grammar - ignore.
+
+- id: "libfirm-be"
+  name: "libFIRM Back-Ends"
+  directory: "bank/LibFIRM-BE"
+  sourced_from: "The per-target back-end sources (ia32, amd64, riscv, mips, sparc) of the libFIRM compiler back end"
+  extraction_hint: |
+    One subdir per target. ISA knowledge is split across:
+      *_spec.pl         - node SPECIFICATION (Perl data): defines the
+                          IR node kinds, their operands, and the
+                          `encoding` attribute/emit format per node -
+                          the cleanest payload here.
+      *_encode.c        - the encoder: turns a node into bytes.
+      *_architecture.c/.h - register model, ISA feature gates.
+      x86_x87.c, *_fpu.c - x87/FP instruction handling.
+
+    Extraction strategy: parse `*_spec.pl` for (node name, operand
+    signature, encoding/emit template) and join with the corresponding
+    `*_encode.c` emit functions to resolve the template into bit
+    patterns. Encoder-side; libFIRM's own IR node namespace (not raw
+    mnemonics) - normalize via the asm templates.
+
+- id: "libjit-spec"
+  name: "libjit Architecture Capability Headers"
+  directory: "bank/LibJIT-Spec"
+  sourced_from: "The per-architecture capability headers of the libjit JIT library"
+  extraction_hint: |
+    Four tiny headers only: jit-arch-x86.h, jit-arch-x86-64.h,
+    jit-arch-arm.h, jit-arch-generic.h. Content is architecture
+    CAPABILITY macros (pointer size, endianness, register count,
+    stack-growth direction) consumed by libjit's portable core.
+
+    NO instruction tables, NO encodings, NO semantics. Negligible
+    instruction yield; at most a coarse register/word-size model.
+
+- id: "libvirt-cpu"
+  name: "libvirt CPU Feature Models"
+  directory: "bank/LibVirt-CPU"
+  sourced_from: "The per-architecture CPU model / feature-flag definitions of the libvirt virtualization API"
+  extraction_hint: |
+    Per-arch C: cpu_x86.{c,h} (dominant, 104KB), cpu_arm.{c,h},
+    cpu_ppc64.{c,h} (+cpu_ppc64_data.h), cpu_s390.{c,h},
+    cpu_riscv64.{c,h}, cpu_loongarch.{c,h}, plus cpu_*_data.h tables.
+
+    Content is CPU MODEL policy: feature-flag names, vendor/model IDs,
+    baseline/blocklist policies for `-cpu` selection (e.g. the x86
+    feature-name universe and the mapping of flags to CPUID bits).
+    NO instruction definitions whatsoever.
+
+    Extraction strategy: harvest the feature-name vocabularies (x86
+    CPUID features, ARM ID_AA64*_reg fields, S390 STFL bits) to
+    NORMALIZE ISA-extension/feature-gate flags across encoding-bearing
+    sources. Zero direct instruction yield.
+
+- id: "lightning-jitfiles"
+  name: "GNU Lightning Portable JIT Back-Ends"
+  directory: "bank/Lightning-JITFiles"
+  sourced_from: "The per-arch code-generation sources of the GNU Lightning portable JIT (lightning)"
+  extraction_hint: |
+    Flat directory. Per architecture a consistent file triplet:
+      jit_<arch>.c        - public instruction API (the abstract
+                            Lightning op set).
+      jit_<arch>-cpu.c    - THE encoder: maps each abstract op to the
+                            host's bit template(s).
+      jit_<arch>-fpu.c    - FP/SIMD op encoding.
+      jit_<arch>-sz.c     - instruction SIZE tables (compact
+                            reference for length-per-op).
+    Plus jit_disasm.c (mnemonic printer), jit_fallback.c (soft
+    fallback), jit_size.c, jit_memory.c, jit_rewind.c (shared).
+
+    Architectures: x86 (+sse, +x87), arm, aarch64, mips, ppc, sparc,
+    s390, riscv, loongarch, hppa, alpha, ia64.
+
+    Lightning exposes a FIXED abstract op set (addi/movr/etc.), so the
+    payload is (abstract-op -> host encoding template). Extraction:
+    parse `jit_*-cpu.c` and cross-ref `jit_*-sz.c` for
+    (op, host-mnemonic, byte template, length). Encoder-side, op-keyed
+    rather than mnemonic-keyed.
+
+- id: "miasm-arch"
+  name: "Miasm Architecture Modules"
+  directory: "bank/MIASM-Arch"
+  sourced_from: "The per-architecture Python modules of the Miasm reverse-engineering framework"
+  extraction_hint: |
+    One subdir per arch (arm, aarch64, x86, mips32, ppc, msp430, mep,
+    sh4), each with the same trio:
+      arch.py  - THE decode payload: big regex/bitfield tables mapping
+                 (instruction bit-pattern) -> (mnemonic, args, mn_mod);
+                 defines operands and their field offsets.
+      sem.py   - SEMANTICS: a per-mnemonic lifter emitting symbolic
+                 Miasm Expr (effects on regs/mem/flags) - explicit
+                 behavior, not just encoding.
+      regs.py  - register bank; jit.py - JIT; disasm.py - glue.
+
+    Gold for its arches: arch.py (encodings) + sem.py (semantics)
+    together, like ghidra-cpu and boomerang-ssl.
+
+    Extraction strategy: import/AST-parse arch.py to emit
+    (mnemonic, bit-mask/match, operand field descriptors) and sem.py to
+    emit (mnemonic, Expr-effect AST). Clean Python; no C parsing.
+
+- id: "mir-data"
+  name: "MIR JIT Architecture Back-Ends"
+  directory: "bank/MIR-Data"
+  sourced_from: "The per-target code-generation and interpreter sources of the MIR lightweight JIT (V. Makarov)"
+  extraction_hint: |
+    Flat directory. Two layers:
+      mir-<arch>.c   (aarch64, x86_64, ppc64, riscv64, s390x) - the
+                      arch back-end: MIR-op -> machine encoding tables
+                      + the emit functions.
+      mir-gen-<arch>.c - the code GENERATOR (isel + register allocation
+                      + emit) for the same arches.
+      mir-gen.c (410KB) - target-independent generator core.
+      mir-interp.c   - the interpreter = MIR-op SEMANTICS reference.
+      mir-bin-run.c / mir-bin-driver.c / mir-gen-stub.c / mir-*.c -
+                      runtime/driver glue.
+
+    Extraction strategy: parse `mir-<arch>.c` for (MIR op -> encoding
+    bytes / asm) and `mir-interp.c` for the per-op semantic switch
+    (MIR is its own typed IR; the interpreter is the semantics). Pair
+    the two to get encoding + behavior for the 5 MIR targets.
+
+- id: "mlrisc-arch"
+  name: "MLRISC Machine Descriptions (.mdl)"
+  directory: "bank/MLRISC-Arch"
+  sourced_from: "The per-target Machine Description Language (.mdl) + emitter sources of MLRISC (SML)"
+  extraction_hint: |
+    Subdirs: amd64, x86, ppc, mips. Each carries:
+      <arch>.mdl      - THE declarative payload: MLRISC Machine
+                        Description Language. Defines instructions with
+                        their `assembly` string, `encoding` (bit-layout
+                        of every field), operand cells, and RTL-style
+                        semantics - explicit and table-driven.
+      <arch>MC.sml    - the Machine-Code EMITTER (MC) generated/driven
+                        by the .mdl (cross-reference).
+      README.<arch>   - notes; plus flowgraph/emit/ra/mltree/ SML dirs
+                        (codegen plumbing - skip).
+
+    The .mdl is one of the most declarative ISA specs in the reservoir.
+
+    Extraction strategy: parse `<arch>.mdl` - harvest per instruction
+    the (mnemonic via `assembly`, operands, `encoding` field map, RTL
+    body). SML-flavored grammar but field names are explicit. HIGH
+    value for x86, amd64, ppc, mips: encodings + semantics in one file.
+
+- id: "mlton-arch"
+  name: "MLton Code-Generator Configuration"
+  directory: "bank/MLton-Arch"
+  sourced_from: "The architecture-specific configuration and code-generator sources of the MLton Standard ML compiler"
+  extraction_hint: |
+    Three subtrees:
+      Configs/   - per-arch capability macros (*-main.h: amd64, x86, c,
+                   mlton, common) - word sizes, GC layout, pointer size.
+      Sizes/     - sizes-<arch>.sml (x86, amd64, sparc, ppc, ppc64,
+                   ia64, hppa) - register/word sizes & alignments.
+      Codegen/   - the emitters: x86-codegen/, amd64-codegen/,
+                   llvm-codegen/, c-codegen/ (SML + C sources).
+
+    Instruction-level yield is LOW: MLton targets a small abstract
+    primitive set; Configs/Sizes give the data layout, Codegen gives
+    emit logic but no dense opcode tables.
+
+    Extraction strategy: low priority. Harvest Sizes/*.sml for
+    register/data-size models; mine x86-codegen/amd64-codegen for the
+    emit primitives only if x86/amd64 coverage is otherwise thin.
+
+- id: "myjit-arch"
+  name: "MyJIT Code-Generator Headers"
+  directory: "bank/MyJIT-Arch"
+  sourced_from: "The per-architecture codegen headers of the MyJIT JIT library"
+  extraction_hint: |
+    Flat set of headers, paired by arch:
+      <arch>-codegen.h   - emit macros: one per JIT op, emitting the
+                            instruction byte sequence.
+      <arch>-specific.h  - arch-specific op definitions + registers.
+    Architectures: x86, amd64 (amd64-codegen.h 94KB), arm32, sparc,
+    sse2; plus common86-codegen.h / common86-specific.h / x86-common-
+    stuff.c (shared 32/64-bit logic).
+
+    Extraction strategy: parse the `<arch>-codegen.h` emit macros
+    (JIT op -> byte/ModRM sequence). Encoder-side; op-keyed, partial
+    coverage (JIT-relevant subset).
+
+- id: "nanojit-instr"
+  name: "NanoJIT Native Back-Ends"
+  directory: "bank/NanoJIT-Instr"
+  sourced_from: "The Native<Arch>.cpp back-end sources of the Mozilla NanoJIT (TraceMonkey-era) JIT"
+  extraction_hint: |
+    Flat directory of `Native<Arch>.{cpp,h}` pairs, one per target:
+    NativeARM, NativeThumb2, Nativei386, NativeX64, NativePPC,
+    NativeSparc, NativeMIPS, NativeSH4 (NativeSH4-auto-generated.h),
+    plus Native.h / NativeCommon.h. Each back-end is an assembler
+    emitting native code for the LIR (Low-level IR) op set: `asm_*`
+    functions (asm_quad, asm_call, ...) carry the per-op encoding.
+
+    Extraction strategy: parse the `asm_*`/emit routines in
+    Native<Arch>.cpp to map (LIR op -> emitted byte sequence + operand
+    form). Encoder-side; LIR-keyed, partial coverage, no semantics.
+
+- id: "nasm-data"
+  name: "NASM Assembler x86 Instruction Database"
+  directory: "bank/NASM-Data"
+  sourced_from: "The instruction-definition data files of the NASM (Netwide Assembler) x86 assembler"
+  extraction_hint: |
+    Subdir x86/ holding the authoritative NASM x86 database:
+      insns.dat        - THE payload (484KB): one row per instruction
+                         form = mnemonic, operand-type flags, opcode
+                         bytes, prefix/encoding markers, CPU flags.
+      insns.pl /       - the Perl generator that compiles insns.dat
+      preinsns.pl        into C; documents the column schema.
+      regs.dat /       - register table + generator.
+      regs.pl
+      iflags.ph /      - CPU-flag effects per instruction (IFLAGS).
+      insns-iflags.ph
+      x86const.h, bytecode.txt, rex2.pl - constants/bytecode format.
+
+    Gold x86 source: clean, column-oriented, near-complete incl. EVEX/
+    APX/AVX-512.
+
+    Extraction strategy: drive extraction through `insns.pl`'s parser
+    (or regex the columns directly per the schema in insns.pl) to emit
+    (mnemonic, operand types, opcode bytes, prefixes, flag effects).
+    No C parsing. Cross-check against distorm-disops, x86-dataset,
+    bochs-cpu.
+
+- id: "openuh-be"
+  name: "OpenUH (Open64) Back-End Codegen"
+  directory: "bank/OpenUH-BE"
+  sourced_from: "The per-target code-generation subtrees (CG/, BE/, COM/) of the OpenUH compiler (Open64 fork)"
+  extraction_hint: |
+    Three subtrees, each split per target (x8664, MIPS, ppc32, ia64):
+      CG/  - code generator (instruction selection, expansion, emit).
+      BE/  - back-end utilities (target-specific).
+      COM/ - common/shared target helpers.
+    Content is C operating on WHIRL (Open64 IR): `targ_isa_*`/`cgexp_*`
+    routines map WHIRL ops to machine instructions + asm; `ti_<arch>*`
+    tables hold the ISA metadata (operand forms, latency, encoding
+    hints for some targets).
+
+    Extraction strategy: heavy C. Mine the `ti_*`/target tables for
+    (instruction, operand classes, asm) and the cg expansion routines
+    for IR->instr templates. HIGH effort. Distinctive value: ia64
+    (Itanium) and the explicit HPUX/MIPS/PPC targets poorly covered
+    elsewhere.
+
+- id: "pcc-arch"
+  name: "PCC (Portable C Compiler) Back-Ends"
+  directory: "bank/PCC-Arch"
+  sourced_from: "The per-architecture back-ends of the Portable C Compiler (PCC, 2nd-generation code generator)"
+  extraction_hint: |
+    ~16 target subdirs (nova, i86, pdp10, pdp7, pdp11, amd64, i386,
+    mips, mips64, m68k, m16c, sparc64, powerpc, hppa, arm, vax). Each
+    holds the classic PCC quartet:
+      table.c   - THE instruction table: `{ match-cookie, tree-mask,
+                  asm-template-with-%N-operands }` rows - the payload.
+      code.c    - code emission driver.
+      local2.c / local.c - target-specific lowering.
+      order.c   - reordering; macdefs.h - macros.
+    Plus READMEs (nova/README).
+
+    Extraction strategy: parse `table.c` cookie/template arrays to
+    emit (tree-pattern, asm-mnemonic, operand-syntax). 2nd-gen
+    compiler: tree-pattern semantics + asm syntax; binary encodings
+    mostly absent. Distinctive value: rare minis (nova, pdp7, pdp10,
+    pdp11, m16c) found nowhere else in the reservoir.
+
+- id: "pistachio-arch"
+  name: "L4 Pistachio Kernel Architecture Glue"
+  directory: "bank/Pistachio-Arch"
+  sourced_from: "The per-architecture kernel sources of the L4 KaH-Pistachio microkernel (x86, powerpc, powerpc64)"
+  extraction_hint: |
+    Kernel-architectural glue (NOT an assembler/disassembler): page
+    tables (pgtab/pgent/pghash/stab/slb/seghash), segments, exceptions
+    (except.S/.cc), MSR/RTAS/OF1275 (OpenFirmware), registers
+    (ppc64_registers.h, msr.h, power4.h), ABI frames. Subdirs:
+    powerpc64, powerpc, x86.
+
+    NO instruction tables, NO encodings. Negligible instruction yield;
+    only useful for the PowerPC register/MSR-bit model and the x86
+    segment/page definitions when enriching register operands.
+
+- id: "pydgin-arch"
+  name: "Pydgin ISA Simulators"
+  directory: "bank/Pydgin-Arch"
+  sourced_from: "The per-architecture Python ISA-simulator models of the Pydgin (Python-driven) simulator framework"
+  extraction_hint: |
+    Three simulator subdirs, each `isa.py`-centric:
+      arm/    - isa.py (44KB): decode (bitfield patterns) + per-instr
+                execute() SEMANTICS for ARM.
+      riscv/  - isa.py + isa_RV32I/RV64I/RV32M/RV64M/RV32F.py (split
+                by extension) + csr.py (CSRs).
+      parc/   - isa.py (39KB): the PARC research ISA.
+    Plus instruction.py (instr-class base), machine.py, utils.py,
+    syscalls.py, asm_test.py + bootstrap generators.
+
+    Gold: each instruction class declares its encoding fields AND its
+    execute() body (operational semantics) in readable Python.
+
+    Extraction strategy: AST-parse isa*.py per arch - emit
+    (instruction name, encoding field descriptors, execute-body =
+    semantics). Clean; strong for ARM and RISC-V (incl. extension
+    split + CSRs).
+
+- id: "pypy-jitbackend"
+  name: "PyPy JIT Backend Assemblers"
+  directory: "bank/PyPy-JITBackend"
+  sourced_from: "The per-architecture JIT back-end assemblers of the PyPy Python interpreter (res metainterpreter)"
+  extraction_hint: |
+    Subdirs: arm, ppc, aarch64, riscv, zarch (s390x), x86. Common
+    layout per arch:
+      opassembler.py   - maps each residual IR op to native emit calls.
+      codebuilder.py / assembler.py - the raw instruction ENCODERS
+                          (emit_<mnemonic> byte writers).
+      regalloc.py, registers.py, locations.py, conditions.py - reg/ABI.
+      ppc-specific: form.py / field.py / ppc_form.py - PowerPC
+                    instruction FORMS and bitfield layouts (clean
+                    encoding reference).
+      arch.py, jump.py, shift.py, runner.py, callbuilder.py - glue.
+
+    Extraction strategy: parse `opassembler.py` (IR-op -> native emit)
+    and `codebuilder.py`/`assembler.py` emit_* (byte templates); for
+    ppc parse form.py/field.py for (form, field bit-ranges). Encoder-
+    side; op-keyed. ppc forms are notably clean.
+
+- id: "qbe-instr"
+  name: "QBE Compiler Back-Ends"
+  directory: "bank/QBE-Instr"
+  sourced_from: "The per-target back-ends (arm64, amd64, rv64) of the QBE compiler back end"
+  extraction_hint: |
+    Three subdirs (arm64, amd64, rv64), each with: emit.c (assembly
+    EMITTER - QBE instr -> asm text), isel.c (instruction selection),
+    abi.c (calling convention), targ.c (target descriptor), all.h.
+
+    QBE emits ASSEMBLY text, not binary; payload is (QBE instruction ->
+    asm mnemonic + operand syntax). No binary encodings.
+
+    Extraction strategy: parse `emit.c` per target to map QBE ops to
+    asm strings; isel.c for legal forms. Low IS-level detail; useful
+    only as a mnemonic/syntax reference for arm64/amd64/rv64.
+
+- id: "qemu-targets"
+  name: "QEMU Guest Front-Ends (decodetree)"
+  directory: "bank/QEMU-Targets"
+  sourced_from: "The per-guest-architecture target subtrees of the QEMU emulator (translate.c + insns.decode)"
+  extraction_hint: |
+    NEW-style QEMU guest front-ends, one subdir per guest (alpha, arm,
+    avr, hppa, hexagon, i386, loongarch, m68k, microblaze, mips, or1k,
+    ppc, riscv, rx, s390x, sh4, sparc, tricore, xtensa). Per guest:
+      insns.decode    - THE payload: QEMU `decodetree` DSL files
+                        declaring field layouts + bit-pattern groups
+                        -> mnemonic + decoded field names. Clean,
+                        machine-parseable encodings (loongarch's is
+                        117KB, microblaze 11KB).
+      translate.c     - the decoder+TCG lifter: decodes per insns.decode
+                        then emits TCG ops = SEMANTICS.
+      op_helper.c / helper.c / helper.h - C helpers (semantics of
+                        complex/memory ops).
+      cpu.h / cpu-param.h / cpu-qom.h - CPU state + register model.
+      gdbstub.c, machine.c, mmu.c, fpu impl - skip for ISA.
+
+    Gold: insns.decode gives encodings declaratively; translate.c +
+    op_helper.c give TCG/C semantics. One of the richest reservoir
+    sources for the 19 listed guests.
+
+    Extraction strategy: run/parse insns.decode (decodetree syntax:
+                        `field`/`argument`/`pattern`/`group` decls) ->
+                        (mnemonic, match-mask, match-value, field
+                        bit-ranges); join translate.c TCG emission for
+                        semantics. Decodetree has a parser in QEMU.
+
+- id: "qemu-tcg"
+  name: "QEMU TCG HOST Back-Ends"
+  directory: "bank/QEMU-TCG"
+  sourced_from: "The TCG host code-generator back-ends of QEMU (how TCG ops are emitted as HOST instructions)"
+  extraction_hint: |
+    NOTE: these are HOST back-ends (the machine QEMU itself runs on),
+    NOT guest front-ends (see qemu-targets). One subdir per host:
+    aarch64, x86_64, s390x, ppc64, riscv64, mips64, sparc64. Per host:
+      tcg-target.c.inc      - THE encoder: per-TCG-op host emit logic.
+      tcg-target-opc.h.inc  - which TCG ops this host supports.
+      tcg-target-con-{set,str}.h - constraint/operand-string tables.
+      tcg-target.h / -has.h / -mo.h - capability/config headers.
+
+    Extraction strategy: parse tcg-target.c.inc (TCG op -> host
+    instruction bytes). Useful for HOST ISA encoding of the 7 hosts;
+    pair with qemu-targets (guest side) - do not conflate the two.
+
+- id: "radare2-opcodes"
+  name: "radare2 Architecture Plugins"
+  directory: "bank/Radare2-Opcodes"
+  sourced_from: "The per-architecture plug-in sources (asm + analysis) of the radare2 reverse-engineering framework"
+  extraction_hint: |
+    ~40 architectures. For each, a `<arch>.mk` makefile + a `<arch>/`
+    source dir. Three plugin lineages - the extractor MUST distinguish:
+      *_cs   (x86_cs, ppc_cs, bpf_cs, m68k_cs, xcore_cs, 6502_cs) -
+             thin wrappers over Capstone - carry NO local opcode data;
+             SKIP.
+      *_gnu / any_as (s390_gnu, ppc_gnu, m68k_gnu, i8080 via any_as,
+             arm via plugin_gnu) - wrap GNU binutils - SKIP.
+      NATIVE (arm/armass.c + armass64 + aarch64, s390, ppc, m68k,
+             x86_nasm, msp430, propeller, kvx, lua, malbolge, ebc,
+             v810, lh5801, fslsp, nds32, pic, i4004, i8080, or1k,
+             ...) - hand-written asm/disasm tables - the only local
+             payload.
+    Files per native dir: plugin.c, <arch>ass.c (assembler tables),
+    asm-<arch>.h, preludes.inc.c, anal_<arch>_hacks.inc.c.
+
+    Extraction strategy: skip wrappers; for native dirs parse the
+    `*ass.c` assembler tables (mnemonic -> opcode/operand form).
+    Medium-low fidelity, very high breadth (incl. esoteric/novel
+    arches: malbolge, brainfuck-class, v810, fslsp). Normalize casing
+    before joining other sources.
+
+- id: "riscv-opcodes"
+  name: "RISC-V Opcodes Canonical Database"
+  directory: "bank/RISCV-Opdoes"
+  sourced_from: "The canonical riscv-opcodes repository (encoding database for the RISC-V ISA); NOTE the directory name is misspelled 'Opdoes'"
+  extraction_hint: |
+    The upstream source-of-truth for RISC-V encodings:
+      extensions/        - THE payload: one file per extension
+                           (rv_i, rv_m, rv_a, rv_c, rv_f, rv_d,
+                           rv_zfh, rv_zbb, rv_zba, rv_v, rv_zicbom,
+                           rv_h, rv_zicfiss, rv_zvkn, ...). Each line:
+                           `mnemonic operands field=value...`
+                           where fixed fields are `lo..hi=const` and
+                           variable fields name the operand slot.
+                           32/64 variants split (rv32_*, rv64_*).
+      encoding.h         - GENERATED C: per instruction `#define
+                           <NAME>_CODE`/`_MASK` match/mask constants.
+      csrs.csv / csrs32.csv - CSR name -> address table.
+      causes.csv         - trap-cause codes; arg_lut.csv - field LUT.
+      src/               - the Python generator that emits encoding.h
+                           from extensions/ (documents the format).
+      README.md          - documents the line grammar.
+
+    Gold for RISC-V: every official extension, canonical.
+
+    Extraction strategy: parse `extensions/*` line grammar
+    (mnemonic, operand list, fixed-field bit assignments, variable-
+    field names) to emit (mnemonic, operands, match-mask, match-value,
+    field-bit-ranges); cross-ref encoding.h constants and arg_lut.csv.
+    Cleanest RISC-V encoding source in the reservoir.
+
+- id: "sljit-data"
+  name: "SLJIT Portable JIT Back-Ends"
+  directory: "bank/SLJIT-Data"
+  sourced_from: "The per-host native back-end sources of the SLJIT (Stack-less JIT) portable code generator"
+  extraction_hint: |
+    Flat directory. One `sljitNative<Arch>_*.c` per host, split by
+    bitness/common where relevant:
+      X86_32 / X86_64 / X86_common, ARM_32 / ARM_64 / ARM_T2_32,
+      MIPS_32 / MIPS_64 / MIPS_common, PPC_32 / PPC_64 / PPC_common,
+      RISCV_32 / RISCV_64 / RISCV_common, S390X, LOONGARCH_64.
+    Plus sljitLir.c/.h (the IR / public API), sljitSerialize.c,
+    sljitConfig*.h, sljitUtils.c, allocator_src/ (memory allocators -
+    skip).
+
+    SLJIT has its own op set; each native file maps SLJIT ops to host
+    encodings (the `getput_*`/emit routines).
+
+    Extraction strategy: parse `sljitNative<Arch>*.c` for
+    (SLJIT op -> host instruction bytes). Host-encoder view for the
+    10 host families; op-keyed, JIT-relevant subset.
+
+- id: "tcc-instrfiles"
+  name: "TCC (Tiny C Compiler) Back-Ends"
+  directory: "bank/TCC-InstrFiles"
+  sourced_from: "The per-architecture codegen + inline-assembler sources of the Tiny C Compiler (TCC)"
+  extraction_hint: |
+    Flat files per arch: i386, x86_64, arm, arm64, riscv64, c67, il.
+      <arch>-gen.c   - code GENERATOR: emit native instrs for TCC's
+                       IR (the bulk of ISA knowledge; encodings inline).
+      <arch>-asm.c   - the INLINE-ASSEMBLER parser: opcode tables +
+                       encoding for accepted inline-asm mnemonics
+                       (arm-asm.c 100KB, riscv64-asm.c 86KB - richest).
+      <arch>-link.c  - relocation/link glue (lower ISA value).
+
+    Extraction strategy: parse `<arch>-asm.c` opcode tables for
+    (mnemonic, operand form, encoding bytes); mine `<arch>-gen.c`
+    emit helpers for additional encodings. Encoder + inline-asm view;
+    good cross-check for arm/riscv64/x86 where the asm tables are
+    large.
+
+- id: "upython-asm"
+  name: "MicroPython Assembler Modules"
+  directory: "bank/uPython-ASM"
+  sourced_from: "The per-architecture assembler modules of MicroPython (asm<arch>.c/.h)"
+  extraction_hint: |
+    Flat set of `asm<arch>.{c,h}` for compact embedded assemblers:
+    x86 (asmx86), x64 (asmx64), arm (asmarm), thumb (asmthumb),
+    xtensa (asmxtensa), rv32 (asmrv32); plus asmbase.{c,h} (shared).
+    Each implements a small emit API (asm_<arch>_op_*) for the
+    instruction subset MicroPython needs to emit bytecode thunks.
+
+    Extraction strategy: parse the opcode/emit tables in asm<arch>.c
+    for (mnemonic, operands, encoding). Encoder-side; COMPACT subsets
+    (not full ISA). Useful for xtensa and rv32 where coverage elsewhere
+    is thinner; cross-check thumb/arm against capstone.
+
+- id: "vex-vine"
+  name: "VEX Guest State + IR Lifters"
+  directory: "bank/VEX-Vine"
+  sourced_from: "The Valgrind VEX guest-state headers and IR-to-IR lifters bundled with the VINE binary-analysis toolchain"
+  extraction_hint: |
+    Two subtrees:
+      Guestfiles/  - libvex_guest_<arch>.h: x86, amd64, arm, ppc32,
+                     ppc64, +libvex_guest_offsets.h. These define the
+                     VEX guest-state (architectural register file)
+                     LAYOUT - the register model for each guest.
+      IR2IR/       - irtoir-<arch>.cpp (i386, arm): VEX-IR ->
+                     simplified-IR transformation. Valgrind's VEX IR is
+                     itself a SEMANTIC IR, so these encode behavioral
+                     restructuring.
+
+    Low instruction yield. Extraction: Guestfiles for register/state
+    models; IR2IR for VEX-IR semantics reference. No guest encodings
+    here (VEX decode lives elsewhere); pair with a VEX-capable decoder
+    for full records.
+
+- id: "x86-dataset"
+  name: "x86asm Machine-Readable Dataset"
+  directory: "bank/x86-Dataset"
+  sourced_from: "The x86asm dataset: a CSV-driven, machine-readable x86/x86-64 ISA database (with C API and LLVM-derived generator)"
+  extraction_hint: |
+    The cleanest tabular x86 source in the reservoir:
+      data/x86_<ext>.csv  - THE payload: one CSV per extension
+                            (x86_base 74KB, x86_avx512*, x86_avx*,
+                            x86_sse*, x86_aes, x86_vaes, x86_sha,
+                            x86_bmi1, x86_fsgsbase, x86_uintr,
+                            x86_raoint, x86_amx*, ...). Columns:
+                            Instruction, Opcode (LEX notation, e.g.
+                            "LEX.WN 37"), Valid 64/32/16-bit, Feature
+                            Flags, Operand 1..4 (typed, r/w access),
+                            Tuple Type, Description.
+      include/x86.h / lib/x86.c - C enum + table form of the same data.
+      scripts/x86-tablegen.py - the generator (derives the dataset
+                            from LLVM) - documents the schema.
+      doc/x86_desc.md (161KB) - human spec; tests/, images/, README.
+
+    Extraction strategy: load the CSVs directly (no parsing heuristics)
+    -> (mnemonic, LEX-opcode, operand types + access, valid modes,
+    feature flags, description). Excellent cross-check vs nasm-data,
+    distorm-disops, bochs-cpu.
+
+- id: "xbyak-instructions"
+  name: "Xbyak x86/x64 JIT Generator Headers"
+  directory: "bank/Xbyak-Instructions"
+  sourced_from: "The header-only Xbyak C++ x86/x64 JIT library (mnemonic generator + encoder)"
+  extraction_hint: |
+    Four C++ headers (header-only library):
+      xbyak_mnemonic.h (285KB) - THE payload: every instruction is a
+                       `gen()`/inline definition carrying the mnemonic,
+                       operand-type signature, and the
+                       opcode/ModRM/VEX/EVEX/REX2 encoding logic.
+      xbyak.h          - core (Label, Operand, CodeGenerator base).
+      xbyak_util.h     - CPUID detection / feature gating.
+      xbyak_bin2hex.h  - helper.
+
+    Near-complete x86/x64 incl. AVX-512, AMX, APX. Encoder-side; the
+    gen() bodies ARE the encoding specification.
+
+    Extraction strategy: parse `xbyak_mnemonic.h` gen()/ar/* support
+    definitions to extract (mnemonic, operand-type list, opcode bytes,
+    ModRM/VEX/EVEX field construction). Heavy C++ template parsing;
+    high fidelity for modern x86. Cross-check against nasm-data and
+    x86-dataset.
+
+- id: "xed-datafiles"
+  name: "Intel XED Data Files"
+  directory: "bank/XED-DataFiles"
+  sourced_from: "The textual data files (per-extension + per-CPU-gen + field vocabulary) of Intel's XED x86/x64 encoder/decoder"
+  extraction_hint: |
+    Intel's authoritative x86 spec, in two file kinds:
+
+      (1) Top-level `.txt` VOCABULARY files (define the schema):
+          xed-fields.txt             - operand FIELD definitions
+                                       (names, bit widths, types).
+          xed-operand-action-enum.txt- per-operand actions enum.
+          xed-regs.txt               - register enumeration.
+          xed-exceptions.txt         - exception classes (#UD/#GP/...).
+          xed-eOSZ.txt / xed-eASZ.txt- operand/address-size state.
+          xed-ild-scanners.txt       - instruction-length-disasm rules.
+          xed-gpr8-dec-reg-table.txt - GPR8 decoding.
+          xed-nops.txt, xed-prefixes-encode.txt,
+          xed-amd-prefetch.txt, cpuid.xed.txt (CPUID gating),
+          files-xregs.cfg (registry).
+
+      (2) Per-feature / per-CPU-gen DIRECTORIES, each holding the
+          per-instruction pattern files consumed by XED's generator:
+          feature sets: avx512vbmi, gfni-vaes-vpcl, sha512, sm3, sm4,
+             vpopcntdq-512, vnni, avx-vnni-int16, tsx-ldtrk, sgx,
+             xsaves, amx-complex, amx-spr, 4fmaps-512, 4vnniw-512,
+             clflushopt, hreset, msr-imm, wbnoinvd, pt, ...
+          CPU generations: gnr, hsw, knl, ptl, arrow-lake.
+
+    Gold: highest-fidelity x86 (Intel's own). Extraction strategy:
+    parse the field vocabulary first (xed-fields.txt +
+    operand-action-enum.txt), then each feature dir's pattern files to
+    emit (iform name, pattern/encoding map, operands + access,
+    exception class, CPUID feature). Complex XED DSL; worth the effort
+    for authoritative x86/APX/AVX-512.
+
+- id: "yasm-arch"
+  name: "YASM Assembler x86 + LC-3b"
+  directory: "bank/YASM-Arch"
+  sourced_from: "The architecture modules of the YASM modular assembler (x86 via Python generator, plus LC-3b)"
+  extraction_hint: |
+    Two architecture modules:
+      x86/   - the dominant one. ISA knowledge is DATA-DRIVEN:
+              gen_x86_insn.py (299KB) is THE generator that emits the
+              full x86/x86-64 instruction tables (operand forms,
+              opcodes, cpumodel flags, prefixes) consumed by
+              x86bc.c (bytecode emit), x86id.c (instruction IDs),
+              x86arch.c/.h, x86cpu.gperf (CPU model perfect-hash),
+              x86regtmod.gperf (register/token table), x86expr.c.
+      lc3b/  - the rare LC-3b academic ISA: lc3bbc.c, lc3bid.re
+              (regex-based instruction matching), lc3barch.{c,h}.
+      yasm_arch.xml - arch registry; CMakeLists/Makefile.inc glue.
+
+    Gold x86 via the Python data source. Extraction strategy: run/AST-
+    parse gen_x86_insn.py to emit (mnemonic, operands, opcode bytes,
+    CPU-feature flags); for LC-3b parse lc3bid.re. Cross-check x86 vs
+    nasm-data / x86-dataset.
+
+- id: "zydis-metadata"
+  name: "Zydis x86/x64 Precompiled Metadata"
+  directory: "bank/Zydis-Metadata"
+  sourced_from: "The precompiled C-struct metadata (.inc) tables of the Zydis x86/x64 disassembler/assembler"
+  extraction_hint: |
+    A flat set of `.inc` files - Zydis's full instruction metadata as
+    plain C arrays (consume directly, no DSL):
+      InstructionDefinitions.inc  (2.9MB) - per-instruction: mnemonic,
+                            operand-list ref, flags, category, ISA ext.
+      InstructionEncodings.inc    - encoding map (map/index).
+      DecoderTables.inc (2MB) / EncoderTables.inc (3.9MB) - the
+                            full decode/encode decision tables.
+      OperandDefinitions.inc (1.4MB) - per-operand type/visibility/
+                            access (R/W), element info.
+      AccessedFlags.inc           - per-instr CPU-flag effects.
+      EnumMnemonic.inc (75KB)     - the mnemonic enumeration.
+      EnumISAExt.inc / EnumISASet.inc / EnumInstructionCategory.inc -
+                            ISA-extension/set/category enums.
+      EnumRegister.inc / RegisterLookup.inc / RegisterClassLookup.inc -
+                            register model.
+      FormatterStrings.inc        - asm-format strings.
+      GetCcInfo.inc / GetRelInfo.inc - condition/rel branch metadata.
+
+    Gold x86: complete decode + encode + operand/flag metadata ready
+    to read as arrays. Extraction strategy: parse the arrays (they are
+    static C initializers) to emit (mnemonic, operands + access,
+    encoding, flag effects, ISA ext/set, category). No heuristics;
+    fastest high-coverage x86 ingest in the reservoir.
+
